@@ -1,0 +1,306 @@
+syntax = "proto3";
+option go_package = "gitlab.vrviu.com/diskless_stack/diskless_stack/protocol/image_service";
+package image_service;
+
+import "google/protobuf/timestamp.proto";
+
+// 需要http接口需要引入这个proto
+import "google/api/annotations.proto";
+
+service ImageService {
+  // 恢复镜像接口
+  rpc Recove(RecoveRequest) returns (RecoveResponse) {}
+
+  rpc GetTaskProcess(GetTaskProcessRequest)
+      returns (GetTaskProcessHttpResponse) {
+    option (google.api.http) = {
+      post : "/v1/imageservice/restore_instance_processing"
+      body : "*"
+    };
+  }
+
+  // 镜像制作接口
+  rpc Make(MakeRequest) returns (MakeResponse) {
+    option (google.api.http) = {
+      post : "/v1/imageservice/make"
+      body : "*"
+    };
+  }
+
+  rpc PostVersion(PostVersionRequest) returns (PostVersionResponse) {
+    option (google.api.http) = {
+      post : "/v1/imageservice/postversion"
+      body : "*"
+    };
+  }
+
+  rpc GetVersion(GetVersionRequest) returns (GetVersionResponse) {
+    option (google.api.http) = {
+      post : "/v1/imageservice/getversion"
+      body : "*"
+    };
+  }
+
+  rpc SetGameVersion(SetGameVersionRequest)
+      returns (SetGameVersionHttpResponse) {
+    option (google.api.http) = {
+      post : "/v1/imageservice/setgamgeversion"
+      body : "*"
+    };
+  }
+}
+
+message RspInfo {
+  int32 code = 1;
+  string msg = 2;
+}
+
+enum TaskStatus {
+  UnStart = 0; // 未启动（可能是机器状态不符合升级条件等）
+  Process = 1; // 进行中
+  Succ = 2;    // 已完成:成功
+  Failed = 3;  // 已完成:失败
+}
+
+enum Resource {
+  ManagerConsole = 0; // 管理台
+  GameDeployment = 1; // 应用分发
+}
+
+// 传入0；不设置
+message SetGameVersionRequest {
+  string flow_id = 1;
+  int32 next_data_version = 3;
+  string vmids = 4; // 格式:2,3,4,5,
+}
+
+message SetGameVersionResponse { int32 ret = 1; }
+
+message SetGameVersionHttpResponse {
+  RspInfo ret = 1;
+  SetGameVersionResponse body = 2;
+}
+
+message TaskProcess {
+  TaskStatus status = 1;   // 任务状态
+  int32 process = 2;       // 进度 1-100
+  string process_info = 3; // 进度信息
+}
+
+message GetTaskProcessRequest {
+  string flow_id = 1;
+  repeated int32 task_ids = 2; // 传入-1的话代表获取所有的vmid进度
+  Resource resource = 3;       // 请求来源
+}
+
+message GetTaskProcessResponse { map<int32, TaskProcess> tasks = 1; }
+
+message GetTaskProcessHttpResponse {
+  RspInfo ret = 1;
+  GetTaskProcessResponse body = 2;
+}
+
+message GetVersionRequest {
+  string flow_id = 1;
+  repeated int32 vmids = 2;
+}
+
+message VmVersion {
+  int32 vmid = 1;
+  int32 os_version = 2;
+  int32 data_version = 3;
+  int32 next_os_version = 4;
+  int32 next_data_version = 5;
+}
+
+message GetVersionResponse {
+  int32 ret = 1;
+  repeated VmVersion versions = 2;
+}
+
+// 传入0；不设置
+message PostVersionRequest {
+  string flow_id = 1;
+  int32 next_os_version = 2;
+  int32 next_data_version = 3;
+  string vmids = 4; // 格式:2,3,4,5,
+}
+
+message PostVersionResponse { int32 ret = 1; }
+
+enum RecoveType {
+  Recove = 0;            // 默认的恢复镜像流程
+  BOOT_IMAGE = 1;        // 开机流程中,调用系统恢复镜像
+  RECOVE_BOOT_IAMGE = 2; // 升级开机流程中的镜像(升级到指定镜像版本)
+}
+
+message VMTaskMsg {
+  int32 task_id = 1;
+  string title = 2;
+  repeated UpgradeSubtask subtasks = 3;
+  string operator = 4;
+  google.protobuf.Timestamp create_time = 5;
+}
+
+message UpgradeSubtask {
+  int32 task_id = 1;
+  int32 area_type = 2;
+  int32 sub_area_type = 3;
+  int32 hmid = 4;
+  int32 vmid = 5;
+  int32 os_version = 6;
+  int32 game_version = 7;
+  bool ignore_assign_status = 8;
+}
+
+message RecoveRequest {
+  string flow_id = 1;     // 请求流水ID
+  VMTaskMsg task_msg = 2; // 恢复镜像的task信息
+  RecoveType type = 3;
+}
+
+message RecoveResponse {
+  int32 ret = 1; // 回包信息, 恢复镜像会直接回包，然后后台慢慢处理
+}
+
+message MakeRequest {
+  string flow_id = 1; // 请求流水ID
+  int32 vmid = 2;
+  string old_version = 3;
+  string new_version = 4;
+  bool compress = 5; // 是否压缩
+}
+
+message MakeResponse {
+  int32 ret = 1;  //
+  string url = 2; // 镜像制作完生成的url路径，可以直接wget拿到
+}
+
+// 无盘服务 - 提供给天翼云使用
+service DiskLess {
+  // 镜像恢复流程，由云天负责封装一层后提供
+  rpc ImageRecover(ImageRecoverRequest) returns (ImageRecoverResponse) {
+    option (google.api.http) = {
+      post : "/v1/diskless/image/recover"
+      body : "*"
+    };
+  }
+
+  // 制作镜像流程，由云天负责封装后提供
+  rpc ImageMake(ImageMakeRequest) returns (ImageMakeResponse) {
+    option (google.api.http) = {
+      post : "/v1/diskless/image/make"
+      body : "*"
+    };
+  }
+
+  // 指定下一个生效镜像版本
+  rpc PostVersion(ImageVersionRequest) returns (ImageVersionResponse) {
+    option (google.api.http) = {
+      post : "/v1/diskless/image/postversion"
+      body : "*"
+    };
+  }
+
+  rpc GetVersion(ImageGetVersionRequest) returns (ImageGetVersionResponse) {
+    option (google.api.http) = {
+      post : "/v1/diskless/image/getversion"
+      body : "*"
+    };
+  }
+}
+
+// 恢复镜像请求
+message ImageRecoverRequest {
+  // 请求的标识
+  string request_id = 1;
+  // 实例的mac地址(-分割)
+  string ins_mac = 2;
+  // 镜像版本
+  string os_version = 3;
+  // 游戏版本
+  string game_version = 4;
+}
+
+message Status {
+  // 返回值
+  int32 ret = 1;
+  // 返回信息
+  string msg = 2;
+}
+
+// 恢复镜像结果
+message ImageRecoverResponse {
+  // 请求的标识
+  string request_id = 1;
+  // 返回结果信息
+  Status status = 2;
+}
+
+// 镜像制作请求
+message ImageMakeRequest {
+  // 请求的标识
+  string request_id = 1;
+  // 实例的mac地址(-分割)
+  string ins_mac = 2;
+  // 旧版本
+  string old_version = 3;
+  // 新版本
+  string new_version = 4;
+  // 是否压缩
+  bool compress = 5;
+}
+
+// 镜像制作回包
+message ImageMakeResponse {
+  // 请求的标识
+  string request_id = 1;
+  // 返回结果信息
+  Status status = 2;
+  // 镜像url
+  string url = 4;
+}
+
+// 传入0；不设置
+message ImageVersionRequest {
+  // 请求的标识
+  string request_id = 1;
+  // 下一个生效系统版本号，不设置的话置为0
+  string next_os_version = 2;
+  // 下一个生效游戏版本号，不设置的话置为0
+  string next_data_version = 3;
+  // 需要设置的实例mac
+  repeated string macs = 4;
+}
+
+message ImageVersionResponse {
+  // 请求的标识
+  string request_id = 1;
+  // 返回结果信息
+  Status status = 2;
+}
+
+// 传入0；不设置
+message ImageGetVersionRequest {
+  // 请求的标识
+  string request_id = 1;
+  // 需要设置的实例mac
+  repeated string macs = 2;
+}
+
+message ImageVmVersion {
+  string mac = 1;
+  string os_version = 2; // 当前版本号
+  string data_version = 3;
+  string next_os_version = 4; // 下一个版本号
+  string next_data_version = 5;
+}
+
+message ImageGetVersionResponse {
+  // 请求的标识
+  string request_id = 1;
+  // 返回结果信息
+  Status status = 2;
+  // 返回结果信息
+  repeated ImageVmVersion versions = 3;
+}

@@ -1,0 +1,84 @@
+syntax = "v1"
+import "../common.api"
+info(
+	title: "服务器管理"
+	desc: "服务器管理"
+	author: "kane.fang"
+	email: "kane.fang@icloudsky.com"
+)
+type (
+
+	// 查询算力策略列表
+	ServerInfoListResp {
+		Total int          `json:"total"`
+		List  []ServerInfo `json:"list"`
+	}
+
+	ServerInfo {
+		Id         int64  `json:"id"`          // 自增ID
+		AreaId     int64  `json:"area_id"`     // 区域ID
+		Ip         string `json:"ip"`          // 服务器IP地址
+		Type       string `json:"type"`        // 服务器类型 1,2,3  1=镜像服务器 2=回写服务器 3=数据服务器
+		BootTime   string `json:"boot_time"`   // 启动时间
+		Remark     string `json:"remark"`      // 备注
+		Status     uint32 `json:"status"`      // 0=删除 1=启用  2=禁用
+		CreateTime string `json:"create_time"` // 创建时间
+		UpdateTime string `json:"update_time"` // 更新时间
+		ModifyTime string `json:"modify_time"` // 更新时间
+	}
+
+	// 添加算力策略
+	ServerInfoAddReq {
+		Ip     string `json:"ip"`      // 服务器IP地址
+		AreaId int64  `json:"area_id"` // 区域ID
+		Type   string `json:"type"`    // 服务器类型 1,2,3  1=镜像服务器 2=回写服务器 3=数据服务器
+		Remark string `json:"remark"`  // 备注
+		Status uint32 `json:"status"`  // 0=删除 1=启用  2=禁用
+	}
+
+	ServerInfoAddResp {
+	}
+
+	// 编辑算力策略
+	ServerInfoUpdateReq {
+		Id     uint64 `json:"id"`     // 算力策略ID
+		Ip     string `json:"ip"`     // 服务器IP地址
+		Type   string `json:"type"`   // 服务器类型 1|2|3
+		Remark string `json:"remark"` // 备注
+	}
+
+	ServerInfoUpdateResp {
+	}
+)
+
+@server(
+	group : servermgr
+	prefix : /v1/cdp/admin/servermgr
+	middleware: LogwayHandleMiddleware,AuthInterceptorMiddleware,MenuInterceptorMiddleware
+)
+
+// 算力管理
+// 1  实例管理
+// 2  算力策略
+
+service cdp-admin-service-api {
+
+	@doc(
+		summary: "服务器信息列表查询"
+	)
+	@handler ServerInfoList
+	post /serverinfolist(CommonPageRequest) returns (ServerInfoListResp)
+
+	@doc(
+		summary: "添加服务器信息"
+	)
+	@handler ServerInfoAdd
+	post /serverinfoadd(ServerInfoAddReq) returns (ServerInfoAddResp)
+
+	@doc(
+		summary: "更新服务器信息"
+	)
+	@handler ServerInfoUpdate
+	post /serverinfoupdate(ServerInfoUpdateReq) returns (ServerInfoUpdateResp)
+
+}

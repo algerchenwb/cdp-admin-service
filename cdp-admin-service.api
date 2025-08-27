@@ -1,0 +1,27 @@
+syntax = "v1"
+
+info(
+	title: "cdp-admin-service"
+	desc: "cdp-admin-service"
+	author: "kane.fang"
+	email: "kane.fang@icloudsky.com"
+	version: "v1.0.0"
+)
+
+import (
+
+	"desc/common.api"                    // 全局共用结构体
+	"desc/cache/cache.api"               // 缓存同步模块
+	"desc/user/user.api"                 // 用户公共模块
+	"desc/sys/menu.api"                  // 系统菜单模块
+	"desc/sys/role.api"  		         // 用户角色模块
+	"desc/sys/log.api"                // 系统日志模块
+	"desc/biz/biz.api"			      	 // 租户管理
+	"desc/idc/idc.api"          	  	 // 节点管理模块
+	"desc/instance/instance.api"      	 // 算力模块
+	"desc/server/server.api"          	 //  服务器模块
+	"desc/boot_schema/boot_schema.api" 	 // 启动方案
+	"desc/spec/spec.api"    	     	 // 规格管理
+	"desc/client/cloudbox.api"        	 // 规格管理
+	"desc/client/cloudclient.api"   	 // 规格管理
+)

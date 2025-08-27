@@ -1,0 +1,7 @@
+logs/*  
+*.exe
+cdp-admin-service
+
+.idea
+.vscode
+.cursor

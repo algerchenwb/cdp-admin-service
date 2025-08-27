@@ -1,0 +1,8 @@
+[redis]
+conn_pool_capacity=120
+conn_pool_max_idle=100
+conn_pool_idle_timeout=240?
+hosts=10.86.54.124:26379
+#mastername=mymaster
+#hosts=union-redis-1.esport.com:6379
+password=viuRDS2793

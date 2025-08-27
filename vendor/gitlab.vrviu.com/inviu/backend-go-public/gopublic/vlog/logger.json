@@ -1,0 +1,19 @@
+{
+    "enablefile":true,
+    "filename":"/tmp/config.log",
+    "maxsize":0,
+    "maxage":0,
+    "maxbackups":0,
+    "localtime":true,
+    "compress":false,
+    "enableconsole":true,
+    "enablecaller":true,
+    "enablesourceip":true,
+    "enablepid":true,
+    "filelevel":"info",
+    "consolelevel":"info",
+    "fileencoding":"json",
+    "consoleencoding":"console",
+    "appname":"vlog_test",
+    "sourceeth":"en0"
+}

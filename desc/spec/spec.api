@@ -1,0 +1,40 @@
+syntax = "v1"
+import "../common.api"
+info(
+	title: "规格管理"
+	desc: "规格管理"
+	author: "jeff.chen"
+	email: "jeff.chen@icloudsky.com"
+)
+type (
+	SpecListReq {
+		PrimaryId int   `json:"primary_id,optional"`
+		AgentId   int   `json:"agent_id,optional"`
+		AreaId    int32 `json:"area_id,optional"`
+	}
+	SpecListResp {
+		Total int    `json:"total"`
+		List  []Spec `json:"list"`
+	}
+
+	Spec {
+		OuterSpecId int    `json:"outer_spec_id"`
+		InnerSpecId int    `json:"inner_spec_id"`
+		Name        string `json:"name"`
+	}
+)
+
+@server(
+	group : spec
+	prefix : /v1/cdp/admin/spec
+	middleware: LogwayHandleMiddleware,AuthInterceptorMiddleware,MenuInterceptorMiddleware
+)
+
+service cdp-admin-service-api {
+	@doc(
+		summary: "规格管理"
+	)
+	@handler Spec
+	post /speclist(SpecListReq) returns (SpecListResp)
+
+}

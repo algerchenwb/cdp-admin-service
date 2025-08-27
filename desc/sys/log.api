@@ -1,0 +1,48 @@
+syntax = "v1"
+
+info(
+	title: "操作日志"
+	desc: "操作日志"
+	author: "kane.fang"
+	email: "kane.fang@icloudsky.com"
+)
+
+type (
+	Log {
+		Id int64 `json:"id" label:"编号" doc:"编号"` // 编号
+		UserId int64 `json:"user_id" label:"操作账号" doc:"操作账号"` // 操作账号
+		Account string `json:"account" label:"账号" doc:"账号"` // 账号
+		Ip string `json:"ip" label:"ip" doc:"ip"` // ip
+		Uri string `json:"uri" label:"请求路径" doc:"请求路径"` // 请求路径
+		Type int64 `json:"type" label:"类型" doc:"类型"` // 类型 1=登录日志 2=操作日志
+		Request string `json:"request" label:"请求数据" doc:"请求数据"` // 请求数据
+		Response string `json:"response" label:"响应数据" doc:"响应数据"` // 响应数据
+		Platform int64 `json:"platform" label:"平台" doc:"平台"` // 平台 1-算力平台 2-施工平台
+		Status int64 `json:"status" label:"状态" doc:"状态"` // 状态 0=失败 1=成功
+		CreateTime string `json:"create_time" label:"创建时间" doc:"创建时间"` // 创建时间
+		UpdateTime string `json:"update_time" label:"更新时间" doc:"更新时间"` // 更新时间
+		ModifyTime string `json:"modify_time" label:"修改时间" doc:"修改时间"` // 修改时间
+	}
+
+	
+)
+type (
+	LogListResp {
+		Total int64 `json:"total" label:"总数" doc:"总数"` // 总数
+		List []Log `json:"list" label:"日志列表" doc:"日志列表"` // 日志列表
+	}
+)
+
+@server(
+	group : sys/log
+	prefix : /v1/cdp/admin/sys/log
+	 middleware: LogwayHandleMiddleware,AuthInterceptorMiddleware,MenuInterceptorMiddleware
+)
+service cdp-admin-service-api {
+	@doc(
+		summary: "日志列表"
+	)
+	@handler GetLogList
+	post /loglist(CommonPageRequest) returns (LogListResp)
+	
+}

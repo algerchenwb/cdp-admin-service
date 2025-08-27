@@ -1,0 +1,223 @@
+syntax = "proto3";
+option go_package = "gitlab.vrviu.com/diskless_stack/diskless_stack/protocol/diskless_cloud_web";
+package diskless_cloud_web;
+
+// 需要http接口需要引入这个proto
+import "google/api/annotations.proto";
+import "common/common.proto";
+
+service DisklessCloudWeb {
+  // 获取大区枚举
+  rpc GetRegionMap(GetRegionMapRequest) returns (GetRegionMapResponse) {
+    option (google.api.http) = {
+      post : "/v1/DisklessCloudWeb/GetRegionMap"
+      body : "*"
+    };
+  }
+
+  // 新增机房
+  rpc RegisterArea(RegisterAreaRequest) returns (RegisterAreaResponse) {
+    option (google.api.http) = {
+      post : "/v1/DisklessCloudWeb/RegisterArea"
+      body : "*"
+    };
+  }
+
+  // 删除机房
+  rpc UnregisterArea(UnregisterAreaRequest) returns (UnregisterAreaResponse) {
+    option (google.api.http) = {
+      post : "/v1/DisklessCloudWeb/UnregisterArea"
+      body : "*"
+    };
+  }
+
+  // 修改机房信息
+  rpc ChangeAreaInfo(ChangeAreaInfoRequest) returns (ChangeAreaInfoResponse) {
+    option (google.api.http) = {
+      post : "/v1/DisklessCloudWeb/ChangeAreaInfo"
+      body : "*"
+    };
+  }
+
+  // 查询机房列表
+  rpc QueryAreaList(QueryAreaListRequest) returns (QueryAreaListResponse) {
+    option (google.api.http) = {
+      post : "/v1/DisklessCloudWeb/QueryAreaList"
+      body : "*"
+    };
+  }
+
+  // 调用机房的post接口
+  rpc PostAreaApi(CallAreaApiRequest) returns (CallAreaApiResponse) {
+    option (google.api.http) = {
+      post : "/v1/DisklessCloudWeb/PostAreaApi"
+      body : "*"
+    };
+  }
+
+  // 调用机房的post接口
+  rpc GetAreaApi(CallAreaApiRequest) returns (CallAreaApiResponse) {
+    option (google.api.http) = {
+      get : "/v1/DisklessCloudWeb/GetAreaApi"
+    };
+  }
+  
+  // 调用机房的post接口
+  rpc DirectPostAreaApi(DirectPostAreaApiRequest) returns (DirectPostAreaApiResponse) {
+    option (google.api.http) = {
+      post : "/v1/DisklessCloudWeb/DirectPostAreaApi"
+      body : "*"
+    };
+  }
+
+  // 调用机房的post接口
+  rpc DirectGetAreaApi(DirectGetAreaApiRequest) returns (DirectGetAreaApiResponse) {
+    option (google.api.http) = {
+      get : "/v1/DisklessCloudWeb/DirectGetAreaApi"
+    };
+  }
+}
+
+message GetRegionMapRequest { string flow_id = 1 [ json_name = "flow_id" ]; }
+
+message Region {
+  int32 id = 1 [ json_name = "id" ];             // 地区编号：1
+  string name = 2 [ json_name = "name" ];        // 地区名：华南地区
+  int32 area_num = 3 [ json_name = "area_num" ]; // 该地区机房数
+}
+message GetRegionMapBody {
+  string flow_id = 1 [ json_name = "flow_id" ];
+  int32 total = 2 [ json_name = "total" ]; // 地区数
+  repeated Region region_map = 3 [ json_name = "region_map" ];
+}
+message GetRegionMapResponse {
+  common.RspInfo ret = 1 [ json_name = "ret" ];
+  GetRegionMapBody body = 2 [ json_name = "body" ];
+}
+
+message RegisterAreaRequest {
+  string flow_id = 1 [ json_name = "flow_id" ];
+  int64 area_id = 2 [ json_name = "area_id" ];
+  string name = 3 [ json_name = "name" ];
+  int32 region_id = 4 [ json_name = "region_id" ]; // 例：华南地区ID
+  int32 deployment_type = 5
+      [ json_name = "deployment_type" ]; // 1.poc；2.正式；
+  string remark = 6 [ json_name = "remark" ];
+  int32 manager_state = 7 [ json_name = "manager_state" ]; // 1.启用；2.禁用
+}
+
+message RegisterAreaBody { string flow_id = 1 [ json_name = "flow_id" ]; }
+message RegisterAreaResponse {
+  common.RspInfo ret = 1 [ json_name = "ret" ];
+  RegisterAreaBody body = 2 [ json_name = "body" ];
+}
+
+message UnregisterAreaRequest {
+  string flow_id = 1 [ json_name = "flow_id" ];
+  string ids = 2 [ json_name = "ids" ]; // 主键
+}
+
+message UnregisterAreaBody {
+  string flow_id = 1 [ json_name = "flow_id" ];
+  repeated common.RspInfo rets = 2 [ json_name = "rets" ];
+}
+message UnregisterAreaResponse {
+  common.RspInfo ret = 1 [ json_name = "ret" ];
+  UnregisterAreaBody body = 2 [ json_name = "body" ];
+}
+
+message ChangeAreaInfoRequest {
+  string flow_id = 1 [ json_name = "flow_id" ];
+  int64 id = 2 [ json_name = "id" ]; // 主键
+  int64 area_id = 3 [ json_name = "area_id" ];
+  string name = 4 [ json_name = "name" ];
+  int32 region_id = 5 [ json_name = "region_id" ];
+  int32 deployment_type = 6
+      [ json_name = "deployment_type" ]; // 1.poc；2.正式；
+  string remark = 7 [ json_name = "remark" ];
+  int32 manager_state = 8 [ json_name = "manager_state" ]; // 1.启用；2.禁用
+}
+
+message ChangeAreaInfoBody { string flow_id = 1 [ json_name = "flow_id" ]; }
+message ChangeAreaInfoResponse {
+  common.RspInfo ret = 1 [ json_name = "ret" ];
+  ChangeAreaInfoBody body = 2 [ json_name = "body" ];
+}
+
+message QueryAreaListRequest {
+  string flow_id = 1 [ json_name = "flow_id" ];
+  int32 offset = 2 [ json_name = "offset" ];
+  int32 limit = 3 [ json_name = "limit" ];
+  repeated string cond_list = 4 [ json_name = "cond_list" ];
+  string sorts = 5 [ json_name = "sorts" ];
+  string orders = 6 [ json_name = "orders" ];
+}
+
+message AreaBaseInfo {
+  int64 id = 1 [ json_name = "id" ];
+  int64 area_id = 2 [ json_name = "area_id" ];
+  string name = 3 [ json_name = "name" ];
+  int32 region_id = 4 [ json_name = "region_id" ];
+  int32 deployment_type = 5
+      [ json_name = "deployment_type" ]; // 1.poc；2.正式；
+  string remark = 6 [ json_name = "remark" ];
+  int32 manager_state = 7 [ json_name = "manager_state" ]; // 1.启用；2.禁用
+  int32 online_vm = 8 [ json_name = "online_vm" ];
+  int32 total_vm = 9 [ json_name = "total_vm" ];
+  int32 version = 10 [ json_name = "version" ]; // 边缘部署的iaas服务版本
+  string proxy_addr = 11 [ json_name = "proxy_addr" ];
+  int32 proxy_online = 12 [ json_name = "proxy_online" ]; // 1.在线；0.离线
+  string create_time = 13 [ json_name = "create_time" ];
+  string update_time = 14 [ json_name = "update_time" ]; // 用户最后修改时间
+  string modify_time = 15 [ json_name = "modify_time" ]; // db记录最后更新时间
+}
+
+message QueryAreaListBody {
+  string flow_id = 1 [ json_name = "flow_id" ];
+  int32 total = 2 [ json_name = "total" ];
+  repeated AreaBaseInfo list = 3 [ json_name = "list" ];
+}
+
+message QueryAreaListResponse {
+  common.RspInfo ret = 1 [ json_name = "ret" ];
+  QueryAreaListBody body = 2 [ json_name = "body" ];
+}
+
+message CallAreaApiRequest {
+  string flow_id = 1 [ json_name = "flow_id" ];
+  int64 area_id = 2 [ json_name = "area_id" ];      // 例: 6020
+  string subsystem = 3 [ json_name = "subsystem" ]; // 例: iaas
+  string api = 4 [ json_name = "api" ];             // 例: create_instance
+  string request = 5
+      [ json_name = "request" ]; // get时是url后缀[k1=v1&k2=v2],post时是json
+}
+
+message CallAreaApiBody {
+  string flow_id = 1 [ json_name = "flow_id" ];
+  string response = 2 [ json_name = "response" ]; // http响应体，内嵌json
+}
+message CallAreaApiResponse {
+  common.RspInfo ret = 1 [ json_name = "ret" ];
+  CallAreaApiBody body = 2 [ json_name = "body" ];
+}
+
+// 直接转发body和url
+message DirectPostAreaApiRequest {
+  bytes body = 1;
+}
+message DirectPostAreaApiResponse {
+  bytes body = 1;
+}
+
+message DirectGetAreaApiRequest {
+}
+message DirectGetAreaApiResponse {
+  bytes body = 1;
+}
+
+// protoc  -I../ -I . --go_out=. --go_opt=paths=source_relative
+// --go-grpc_out=.
+// --go-grpc_opt=paths=source_relative --grpc-gateway_out=. --grpc-gateway_opt
+// logtostderr=true --grpc-gateway_opt paths=source_relative
+// --grpc-gateway_opt=generate_unbound_methods=true
+// --openapiv2_out . --openapiv2_opt logtostderr=true diskless_cloud_web.proto

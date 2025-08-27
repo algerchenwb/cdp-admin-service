@@ -1,0 +1,599 @@
+syntax = "proto3";
+option go_package = "gitlab.vrviu.com/diskless_stack/diskless_stack/protocol/network_service";
+package network_service;
+
+import "google/api/annotations.proto";
+import "common/common.proto";
+
+service NetworkService {
+  rpc SwitchSetVlan(SwitchSetVlanRequest) returns (SwitchSetVlanResponse) {
+    option (google.api.http) = {
+      post: "/v1/network_service/switch_set_vlan"
+      body: "*"
+    };
+  }
+  rpc GetNetInfoByIp(GetNetInfoByIpRequest) returns (GetNetInfoByIpResponse) {
+    option (google.api.http) = {
+      get: "/v1/network_service/get_net_info_by_ip"
+    };
+  }
+  // switch
+  // 部署
+  // 添加一批交换机
+  // vlan
+  rpc AddVlan(AddVlanRequest) returns (AddVlanResponse) {
+    option (google.api.http) = {
+      post: "/v1/network_service/add_vlan"
+      body: "*"
+    };
+  }
+  rpc DelVlan(DelVlanRequest) returns (DelVlanResponse) {
+    option (google.api.http) = {
+      post: "/v1/network_service/del_vlan"
+      body: "*"
+    };
+  }
+  rpc UpdateVlan(UpdateVlanRequest) returns (UpdateVlanResponse) {
+    option (google.api.http) = {
+      post: "/v1/network_service/update_vlan"
+      body: "*"
+    };
+  }
+  rpc QueryVlan(QueryVlanRequest) returns (QueryVlanResponse) {
+    option (google.api.http) = {
+      post: "/v1/network_service/query_vlan"
+      body: "*"
+    };
+  }
+  rpc QuerySZCtyunSetVlanTask(QuerySZCtyunSetVlanTaskRequest) returns (QuerySZCtyunSetVlanTaskResponse){
+    option (google.api.http) = {
+      get: "/v1/network_service/query_szctyun_setvlan_task"
+    };
+  }
+  rpc UpdateSZCtyunSetVlanTask(UpdateSZCtyunSetVlanTaskRequest) returns (UpdateSZCtyunSetVlanTaskResponse){
+    option (google.api.http) = {
+      post: "/v1/network_service/callback_szctyun_setvlan_task"
+      body: "*"
+    };
+  }
+  // 添加一个默认网段(自动绑定到实例)
+  rpc AddDefaultNet(AddDefaultNetRequest) returns (AddDefaultNetResponse) {
+    option (google.api.http) = {
+      post: "/v1/network_service/add_default_net"
+      body: "*"
+    };
+  } // 实例、无盘盒子、有盘盒子、主机，电源启动时默认的ip
+  // 添加一个租户网段
+  rpc AddDynamicNet(AddDynamicNetRequest) returns (AddDynamicNetResponse) {
+    option (google.api.http) = {
+      post: "/v1/network_service/add_dynamic_net"
+      body: "*"
+    };
+  } // 调度实例用的ip，优先于默认ip
+  //
+  // 运营
+  // 交换机列表：增删改查
+  // 实例列表：增删改查
+  // 默认网络列表：增删改查
+  rpc AddDefaultIp(AddDefaultIpRequest) returns (AddDefaultIpResponse) {
+    option (google.api.http) = {
+      post: "/v1/network_service/add_default_ip"
+      body: "*"
+    };
+  }
+  rpc DelDefaultIp(DelDefaultIpRequest) returns (DelDefaultIpResponse) {
+    option (google.api.http) = {
+      post: "/v1/network_service/del_default_ip"
+      body: "*"
+    };
+  }
+  rpc UpdateDefaultIp(UpdateDefaultIpRequest) returns (UpdateDefaultIpResponse) {
+    option (google.api.http) = {
+      post: "/v1/network_service/update_default_ip"
+      body: "*"
+    };
+  }
+  rpc OccupyDefaultIp(UpdateDefaultIpRequest) returns (UpdateDefaultIpResponse) {
+    option (google.api.http) = {
+      post: "/v1/network_service/occupy_default_ip"
+      body: "*"
+    };
+  }
+  rpc ResetDefaultIp(UpdateDefaultIpRequest) returns (UpdateDefaultIpResponse) {
+    option (google.api.http) = {
+      post: "/v1/network_service/reset_default_ip"
+      body: "*"
+    };
+  }
+
+  rpc QueryDefaultIp(QueryDefaultIpRequest) returns (QueryDefaultIpResponse) {
+    option (google.api.http) = {
+      post: "/v1/network_service/query_default_ip"
+      body: "*"
+    };
+  }
+
+  // 租户网络列表：增删改查
+  rpc AddDynamicIp(AddDynamicIpRequest) returns (AddDynamicIpResponse) {
+    option (google.api.http) = {
+      post: "/v1/network_service/add_dynamic_ip"
+      body: "*"
+    };
+  }
+  rpc DelDynamicIp(DelDynamicIpRequest) returns (DelDynamicIpResponse) {
+    option (google.api.http) = {
+      post: "/v1/network_service/del_dynamic_ip"
+      body: "*"
+    };
+  }
+  rpc UpdateDynamicIp(UpdateDynamicIpRequest) returns (UpdateDynamicIpResponse) {
+    option (google.api.http) = {
+      post: "/v1/network_service/update_dynamic_ip"
+      body: "*"
+    };
+  }
+  rpc QueryDynamicIp(QueryDynamicIpRequest) returns (QueryDynamicIpResponse) {
+    option (google.api.http) = {
+      post: "/v1/network_service/query_dynamic_ip"
+      body: "*"
+    };
+  }
+  rpc AddSwitchInfo(AddSwitchInfoRequest)returns (AddSwitchInfoResponse){
+    option (google.api.http) = {
+      post: "/v1/network_service/add_switch_info"
+      body: "*"
+    };
+  }
+  rpc DelSwitchInfo(DelSwitchInfoRequest)returns (DelSwitchInfoResponse) {
+    option (google.api.http) = {
+      post: "/v1/network_service/del_switch_info"
+      body: "*"
+    };
+  }
+  rpc QuerySwitchInfo(QuerySwitchInfoRequest)returns (QuerySwitchInfoResponse) {
+    option (google.api.http) = {
+      post: "/v1/network_service/query_switch_info"
+      body: "*"
+    };
+  }
+  rpc UpdateSwitchInfo(UpdateSwitchInfoRequest)returns (UpdateSwitchInfoResponse) {
+    option (google.api.http) = {
+      post: "/v1/network_service/update_switch_info"
+      body: "*"
+    };
+  }
+  rpc AddDynamicIpFromCSV(AddDynamicIpFromCSVRequest)returns (AddDynamicIpFromCSVResponse) {
+    option (google.api.http) = {
+      post: "/v1/network_service/add_dynamic_ip_from_csv"
+      body: "*"
+    };
+  }
+  rpc AddDefaultIpFromCSV(AddDefaultIpFromCSVRequest)returns (AddDefaultIpFromCSVResponse) {
+    option (google.api.http) = {
+      post: "/v1/network_service/add_default_ip_from_csv"
+      body: "*"
+    };
+  }
+  rpc AddSwitchFromCSV(AddSwitchInfoFromCSVRequest)returns (AddSwitchFromCSVResponse) {
+    option (google.api.http) = {
+      post: "/v1/network_service/add_switch_info_from_csv"
+      body: "*"
+    };
+  }
+  rpc GetDynamicIpCSVTemplate(CSVTemplateRequest) returns (CSVTemplateResponse) {
+    option (google.api.http) = {
+      post: "/v1/network_service/get_dynamic_ip_csv_template"
+      body: "*"
+    };
+  }
+  rpc GetDefaultIpCSVTemplate(CSVTemplateRequest) returns (CSVTemplateResponse) {
+    option (google.api.http) = {
+      post: "/v1/network_service/get_default_ip_csv_template"
+      body: "*"
+    };
+  } 
+  rpc GetSwitchInfoCSVTemplate(CSVTemplateRequest) returns (CSVTemplateResponse) {
+    option (google.api.http) = {
+      post: "/v1/network_service/get_switch_info_csv_template"
+      body: "*"
+    };
+  } 
+}
+
+enum ErrorCode {
+  e_ok = 0;
+  e_param = -1;
+  e_sys = -2;
+  e_busy = -3;
+  e_conflict = -4;
+}
+
+message CommRet {
+  int32 code = 1;
+  string msg = 2;
+}
+
+message SwitchSetVlanRequest {
+  string flow_id = 1 [ json_name = "flow_id" ]; // 流水ID
+  int64 switch_id = 2 [ json_name = "switch_id" ]; // 交换机ID
+  int32 switch_port = 3 [ json_name = "switch_port" ]; // 交换机端口
+  int32 vlan = 4 [ json_name = "vlan" ]; // vlan
+  string mac = 5 [ json_name = "mac" ]; // mac
+}
+
+message SwitchSetVlanResponse {
+  common.RspInfo ret = 1 [ json_name = "ret" ];
+}
+
+message NetInfoData {
+  string ip = 1 [ json_name = "ip" ];
+  string mask = 2 [ json_name = "mask" ];
+  string gateway = 3 [ json_name = "gateway" ];
+  string dns1 = 4 [ json_name = "dns1" ];
+  string dns2 = 5 [ json_name = "dns2" ];
+  string host_name = 6 [ json_name = "host_name" ];
+  int32 vlan_id = 7 [ json_name = "vlan_id" ];
+}
+
+message DynamicNet {
+  double id = 1 [ json_name = "id" ];  // 主键
+  string ip = 2 [ json_name = "ip" ];
+  string mask = 3 [ json_name = "mask" ];
+  string gateway = 4 [ json_name = "gateway" ];
+  string dns1 = 5 [ json_name = "dns1" ];
+  string dns2 = 6 [ json_name = "dns2" ];
+  string host_name = 7 [ json_name = "host_name" ];
+  int32 vlan_id = 8 [ json_name = "vlan_id" ];
+  int32 state = 9 [ json_name = "state" ];               // 状态：0 - 正常; 1 - 废弃
+  string create_time = 10 [ json_name = "create_time" ]; // 创建时间
+  string update_time = 11 [ json_name = "update_time" ]; // 用户最后更新时间
+  string modify_time = 12 [ json_name = "modify_time" ]; // db最后更新时间
+}
+
+message DefaultNet {
+  double id = 1 [ json_name = "id" ];  // 主键
+  string ip = 2 [ json_name = "ip" ];
+  string mask = 3 [ json_name = "mask" ];
+  string gateway = 4 [ json_name = "gateway" ];
+  string dns1 = 5 [ json_name = "dns1" ];
+  string dns2 = 6 [ json_name = "dns2" ];
+  string host_name = 7 [ json_name = "host_name" ];
+  int32 vlan_id = 8 [ json_name = "vlan_id" ];
+  string expire_time = 9 [ json_name = "expire_time" ];
+  string bind_mac = 10 [ json_name = "bind_mac" ];
+  int32 state = 11 [ json_name = "state" ];               // 状态：0 - 正常; 1 - 废弃
+  string create_time = 12 [ json_name = "create_time" ]; // 创建时间
+  string update_time = 13 [ json_name = "update_time" ]; // 用户最后更新时间
+  string modify_time = 14 [ json_name = "modify_time" ]; // db最后更新时间
+}
+
+message GetNetInfoByIpRequest {
+  string flow_id = 1 [ json_name = "flow_id" ]; // 流水ID
+  string ip = 2 [ json_name = "ip" ]; // 网络信息主键ip
+}
+
+message GetNetInfoByIpResponse {
+  common.RspInfo ret = 1 [ json_name = "ret" ];
+  NetInfoData net_info = 2 [ json_name = "net_info" ];
+}
+
+// vlan
+message AddVlanRequest {
+  string flow_id = 1 [ json_name = "flow_id" ]; // 流水ID
+  int32 id = 2 [ json_name = "id" ];
+  int32 vlan_id = 3 [ json_name = "vlan_id" ];
+  string ip = 4 [ json_name = "ip" ];
+  string mask = 5 [ json_name = "mask" ];
+  string gateway = 6 [ json_name = "gateway" ];
+  string dns1 = 7 [ json_name = "dns1" ];
+  string dns2 = 8 [ json_name = "dns2" ];
+  string host_name_prefix = 9 [ json_name = "host_name_prefix" ];
+  int32 num = 10 [ json_name = "num" ];
+}
+
+message AddVlanResponse {
+  common.RspInfo ret = 1 [ json_name = "ret" ];
+}
+
+message DelVlanRequest {
+  string flow_id = 1 [ json_name = "flow_id" ]; // 流水ID
+  int32 id = 2 [ json_name = "id" ];
+  int32 vlan_id = 3 [ json_name = "vlan_id" ];
+}
+
+message DelVlanResponse {
+  common.RspInfo ret = 1 [ json_name = "ret" ];
+}
+
+message UpdateVlanRequest {
+  string flow_id = 1 [ json_name = "flow_id" ]; // 流水ID
+  VlanInfo vlan_info = 2 [ json_name = "vlan_info" ]; // 新内容
+}
+
+message UpdateVlanResponse {
+  common.RspInfo ret = 1 [ json_name = "ret" ];
+}
+
+message VlanInfo {
+  double id = 1 [ json_name = "id" ];  // 主键
+  int32 vlan_id = 2 [ json_name = "vlan_id" ];
+  string ip = 3 [ json_name = "ip" ];
+  string mask = 4 [ json_name = "mask" ];
+  string gateway = 5 [ json_name = "gateway" ];
+  string dns1 = 6 [ json_name = "dns1" ];
+  string dns2 = 7 [ json_name = "dns2" ];
+  string host_name_prefix = 8 [ json_name = "host_name_prefix" ];
+  int32 state = 9 [ json_name = "state" ];              // 状态：0 - 正常; 1 - 废弃
+  string create_time = 10 [ json_name = "create_time" ]; // 创建时间
+  string update_time = 11 [ json_name = "update_time" ]; // 用户最后更新时间
+  string modify_time = 12 [ json_name = "modify_time" ]; // db最后更新时间
+}
+
+message SZCtyunSetVlanTask{
+	int32 id = 1 [ json_name = "id" ];
+	int64 task_id = 2 [ json_name = "task_id" ]; // unique_key
+	string mac = 3 [ json_name = "mac" ];
+	string vlan = 4 [ json_name = "vlan" ];
+  int32 state = 5 [ json_name = "state" ]; // 状态: 0-初始化; 1-调用失败; 2-调用成功; 3-回调成功; 4-超时失败
+	string set_code = 6 [ json_name = "set_code" ];
+	string cb_code = 7 [ json_name = "cb_code" ];
+	string setfinish_time = 8 [ json_name = "setfinish_time" ];
+	string ctyuncb_time = 9 [ json_name = "ctyuncb_time" ];
+	string timetout_time = 10 [ json_name = "timetout_time" ];
+	string create_time = 11 [ json_name = "create_time" ];
+	string update_time = 12 [ json_name = "update_time" ];
+	string modify_time = 13 [ json_name = "modify_time" ];
+}
+
+message QueryVlanRequest {
+  string flow_id = 1 [ json_name = "flow_id" ];
+  int32 offset = 2 [ json_name = "offset" ];
+  int32 limit = 3 [ json_name = "limit" ];
+  repeated string cond_list = 4 [ json_name = "cond_list" ];
+  string sorts = 5 [ json_name = "sorts" ];
+  string orders = 6 [ json_name = "orders" ];
+}
+
+message QueryVlanResponse {
+  common.RspInfo ret = 1 [ json_name = "ret" ];
+  int32 total = 2 [ json_name = "total" ];
+  repeated VlanInfo list = 3 [ json_name = "list" ];
+}
+
+message Status {
+  string code = 1 [ json_name = "code" ];
+  string message = 2[ json_name = "message" ];
+}
+message QuerySZCtyunSetVlanTaskRequest {
+  int64 task_id = 1 [ json_name = "task_id" ];
+}
+
+message QuerySZCtyunSetVlanTaskResponse {
+  common.RspInfo ret = 1 [ json_name = "ret" ];
+  SZCtyunSetVlanTask szctyun_setvlan_task = 2 [ json_name = "szctyun_setvlan_task" ];
+}
+
+message UpdateSZCtyunSetVlanTaskRequest {
+  int64 task_id = 1 [ json_name = "task_id" ];
+  int32 state = 2 [ json_name = "state" ];
+}
+
+message UpdateSZCtyunSetVlanTaskResponse {
+  string requestId = 2 [ json_name = "requestId" ];
+  Status status =3 [ json_name = "status" ];
+}
+
+
+message AddDefaultNetRequest {
+  string flow_id = 1 [ json_name = "flow_id" ]; // 流水ID
+  string ip = 2 [ json_name = "ip" ];
+  string mask = 3 [ json_name = "mask" ];
+  string gateway = 4 [ json_name = "gateway" ];
+  string dns1 = 5 [ json_name = "dns1" ];
+  string dns2 = 6 [ json_name = "dns2" ];
+  string host_name_prefix = 7 [ json_name = "host_name_prefix" ];
+  int32 vlan_id = 8 [ json_name = "vlan_id" ];
+  int32 num = 9 [ json_name = "num" ];
+}
+
+message AddDefaultNetResponse {
+  common.RspInfo ret = 1 [ json_name = "ret" ];
+}
+
+message AddDynamicNetRequest {
+  string flow_id = 1 [ json_name = "flow_id" ]; // 流水ID
+  string ip = 2 [ json_name = "ip" ];
+  string mask = 3 [ json_name = "mask" ];
+  string gateway = 4 [ json_name = "gateway" ];
+  string dns1 = 5 [ json_name = "dns1" ];
+  string dns2 = 6 [ json_name = "dns2" ];
+  string host_name_prefix = 7 [ json_name = "host_name_prefix" ];
+  int32 vlan_id = 8 [ json_name = "vlan_id" ];
+  int32 num = 9 [ json_name = "num" ];
+}
+
+message AddDynamicNetResponse {
+  common.RspInfo ret = 1 [ json_name = "ret" ];
+}
+
+message AddDefaultIpRequest {
+  string flow_id = 1 [ json_name = "flow_id" ]; // 流水ID
+  DefaultNet net_info = 2 [ json_name = "net_info" ];
+}
+
+message AddDefaultIpResponse {
+  common.RspInfo ret = 1 [ json_name = "ret" ];
+}
+
+message DelDefaultIpRequest {
+  string flow_id = 1 [ json_name = "flow_id" ]; // 流水ID
+  string ip = 2 [ json_name = "ip" ]; // 网络信息主键ip
+}
+
+message DelDefaultIpResponse {
+  common.RspInfo ret = 1 [ json_name = "ret" ];
+}
+
+message UpdateDefaultIpRequest {
+  string flow_id = 1 [ json_name = "flow_id" ]; // 流水ID
+  DefaultNet net_info = 2 [ json_name = "net_info" ];
+}
+
+message UpdateDefaultIpResponse {
+  common.RspInfo ret = 1 [ json_name = "ret" ];
+}
+
+message QueryDefaultIpRequest {
+  string flow_id = 1 [ json_name = "flow_id" ];
+  int32 offset = 2 [ json_name = "offset" ];
+  int32 limit = 3 [ json_name = "limit" ];
+  repeated string cond_list = 4 [ json_name = "cond_list" ];
+  string sorts = 5 [ json_name = "sorts" ];
+  string orders = 6 [ json_name = "orders" ];
+}
+
+message QueryDefaultIpResponse {
+  common.RspInfo ret = 1 [ json_name = "ret" ];
+  int32 total = 2 [ json_name = "total" ];
+  repeated DefaultNet list = 3 [ json_name = "list" ];
+}
+
+message AddDynamicIpRequest {
+  string flow_id = 1 [ json_name = "flow_id" ]; // 流水ID
+  DynamicNet net_info = 2 [ json_name = "net_info" ];
+}
+
+message AddDynamicIpResponse {
+  common.RspInfo ret = 1 [ json_name = "ret" ];
+}
+
+message DelDynamicIpRequest {
+  string flow_id = 1 [ json_name = "flow_id" ]; // 流水ID
+  string ip = 2 [ json_name = "ip" ]; // 网络信息主键ip
+}
+
+message DelDynamicIpResponse {
+  common.RspInfo ret = 1 [ json_name = "ret" ];
+}
+
+message UpdateDynamicIpRequest {
+  string flow_id = 1 [ json_name = "flow_id" ]; // 流水ID
+  DynamicNet net_info = 2 [ json_name = "net_info" ];
+}
+
+message UpdateDynamicIpResponse {
+  common.RspInfo ret = 1 [ json_name = "ret" ];
+}
+
+message QueryDynamicIpRequest {
+  string flow_id = 1 [ json_name = "flow_id" ];
+  int32 offset = 2 [ json_name = "offset" ];
+  int32 limit = 3 [ json_name = "limit" ];
+  repeated string cond_list = 4 [ json_name = "cond_list" ];
+  string sorts = 5 [ json_name = "sorts" ];
+  string orders = 6 [ json_name = "orders" ];
+}
+
+message QueryDynamicIpResponse {
+  common.RspInfo ret = 1 [ json_name = "ret" ];
+  int32 total = 2 [ json_name = "total" ];
+  repeated DynamicNet list = 3 [ json_name = "list" ];
+}
+
+message SwitchInfo {
+  double id = 2 [json_name = "id" ]; // 主键
+  string address = 3 [json_name = "address" ];
+  string dev_type = 4 [json_name = "dev_type" ];
+  string manufacturer = 5 [json_name = "manufacturer" ];
+  string username = 6 [json_name = "username" ];
+  string password = 7 [json_name = "password" ];
+  string remark = 8 [json_name = "remark" ];
+}
+
+message AddSwitchInfoRequest {
+  string flow_id = 1 [ json_name = "flow_id" ]; // 流水ID
+  double id = 2 [json_name = "id" ]; // 主键
+  string address = 3 [json_name = "address" ];
+  string dev_type = 4 [json_name = "dev_type" ];
+  string manufacturer = 5 [json_name = "manufacturer" ];
+  string username = 6 [json_name = "username" ];
+  string password = 7 [json_name = "password" ];
+  string remark = 8 [json_name = "remark" ];
+}
+
+message AddSwitchInfoResponse {
+  common.RspInfo ret = 1 [ json_name = "ret" ];
+}
+
+message DelSwitchInfoRequest{
+  string flow_id = 1 [ json_name = "flow_id" ]; // 流水ID
+  double id = 2 [json_name = "id" ]; // 主键
+}
+
+message QuerySwitchInfoRequest {
+  string flow_id = 1 [ json_name = "flow_id" ];
+  int32 offset = 2 [ json_name = "offset" ];
+  int32 limit = 3 [ json_name = "limit" ];
+  repeated string cond_list = 4 [ json_name = "cond_list" ];
+  string sorts = 5 [ json_name = "sorts" ];
+  string orders = 6 [ json_name = "orders" ];
+}
+
+message QuerySwitchInfoResponse {
+  common.RspInfo ret = 1 [ json_name = "ret" ];
+  int32 total = 2 [ json_name = "total" ];
+  repeated SwitchInfo list = 3 [ json_name = "list" ];
+}
+
+message UpdateSwitchInfoRequest {
+  string flow_id = 1 [ json_name = "flow_id" ]; // 流水ID
+  SwitchInfo switch_info = 2 [ json_name = "switch_info" ];
+}
+
+message UpdateSwitchInfoResponse {
+  common.RspInfo ret = 1 [ json_name = "ret" ];
+}
+
+message DelSwitchInfoResponse {
+  common.RspInfo ret = 1 [ json_name = "ret" ];
+}
+
+message AddDynamicIpFromCSVRequest {
+  bytes file_content = 1;
+}
+
+message AddDynamicIpFromCSVResponse {
+  common.RspInfo ret = 1; 
+}
+
+message AddDefaultIpFromCSVRequest {
+  bytes file_content = 1;
+}
+
+message AddDefaultIpFromCSVResponse {
+  common.RspInfo ret = 1; 
+}
+
+message AddSwitchInfoFromCSVRequest{
+  bytes file_content = 1;
+}
+
+message AddSwitchFromCSVResponse {
+  common.RspInfo ret = 1; 
+}
+
+// 返回 CSV 模板的响应
+message CSVTemplateResponse {
+    string csv_content = 1 [ json_name = "csvContent" ];  // 模板内容，以文本形式返回
+    common.RspInfo ret = 2 [ json_name = "responseStatus" ];  // 响应状态信息
+}
+
+// 请求 CSV 模板的空消息体
+message CSVTemplateRequest {}
+
+// protoc  -I../ -I . --go_out=. --go_opt=paths=source_relative
+// --go-grpc_out=.
+// --go-grpc_opt=paths=source_relative --grpc-gateway_out=. --grpc-gateway_opt
+// logtostderr=true --grpc-gateway_opt paths=source_relative
+// --grpc-gateway_opt=generate_unbound_methods=true
+// --openapiv2_out . --openapiv2_opt logtostderr=true service.proto

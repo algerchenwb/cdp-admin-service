@@ -1,0 +1,198 @@
+syntax = "v1"
+
+import "../common.api"
+
+info(
+	title: "租户"
+	desc: "租户"
+	author: "jeff.chen"
+	email: "jeff.chen@icloudsky.com"
+)
+
+type (
+	BizInfosResp {
+		List  []BizInfo `json:"list"`
+		Total int64     `json:"total"`
+	}
+
+	BizInfo {
+		BizId               int64             `json:"biz_id"`
+		BizName             string            `json:"biz_name"`
+		ContactPerson       string            `json:"contact_person"`
+		Mobile              string            `json:"mobile"`
+		AreaId              int64             `json:"area_id"`
+		AreaName            string            `json:"area_name"`
+		RegionId            int64             `json:"region_id"`
+		Status              int64             `json:"status"`
+		CreateBy            string            `json:"create_by"`
+		CreateTime          string            `json:"create_time"`
+		UpdateTime          string            `json:"update_time"`
+		Remark              string            `json:"remark"`
+		StrategyList        []BizStrategyInfo `json:"strategy_list"`
+		VlanId              int64             `json:"vlan_id"`
+				BoxVlanId int64 `json:"box_vlan_id,optional"` // 云盒Vlan ID
+		ServerInfo          string            `json:"server_info"`
+		ClientNumLimit      int64             `json:"client_num_limit"`      // 终端数量限制
+		AuthorizedClientNum int64             `json:"authorized_client_num"` // 授权客户机数量
+	}
+
+	BizStrategyInfo {
+		Id               int64  `json:"id"`
+		InstStrategyId   int64  `json:"inst_strategy_id"`
+		InstStrategyName string `json:"inst_strategy_name"`
+		SpecId           int64  `json:"spec_id"`
+		SpecName         string `json:"spec_name"`
+		OuterSpecId      int64  `json:"outer_spec_id"`
+		TotalInstances   int64  `json:"total_instances"`
+		Remark           string `json:"remark"`
+		HourlyPoolId     int64  `json:"hourly_pool_id"`
+		PerUsePoolId     int64  `json:"per_use_pool_id"`
+		BootSchemaId     int64  `json:"boot_schema_id"`
+		BootSchemaName   string `json:"boot_schema_name"`
+		ConfigId         string `json:"config_id"`
+		BootType         int64  `json:"boot_type"` // 启动模式  0-预开机 1-实时开机
+	}
+
+	CreateBizReq {
+		BizName        string `json:"biz_name"`
+		ContactPerson  string `json:"contact_person"`
+		Mobile         string `json:"mobile"`
+		AreaId         int64  `json:"area_id"`
+		Remark         string `json:"remark"`
+		ClientNumLimit int64  `json:"client_num_limit"` // 终端数量限制
+	}
+
+	CreateBizResp {
+		BizId int64 `json:"biz_id"`
+	}
+
+	UpdateBizReq {
+		BizId          int64  `json:"biz_id"`
+		BizName        string `json:"biz_name"`
+		ContactPerson  string `json:"contact_person"`
+		Mobile         string `json:"mobile"`
+		Remark         string `json:"remark"`
+		ClientNumLimit int64  `json:"client_num_limit"` // 终端数量限制
+	}
+
+	DeleteBizReq {
+		BizId int64 `json:"biz_id"`
+	}
+
+	ConfigBizStrategyInfo {
+		StrategyId int64 `json:"strategy_id"` // 算力策略ID
+	}
+	ConfigBizStrategyReq {
+		BizId           int64                   `json:"biz_id"`            // 租户ID
+		BizStrategyList []ConfigBizStrategyInfo `json:"biz_strategy_list"` // 策略列表
+	}
+
+	ConfigBizStrategyResp {
+		ErrMsgs []string `json:"err_msgs"` // 错误信息
+	}
+
+	ConfigBizServerInfoReq {
+		BizId        int64  `json:"biz_id"`      // 租户ID
+		Server_infos string `json:"server_info"` // 服务器信息
+	}
+
+	ConfigBizServerInfoResp {
+	}
+
+	ConfigBizVlanReq {
+		BizId  int64 `json:"biz_id"`  // 租户ID
+		VlanId int64 `json:"vlan_id"` // Vlan ID
+		BoxVlanId int64 `json:"box_vlan_id,optional"` // 云盒Vlan ID
+
+	}
+	ConfigBizVlanResp {
+	}
+
+	EnableBizReq {
+		BizId    int64 `json:"biz_id"`
+		Platform int64 `json:"platform"`
+	}
+
+	EnableBizResp {
+	}
+
+	UpdateBizStrategyReq {
+		Id    int64 `json:"id"`     // 策略ID
+		BizId int64 `json:"biz_id"` // 租户ID
+	}
+
+	UpdateBizStrategyResp {
+	}
+	DeleteBizStrategyReq {
+		Id int64 `json:"id"` // 策略ID
+	}
+	DeleteBizStrategyResp {
+	}
+)
+
+@server(
+	group : biz
+	prefix : /v1/cdp/admin/biz
+	middleware: LogwayHandleMiddleware,AuthInterceptorMiddleware,MenuInterceptorMiddleware
+)
+service cdp-admin-service-api {
+	@doc(
+		summary: "获取租户信息"
+	)
+	@handler GetBizInfos
+	post /infos(CommonPageRequest) returns(BizInfosResp)
+
+	@doc(
+		summary: "创建租户"
+	)
+	@handler CreateBiz
+	post /create(CreateBizReq) returns(CreateBizResp)
+
+	@doc(
+		summary: "更新租户"
+	)
+	@handler UpdateBiz
+	put /update(UpdateBizReq) returns(CommonNilJson)
+
+	@doc(
+		summary: "删除租户"
+	)
+	@handler DeleteBiz
+	delete /delete(DeleteBizReq) returns(CommonNilJson)
+
+	@doc(
+		summary: "配置租户算力策略"
+	)
+	@handler ConfigBizStrategy
+	post /configbizstrategy(ConfigBizStrategyReq) returns(ConfigBizStrategyResp)
+
+	@doc(
+		summary: "配置租户服务器信息"
+	)
+	@handler ConfigBizServerInfo
+	post /configbizserverinfo(ConfigBizServerInfoReq) returns(ConfigBizServerInfoResp)
+
+	@doc(
+		summary: "配置租户Vlan信息"
+	)
+	@handler ConfigBizVlan
+	post /configbizvlan(ConfigBizVlanReq) returns(ConfigBizVlanResp)
+	@doc(
+		summary: "启用租户"
+	)
+	@handler EnableBiz
+	put /enable(EnableBizReq) returns(EnableBizResp)
+
+	@doc(
+		summary: "更新租户算力策略"
+	)
+	@handler UpdateBizStrategy
+	post /updatebizstrategy(UpdateBizStrategyReq) returns(UpdateBizStrategyResp)
+
+	@doc(
+		summary: "删除租户算力策略"
+	)
+	@handler DeleteBizStrategy
+	post /deletebizstrategy(DeleteBizStrategyReq) returns(DeleteBizStrategyResp)
+
+}

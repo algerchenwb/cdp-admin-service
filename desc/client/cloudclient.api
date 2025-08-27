@@ -1,0 +1,321 @@
+syntax = "v1"
+import "../common.api"
+info(
+	title: "客户机管理"
+	desc: "客户机管理"
+	author: "kane.fang"
+	email: "jkane.fang@icloudsky.com"
+)
+type (
+	CloudClientListReq {
+		AreaId   int64    `json:"area_id" label:"区域Id"`
+		Offset   int64    `json:"offset" label:"页数"`
+		Limit    int64    `json:"limit" label:"条数"`
+		CondList []string `json:"cond_list" label:"查询条件"`
+		Sorts    string   `json:"sorts" label:"排序方式"`
+		Orders   string   `json:"orders" label:"排序字段"`
+	}
+
+	CloudClientInfo {
+		CloudClientId        int64  `json:"cloud_client_id" label:"客户机ID"`        // 客户机ID
+		CloudClientName      string `json:"cloud_client_name" label:"客户机名称"`      //	客户机名称
+		CloudBoxMAC          string `json:"cloud_box_mac" label:"云盒MAC地址"`         // 云盒MAC地址
+		CloudBoxIP           string `json:"cloud_box_ip" label:"云盒IP地址"`           // 云盒IP地址
+		CloudHostMAC         string `json:"cloud_host_mac" label:"主机MAC地址"`        // 主机MAC地址
+		CloudHostIP          string `json:"cloud_host_ip" label:"主机IP地址"`          //	主机IP地址
+		CloudHostName        string `json:"cloud_host_name" label:"云主机名"`          //  串流的实例 DeviceNumber
+		StreamState          int    `json:"stream_state" label:"串流状态"`            // 房间的串流状态,0=可用,1=激活,2=上架,3=下架,4=删除5=串流中
+		FirstStrategyId      int64  `json:"first_strategy_id" label:"算力池ID主"`      // 算力池ID(主)
+		SecondStrategyId     int64  `json:"second_strategy_id" label:"算力池ID备"`     // 算力池ID(备)
+		FirstBootSchemaId    int64  `json:"first_boot_schema_id" label:"启动方案ID主"`   // 启动方案ID(主)
+		SecondBootSchemaId   int64  `json:"second_boot_schema_id" label:"启动方案ID备"`  // 启动方案ID(备)
+		FirstStrategyName    string `json:"first_strategy_name" label:"算力池名主"`     // 算力池名主
+		SecondStrategyName   string `json:"second_strategy_name" label:"算力池名备"`    // 算力池名备
+		FirstBootSchemaName  string `json:"first_boot_schema_name" label:"启动方案名主"`  // 启动方案名主
+		SecondBootSchemaName string `json:"second_boot_schema_name" label:"启动方案备主"` // 启动方案名主
+		ImageUse             string `json:"image_use" label:"使用镜像"`               // 使用镜像
+		PowerStatusDesc      string `json:"power_status_desc" label:"电源状态"`        // 电源状态
+		ManageStatusDesc     string `json:"manage_status_desc" label:"管理状态"`       // 管理状态
+		NetCardSpeed         int64  `json:"net_card_speed" label:"网卡速率"`           // 网卡速率
+		BootTime             string `json:"boot_time" label:"开机时间"`               // 开机时间
+		InstanceId           int64  `json:"instance_id" label:"实例Id"`             // 实例Id
+		UserMode             int    `json:"user_mode" label:"超管模式"`               // 0=超管模式 1=普通模式
+		HostId               int64  `json:"host_id" label:"硬件id"`                 // 硬件id
+		KeepType             int    `json:"keep_type" label:"KeepType"`          // 0-normal 1-ready 2-done
+		StreamBootSchemaName string `json:"stream_boot_schema_name" label:"启动方案名称"` // 启动方案名称
+		ClientType           int    `json:"client_type" label:"客户机类型"`           // 客户机类型 1-本地客户机 2-客户机
+		Process              int    `json:"process" label:"处理状态"`               // 开机进度
+		DataImage            string `json:"data_image" label:"数据盘镜像"`           // 游戏镜像
+	}
+
+	CloudClientListResp {
+		Total int64             `json:"total"`
+		List  []CloudClientInfo `json:"list"`
+	}
+)
+
+type (
+	CloudClientAddReq {
+		BizId              int64  `json:"biz_id" validate:"required,number,gte=1" label:"租户ID"`          // 租户ID
+		AreaId             int64  `json:"area_id" validate:"required,number,gte=1" label:"节点区域ID"`       //  节点区域ID
+		CloudBoxMAC        string `json:"cloud_box_mac"  validate:"required,mac" label:"云盒MAC地址"`         // 云盒MAC地址
+		CloudHostName      string `json:"cloud_host_name" validate:"required,min=0,max=191" label:"云主机名"` // 串流的实例 room name
+		CloudHostIP        string `json:"cloud_host_ip" validate:"required,ipv4" label:"主机IP地址"`          // 主机IP地址
+		FirstBootSchemaId  int64  `json:"first_boot_schema_id,optional" label:"启动方案ID 主"`                  // 启动方案ID 主
+		SecondBootSchemaId int64  `json:"second_boot_schema_id,optional" label:"启动方案ID 备"`                 // 启动方案ID 备
+		ClientType         int    `json:"client_type" validate:"omitempty" label:"客户机类型"`            // 客户机类型  1-1.0客户机 2-2.0客户机
+	}
+
+	CloudClientAddResp struct{}
+)
+
+type (
+	CloudClientUpdateReq {
+		BizId  int64                   `json:"biz_id" validate:"required,number,gte=1" label:"租户ID"`    // 租户ID
+		AreaId int64                   `json:"area_id" validate:"required,number,gte=1" label:"节点区域ID"` // 节点区域ID
+		CloudClientId      int64  `json:"cloud_client_id" validate:"required,number,gte=1" label:"座位号ID"`      // 座位号ID
+		CloudHostName      string `json:"cloud_host_name" validate:"required" label:"云主机名"`                    //	云主机名
+		CloudHostIP        string `json:"cloud_host_ip" validate:"required,ipv4" label:"主机IP地址"`               // 主机IP地址
+		ClientType         int    `json:"client_type,optional" validate:"omitempty" label:"客户机类型"`            // 客户机类型
+		CloudBoxMAC        string `json:"cloud_box_mac,optional"  validate:"required,mac" label:"云盒MAC地址"`              // 云盒MAC地址 客户机,本地客户机
+		FirstBootSchemaId  int64  `json:"first_boot_schema_id,optional" validate:"omitempty" label:"启动方案ID 主"`  // 启动方案ID 主	 客户机
+		SecondBootSchemaId int64  `json:"second_boot_schema_id,optional" validate:"omitempty" label:"启动方案ID 备"` // 启动方案ID 备 客户机
+	}
+	CloudClientUpdateResp struct{}
+)
+type (
+	CloudClientDeleteItem {
+		CloudClientId int64  `json:"cloud_client_id" validate:"required,number,gte=1" label:"设备ID"` // 设备ID
+		CloudBoxMAC   string `json:"cloud_box_mac" validate:"required,mac" label:"云盒MAC地址"`         // 云盒MAC地址
+	}
+	CloudClientDeleteReq {
+		BizId int64                   `json:"biz_id" validate:"required,number,gte=1" label:"租户ID"` // 租户ID
+		List  []CloudClientDeleteItem `json:"list" validate:"required,dive" label:"客户机删除列表"`      // 客户机删除列表
+	}
+	CloudClientDeleteResp struct{}
+)
+
+type (
+	CloudClientImportResp struct{}
+)
+
+type (
+	CloudClientSetAdminReq {
+		BizId         int64  `json:"biz_id" validate:"required,number,gte=1" label:"租户ID"`          // 租户ID
+		AreaId        int64  `json:"area_id" validate:"required,number,gte=1" label:"节点区域ID"`       // 节点区域ID
+		InstanceId    int64  `json:"instance_id" validate:"required,number,gte=1" label:"实例Id"`     // 实例Id
+		MAC           string `json:"mac" validate:"omitempty,mac" label:"Mac地址"`                   // Mac地址
+		CloudClientId int64  `json:"cloud_client_id" validate:"required,number,gte=1" label:"座位号ID"` // 座位号ID
+		HostId        int64  `json:"host_id" validate:"required,number,gte=1" label:"硬件id"`         // 硬件id
+	}
+
+	CloudClientSetAdminResp struct{}
+
+	CloudClientCancelAdminReq {
+		BizId         int64  `json:"biz_id" validate:"required,number,gte=1" label:"租户ID"`                 // 租户ID
+		AreaId        int64  `json:"area_id" validate:"required,number,gte=1" label:"节点区域ID"`              // 节点区域ID
+		InstanceId    int64  `json:"instance_id" validate:"required,number,gte=1" label:"实例Id"`            // 实例Id
+		MAC           string `json:"mac" validate:"omitempty,mac" label:"Mac地址"`                          // Mac地址
+		CloudClientId int64  `json:"cloud_client_id" validate:"required,number,gte=1" label:"座位号ID"`        // 座位号ID
+		HostId        int64  `json:"host_id" validate:"required,number,gte=1" label:"硬件id"`                // 硬件id
+		ImageId       string `json:"image_id,optional" validate:"required,number,gte=128" label:"镜像ID"`    // 镜像ID
+		ManagerState  int    `json:"manager_state,optional" validate:"required,number,gte=1" label:"镜像状态"` // 镜像状态
+		Name          string `json:"name,optional" validate:"required,number,gte=256" lable:"镜像名称"`       // 镜像名称
+		OsVersion     string `json:"os_version,optional" validate:"required,min=0,max=128" lable:"系统类型"`   // 系统类型
+		Remark        string `json:"remark,optional" validate:"required,min=0,max=1024" lable:"备注"`       // 备注
+		FlattenFlag   int    `json:"flatten_flag,optional" validate:"required,min=0,max=10" lable:"是否拍平"` // 是否拍平
+	}
+	CloudClientCancelAdminResp struct{}
+)
+
+type (
+	CloudClientAssignNoticeReq {
+		FlowID        string `json:"flow_id" validate:"required,min=1,max=999" label:"流水ID"`        // 流水ID
+		BizId         int64  `json:"biz_id" validate:"required,number,gte=1" label:"租户ID"`          // 租户ID
+		AreaId        int64  `json:"area_id" validate:"required,number,gte=1" label:"节点区域ID"`       // 节点区域ID
+		VmId          int64  `json:"vm_id" validate:"required,number,gte=1" label:"实例Id"`           // 实例Id
+		MAC           string `json:"mac" validate:"required,mac" label:"Mac地址"`                    // Mac地址
+		CloudHostName string `json:"cloud_host_name" validate:"required,min=0,max=191" label:"云主机名"` //  串流的实例 room name
+		EventType     string `json:"event_type" validate:"required,min=0,max=191" label:"事件类型"` //  事件类型
+	}
+
+	CloudClientAssignNoticeResp struct{}
+
+	QueryCloudClientStrategyReq {
+		FlowId string `json:"flowId" validate:"required,min=1,max=999" label:"流水ID"` // 流水ID
+		BizId  int64  `json:"bizId" validate:"required,number,gte=1" label:"租户ID"`   // 租户ID
+		Mac    string `json:"mac" validate:"required,number,gte=1" label:"云盒mac"`    // 云盒mac
+	}
+
+	StrategyExt {
+		StrategyId   int64  `json:"strategy_id"`    // 策略ID
+		StrategyName string `json:"strategy_name"`  // 策略名称
+		InstPoolId   int64  `json:"inst_pool_id"`   // 算力池ID
+		BootSchemaId int64  `json:"boot_schema_id"` // 预启动方案ID
+	}
+	QueryCloudClientStrategyResp {
+		CloudClientId int64  `json:"cloud_client_id"` // 座位号ID
+		Mac           string `json:"mac"`             // 云盒MAC地址
+		ConfigInfo    string `json:"config_info"`     // 配置信息
+		AdminState    uint32 `json:"admin_state"`     // 管理状态
+		HostIp        string `json:"host_ip"`         // 主机IP地址
+		HostGateway   string `json:"host_gateway"`    // 主机网关
+		HostNetmask   string `json:"host_netmask"`    // 主机子网掩码
+		HostName      string `json:"host_name"`       // 主机名
+		HostMac       string `json:"host_mac"`        // 主机MAC地址
+	}
+)
+
+type (
+	ClientBatchAddReq {
+		BizId        int64  `json:"biz_id" validate:"required,number,gte=1" label:"租户ID"`           // 租户ID
+		AreaId       int64  `json:"area_id" validate:"required,number,gte=1" label:"节点区域ID"`        // 节点区域ID
+		ClientNum    int64  `json:"client_num" validate:"required,number,gte=1" label:"客户机数量"`      // 客户机数量
+		BootSchemaId int64  `json:"boot_schema_id" validate:"required,number,gte=1" label:"启动方案ID"` // 启动方案ID
+		StartIp      string `json:"start_ip" validate:"required,ipv4" label:"开始IP"`                 // 起始IP
+		PrefixName   string `json:"prefix_name" validate:"required" label:"前缀"`                     // 机器名前缀
+		StartNumber  int64  `json:"start_number" validate:"required,number,gte=1" label:"起始编号"`     // 起始编号
+	}
+	ClientBatchAddItem {
+		Id         int64  `json:"id"`          // 自增长ID
+		ClientName string `json:"client_name"` // 客户机名称
+		HostIp     string `json:"host_ip"`     // 主机IP
+		ErrorMsg   string `json:"error_msg"`   // 错误信息
+	}
+
+	ClientBatchAddResp {
+		SuccessItem []ClientBatchAddItem `json:"success_item"` // 成功添加的客户机
+		FailedItem  []ClientBatchAddItem `json:"failed_item"`  // 失败添加的客户机
+	}
+)
+
+type (
+	ClientBindBoxReq {
+		BizId       int64  `json:"biz_id" validate:"required,number,gte=1" label:"租户ID"`        // 租户ID
+		ClientName  string `json:"client_name" validate:"required,min=1,max=191" label:"客户机名称"` // 客户机名称
+		CloudBoxMAC string `json:"cloud_box_mac" validate:"required,mac" label:"云盒MAC地址"`       // 云盒MAC地址
+	}
+	ClientBindBoxResp struct{}
+)
+
+type (
+	CloudClientBatchUpdateReq {
+		BizId          int64   `json:"biz_id" validate:"required,number,gte=1" label:"租户ID"`                  // 租户ID
+		AreaId         int64   `json:"area_id" validate:"required,number,gte=1" label:"节点区域ID"`               // 节点区域ID
+		CloudClientIds []int64 `json:"cloud_client_ids" validate:"required,dive,number,gte=1" label:"客户机ID"` // 客户机ID列表
+		BootSchemaId   int64   `json:"boot_schema_id" validate:"required,number,gte=1" label:"启动方案ID"`        // 启动方案ID
+	}
+	CloudClientBatchUpdateItem {
+		CloudClientId int64  `json:"cloud_client_id" validate:"required,number,gte=1" label:"客户机ID"` // 客户机ID
+		ErrorMsg      string `json:"error_msg"`                                                       // 错误信息
+	}
+	CloudClientBatchUpdateResp {
+		SuccessItem []CloudClientBatchUpdateItem `json:"success_item"` // 成功更新的客户机
+		FailedItem  []CloudClientBatchUpdateItem `json:"failed_item"`  // 失败更新的客户机
+	}
+)
+type (
+	CloudClientUnbindListReq {
+		BizId int64 `json:"biz_id" validate:"required,number,gte=1" label:"租户ID"` // 租户ID
+		AreaId int64 `json:"area_id" validate:"required,number,gte=1" label:"节点区域ID"` // 节点区域ID
+	}
+	CloudClientUnbindListResp struct{
+		List  []CloudClientInfo `json:"list"`
+	}
+)
+
+@server (
+	group:  cloudclient
+	prefix: /v1/cdp/admin/cloudclient
+	middleware: LogwayHandleMiddleware,AuthInterceptorMiddleware,MenuInterceptorMiddleware
+)
+
+service cdp-admin-service-api {
+	@doc (
+		summary: "客户机查询"
+	)
+	@handler CloudClientList
+	post /cloudclientlist (CloudClientListReq) returns (CloudClientListResp)
+
+	@doc (
+		summary: "客户机新增"
+	)
+	@handler CloudClientAdd
+	post /cloudclientadd (CloudClientAddReq) returns (CloudClientAddResp)
+
+	@doc (
+		summary: "客户机更新"
+	)
+	@handler CloudClientUpdate
+	post /cloudclientupdate (CloudClientUpdateReq) returns (CloudClientUpdateResp)
+
+	@doc (
+		summary: "客户机删除"
+	)
+	@handler CloudClientDelete
+	post /cloudclientdelete (CloudClientDeleteReq) returns (CloudClientDeleteResp)
+
+	@doc (
+		summary: "客户机导入"
+	)
+	@handler CloudClientImport
+	post /cloudclientimport returns (CloudClientImportResp)
+
+	@doc (
+		summary: "客户机设置超管"
+	)
+	@handler CloudClientSetAdmin
+	post /cloudclientsetadmin (CloudClientSetAdminReq) returns (CloudClientSetAdminResp)
+
+	@doc (
+		summary: "客户机取消超管"
+	)
+	@handler CloudClientCancelAdmin
+	post /cloudclientcanceladmin (CloudClientCancelAdminReq) returns (CloudClientCancelAdminResp)
+
+	@doc (
+		summary: "批量添加客户机"
+	)
+	@handler CloudClientBatchAdd
+	post /cloudclientbatchadd (ClientBatchAddReq) returns (ClientBatchAddResp)
+
+	@doc(
+		summary: "绑定云盒"
+	)
+	@handler CloudClientBindBox
+	post /cloudclientbindbox (ClientBindBoxReq) returns (ClientBindBoxResp)
+
+	@doc(
+		summary: "批量更新客户机"
+	)
+	@handler CloudClientBatchUpdate
+	post /cloudclientbatchupdate (CloudClientBatchUpdateReq) returns (CloudClientBatchUpdateResp)
+
+	@doc(
+		summary: "待绑定客户机列表"
+	)
+	@handler CloudClientUnbindList
+	post /cloudclientunbindlist (CloudClientUnbindListReq) returns (CloudClientUnbindListResp)
+
+}
+
+@server (
+	group:  cloudclient
+	prefix: /v1/cdp/admin/cloudclient
+	middleware: LogwayHandleMiddleware
+)
+
+service cdp-admin-service-api {
+
+	@doc (
+		summary: "客户机实例分配成功通知"
+	)
+	@handler CloudClientAssignNotice
+	post /cloudclientassignnotice (CloudClientAssignNoticeReq) returns (CloudClientAssignNoticeResp)
+
+	@doc (
+		summary: "查询客户机策略"
+	)
+	@handler QueryCloudClientStrategy
+	post /querycloudclientstrategy (QueryCloudClientStrategyReq) returns (QueryCloudClientStrategyResp)
+}

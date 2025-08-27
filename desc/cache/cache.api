@@ -1,0 +1,28 @@
+syntax = "v1"
+import "../common.api"
+info(
+	title: "缓存同步"
+	desc: "缓存同步"
+	author: "jeff.chen"
+	email: "jeff.chen@icloudsky.com"
+)
+
+@server(
+	group : cache
+	prefix : /v1/cdp/admin/cache
+	middleware: LogwayHandleMiddleware
+)
+service cdp-admin-service-api {
+	@doc(
+		summary: "缓存同步"
+	)
+	@handler CacheSync
+	put /sync returns(CommonNilJson)
+
+	@doc(
+		summary: "缓存同步"
+	)
+	@handler CacheSyncV2
+	put /syncV2 returns(CommonNilJson)
+
+}

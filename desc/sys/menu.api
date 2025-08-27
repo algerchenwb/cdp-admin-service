@@ -1,0 +1,114 @@
+syntax = "v1"
+
+info(
+	title: "权限菜单"
+	desc: "权限菜单"
+	author: "kane.fang"
+	email: "kane.fang@icloudsky.com"
+)
+
+type (
+	Menu {
+		Id         int64    `json:"id,optional" label:"编号" doc:"编号"`
+		ParentId   int64    `json:"parent_id,optional" label:"父级id" doc:"父级id"` // 父级id
+		Name       string   `json:"name" label:"名称" doc:"名称"` // 名称
+		Router     string   `json:"router,optional" label:"路由" doc:"路由"` // 路由
+		Type         int64    `json:"type" label:"类型" doc:"类型"` // 类型 0=目录 1=菜单 2=权限
+		Icon         string   `json:"icon" label:"图标" doc:"图标"` // 图标
+		OrderNum     int64    `json:"order_num" label:"排序值" doc:"排序值"` // 排序值
+		ViewPath     string   `json:"view_path" label:"视图路径" doc:"视图路径"` // 视图路径
+		IsShow       int64    `json:"is_show" label:"显示状态" doc:"显示状态"` // 显示状态 0=隐藏 1=显示
+		ActiveRouter string   `json:"active_router" label:"激活路由" doc:"激活路由"` // 激活路由
+		SystemHost   string   `json:"system_host" label:"系统标识" doc:"系统标识"` // 系统标识
+		IsPrivate    int64    `json:"is_private" label:"是否仅超管账号可见" doc:"是否仅超管账号可见"` // 是否仅超管账号可见 0=否 1=是
+		IsAdmin      int64    `json:"is_admin" label:"是否仅管理员角色可见" doc:"是否仅管理员角色可见"` // 是否仅管理员角色可见 0=否 1=是
+		Perms        []Perm   `json:"perms" label:"权限" doc:"权限"` // 权限
+		CreateBy     string   `json:"create_by,optional" label:"创建者" doc:"创建者"` // 创建者
+		CreateTime   string   `json:"create_time,optional" label:"创建时间" doc:"创建时间"` // 创建时间
+		UpdateBy     string   `json:"update_by,optional" label:"更新者" doc:"更新者"` // 更新者
+		UpdateTime   string   `json:"update_time,optional" label:"更新时间" doc:"更新时间"` // 更新时间
+		ModifyTime   string   `json:"modify_time,optional" label:"修改时间" doc:"修改时间"` // 修改时间
+	}
+
+	Perm {
+		Perm         string   `json:"perm" label:"权限" doc:"权限"` // 权限
+		LoggingEnable int64    `json:"logging_enable" label:"日志开关" doc:"日志开关"` // 日志开关 0=否 1=是
+	}
+	
+)
+type (
+	MenuListResp {
+		Total int64 `json:"total" label:"总数" doc:"总数"` // 总数
+		List []Menu `json:"list" label:"菜单列表" doc:"菜单列表"` // 菜单列表
+	}
+)
+type (
+	AddMenuReq {
+		Menu Menu `json:"menu" label:"菜单" doc:"菜单"`
+	}
+	AddMenuResp {
+		Id int64 `json:"id" label:"编号" doc:"编号"`
+	}
+)
+
+type (
+	UpdateMenuReq {
+		Menu Menu `json:"menu" label:"菜单" doc:"菜单"`
+	}
+	UpdateMenuResp {
+		Id int64 `json:"id" label:"编号" doc:"编号"`
+	}
+	
+)
+type (
+	DeleteMenuReq {
+		Id int64 `form:"id" label:"编号" doc:"编号"`
+	}
+	DeleteMenuResp {
+		Id int64 `json:"id" label:"编号" doc:"编号"`
+	}
+)
+
+type (
+	RoleMenuTreeReq {
+		RoleId int64 `form:"role_id" label:"角色id" doc:"角色id"` // 角色id
+	}
+	RoleMenuTreeResp {
+		Menus []Menu `json:"menus" label:"菜单列表" doc:"菜单列表"` // 菜单列表
+	}
+)
+@server(
+	group : sys/menu
+	prefix : /v1/cdp/admin/sys/menu
+	 middleware: LogwayHandleMiddleware,AuthInterceptorMiddleware,MenuInterceptorMiddleware
+)
+service cdp-admin-service-api {
+	@doc(
+		summary: "菜单列表"
+	)
+	@handler GetMenuList
+	post /menulist(CommonPageRequest) returns (MenuListResp)
+	@doc(
+		summary: "添加菜单"
+	)
+	@handler AddMenu
+	post /addmenu(AddMenuReq) returns (AddMenuResp)
+	@doc(
+		summary: "更新菜单"
+	)
+
+	@handler UpdateMenu
+	post /updatemenu(UpdateMenuReq) returns (UpdateMenuResp)
+
+	@doc(
+		summary: "删除菜单"
+	)
+	@handler DeleteMenu
+	delete /deletemenu(DeleteMenuReq) returns (DeleteMenuResp)
+
+	@doc(
+		summary: "获取角色菜单树"
+	)
+	@handler GetRoleMenuTree
+	get /rolemenutree(RoleMenuTreeReq) returns (MenuListResp)
+}

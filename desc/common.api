@@ -1,0 +1,47 @@
+syntax = "v1"
+
+info(
+    title: "common"
+    desc: "common"
+    author: "kane.fang"
+    email: "kane.fang@icloudsky.com"
+)
+
+type (
+    PageReq {
+        Page     int64 `form:"page"  validate:"number,gte=1"  label:"页数"`
+        Limit    int64 `form:"limit" validate:"number,gte=1"  label:"条数"`
+    }
+    Pagination {
+        Page  int64 `json:"page"`
+        Limit int64 `json:"limit"`
+        Total int64 `json:"total"`
+    }
+
+	CommonRet {
+		Ret Ret `json:"ret"`
+        Data      interface{} `json:"body,omitempty"`
+	}
+    Ret {
+        Code      int    `json:"code"`
+        Msg       string `json:"msg"`
+        RequestId string `json:"request_id"`
+    }
+
+
+)
+
+type (
+    CommonPageRequest {
+		Limit    int      `json:"limit"`
+		Offset   int      `json:"offset"`
+		CondList []string `json:"cond_list"`
+		Orders   string   `json:"orders"`
+		Sorts    string   `json:"sorts"`
+	}
+
+)
+
+type (
+    CommonNilJson {}
+)

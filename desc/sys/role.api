@@ -1,0 +1,135 @@
+syntax = "v1"
+
+info(
+	title: "角色"
+	desc: "角色"
+	author: "kane.fang"
+	email: "kane.fang@icloudsky.com"
+	
+)
+
+type (
+	Role {
+		Id int64 `json:"id,optional"`
+
+		Name string `json:"name"`
+
+		Remark string `json:"remark,optional"`
+
+		Platform uint32 `json:"platform"` // 平台 1-算力平台 2-施工平台
+
+		IsAdmin uint32 `json:"is_admin,optional"`  // 是否为管理员 1-是 0-否
+
+		RegionId int64 `json:"region_id,optional"`   // 区域ID
+
+		CreateBy string `json:"create_by,optional"`
+
+		UpdateBy string `json:"update_by,optional"`
+
+		CreateTime string `json:"create_time,optional"`
+
+		UpdateTime string `json:"update_time,optional"`
+
+		ModifyTime string `json:"modify_time,optional"`
+
+	}
+	
+)
+type (
+	RoleListResp {
+		Total int64 `json:"total" label:"总数" doc:"总数"`
+		List []Role `json:"list"` // 角色列表
+	}
+
+)
+type (
+	AddRoleReq {
+		Role Role `json:"role"`
+	}
+	AddRoleResp {
+		Id int64 `json:"id"`
+	}
+)
+type (
+	UpdateRoleReq {
+		Role Role `json:"role"`
+	}
+	UpdateRoleResp {
+		Id int64 `json:"id"`
+	}
+)
+type (
+	DeleteRoleReq {
+		Id int64 `form:"id"`
+	}
+	DeleteRoleResp {
+		Id int64 `json:"id"`
+	}
+)
+
+type (
+	RoleMenuPermsReq {
+		Id int64 `form:"id"`
+	}
+	RoleMenuPermsResp {
+		Menus []Menu `json:"menus"`
+	}
+)
+
+type (
+	UpdateRoleMenuPermsReq {
+		Id int64 `json:"id"`
+		MenuIds []int64 `json:"menu_ids"`
+	}
+	UpdateRoleMenuPermsResp {
+		Id int64 `json:"id"`
+	}
+)
+
+@server(
+	group : sys/role
+	prefix : /v1/cdp/admin/sys/role
+	 middleware: LogwayHandleMiddleware,AuthInterceptorMiddleware,MenuInterceptorMiddleware
+)
+service cdp-admin-service-api {
+	@doc(
+		summary: "角色列表"
+	)
+	@handler GetSysRoleList
+	post /rolelist(CommonPageRequest) returns (RoleListResp)
+
+	@doc(
+		summary: "添加角色"
+	)
+	@handler AddRole
+	post /addrole(AddRoleReq) returns (AddRoleResp)
+
+	@doc(
+		summary: "更新角色"
+	)
+	@handler UpdateRole
+	post /updaterole(UpdateRoleReq) returns (UpdateRoleResp)
+	
+	
+	@doc(
+		summary: "删除角色"
+	)
+	@handler DeleteRole
+	delete /deleterole(DeleteRoleReq) returns (DeleteRoleResp)
+	
+	@doc(
+		summary: "获取角色菜单权限"
+	)
+	@handler GetRoleMenuPerms
+	get /getrolemenuperms(RoleMenuPermsReq) returns (RoleMenuPermsResp)
+
+	@doc(
+		summary: "配置角色菜单权限"
+	)
+	@handler UpdateRoleMenuPerms
+	post /updaterolemenuperms(UpdateRoleMenuPermsReq) returns (UpdateRoleMenuPermsResp)
+	
+	
+	
+	
+}

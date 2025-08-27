@@ -1,0 +1,1474 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "instance_scheduler/service.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "InstanceScheduler"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/instance_scheduler/assign_instance": {
+      "post": {
+        "operationId": "InstanceScheduler_AssignInstance",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/instance_schedulerAssignInstanceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/instance_schedulerAssignInstanceRequest"
+            }
+          }
+        ],
+        "tags": [
+          "InstanceScheduler"
+        ]
+      }
+    },
+    "/v1/instance_scheduler/get_order": {
+      "get": {
+        "operationId": "InstanceScheduler_GetOrder",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/instance_schedulerGetOrderResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "flowId",
+            "description": "流水ID",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "source",
+            "description": "来源",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "areaType",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "InstanceScheduler"
+        ]
+      }
+    },
+    "/v1/instance_scheduler/get_resource_stat": {
+      "get": {
+        "operationId": "InstanceScheduler_GetResourceStat",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/instance_schedulerGetResourceStatResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "flowId",
+            "description": "流水ID",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "resourceId",
+            "description": "资源ID",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "areaType",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "InstanceScheduler"
+        ]
+      }
+    },
+    "/v1/instance_scheduler/instance_status_cb": {
+      "post": {
+        "operationId": "InstanceScheduler_InstanceStatusCallback",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/instance_schedulerInstanceStatusResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/instance_schedulerInstanceStatusRequest"
+            }
+          }
+        ],
+        "tags": [
+          "InstanceScheduler"
+        ]
+      }
+    },
+    "/v1/instance_scheduler/lock_instance": {
+      "post": {
+        "operationId": "InstanceScheduler_LockInstance",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/instance_schedulerLockInstanceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/instance_schedulerLockInstanceRequest"
+            }
+          }
+        ],
+        "tags": [
+          "InstanceScheduler"
+        ]
+      }
+    },
+    "/v1/instance_scheduler/mux/instance/assign": {
+      "post": {
+        "summary": "ctyun",
+        "operationId": "InstanceScheduler_AssignCtyunInstance",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/instance_schedulerAssignCtyunInstanceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/instance_schedulerAssignCtyunInstanceRequest"
+            }
+          }
+        ],
+        "tags": [
+          "InstanceScheduler"
+        ]
+      }
+    },
+    "/v1/instance_scheduler/mux/instance/info": {
+      "get": {
+        "operationId": "InstanceScheduler_QueryCtyunInstances",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/instance_schedulerQueryCtyunInstanceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "flowId",
+            "description": "流水ID",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "clusterId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "requestId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "InstanceScheduler"
+        ]
+      }
+    },
+    "/v1/instance_scheduler/mux/instance/release": {
+      "post": {
+        "operationId": "InstanceScheduler_ReleaseCtyunInstance",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/instance_schedulerReleaseCtyunInstanceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/instance_schedulerReleaseCtyunInstanceRequest"
+            }
+          }
+        ],
+        "tags": [
+          "InstanceScheduler"
+        ]
+      }
+    },
+    "/v1/instance_scheduler/new_resource": {
+      "post": {
+        "summary": "resource management",
+        "operationId": "InstanceScheduler_NewResource",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/instance_schedulerNewResourceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/instance_schedulerNewResourceRequest"
+            }
+          }
+        ],
+        "tags": [
+          "InstanceScheduler"
+        ]
+      }
+    },
+    "/v1/instance_scheduler/rebuild_pool": {
+      "post": {
+        "summary": "pool mgr",
+        "operationId": "InstanceScheduler_RebuildPool",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/instance_schedulerRebuildPoolResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/instance_schedulerRebuildPoolRequest"
+            }
+          }
+        ],
+        "tags": [
+          "InstanceScheduler"
+        ]
+      }
+    },
+    "/v1/instance_scheduler/release_instance": {
+      "post": {
+        "operationId": "InstanceScheduler_ReleaseInstance",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/instance_schedulerReleaseInstanceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/instance_schedulerReleaseInstanceRequest"
+            }
+          }
+        ],
+        "tags": [
+          "InstanceScheduler"
+        ]
+      }
+    },
+    "/v1/instance_scheduler/release_pool_item": {
+      "post": {
+        "operationId": "InstanceScheduler_ReleasePoolItem",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/instance_schedulerReleasePoolItemResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/instance_schedulerReleasePoolItemRequest"
+            }
+          }
+        ],
+        "tags": [
+          "InstanceScheduler"
+        ]
+      }
+    },
+    "/v1/instance_scheduler/search_pool": {
+      "post": {
+        "operationId": "InstanceScheduler_SearchPool",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/instance_schedulerSearchPoolResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/instance_schedulerSearchPoolRequest"
+            }
+          }
+        ],
+        "tags": [
+          "InstanceScheduler"
+        ]
+      }
+    },
+    "/v1/instance_scheduler/search_resource": {
+      "post": {
+        "operationId": "InstanceScheduler_SearchResource",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/instance_schedulerSearchResourceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/instance_schedulerSearchResourceRequest"
+            }
+          }
+        ],
+        "tags": [
+          "InstanceScheduler"
+        ]
+      }
+    },
+    "/v1/instance_scheduler/unlock_instance": {
+      "post": {
+        "operationId": "InstanceScheduler_LockInstance2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/instance_schedulerLockInstanceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/instance_schedulerLockInstanceRequest"
+            }
+          }
+        ],
+        "tags": [
+          "InstanceScheduler"
+        ]
+      }
+    },
+    "/v1/instance_scheduler/update_resource": {
+      "post": {
+        "operationId": "InstanceScheduler_UpdateResource",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/instance_schedulerUpdateResourceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/instance_schedulerUpdateResourceRequest"
+            }
+          }
+        ],
+        "tags": [
+          "InstanceScheduler"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "googlerpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "instance_schedulerAssignCtyunInstanceRequest": {
+      "type": "object",
+      "properties": {
+        "assignOrder": {
+          "type": "string",
+          "title": "分配订单号，需保证唯一"
+        },
+        "clusterId": {
+          "type": "string",
+          "title": "来源"
+        },
+        "assignSource": {
+          "type": "string",
+          "title": "分配来源"
+        },
+        "gpuType": {
+          "type": "string",
+          "title": "资源类型"
+        },
+        "mirrorId": {
+          "type": "integer",
+          "format": "int32",
+          "title": "镜像id"
+        },
+        "num": {
+          "type": "integer",
+          "format": "int32",
+          "title": "资源申请数量"
+        },
+        "requestId": {
+          "type": "string"
+        }
+      }
+    },
+    "instance_schedulerAssignCtyunInstanceResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/instance_schedulerStatus"
+        },
+        "instances": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "instance_schedulerAssignInstanceRequest": {
+      "type": "object",
+      "properties": {
+        "flowId": {
+          "type": "string",
+          "title": "流水ID"
+        },
+        "source": {
+          "type": "string",
+          "title": "来源"
+        },
+        "strategy": {
+          "$ref": "#/definitions/instance_schedulerStrategy",
+          "title": "分配策略"
+        },
+        "instanceId": {
+          "type": "string",
+          "format": "int64",
+          "title": "指定调度的实例id"
+        },
+        "schemeId": {
+          "type": "string",
+          "format": "int64",
+          "title": "业务编排方案"
+        },
+        "netInfo": {
+          "$ref": "#/definitions/instance_schedulerNetInfo",
+          "title": "网络信息"
+        },
+        "vlan": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "resourceId": {
+          "type": "string",
+          "format": "int64",
+          "title": "资源ID"
+        },
+        "edge": {
+          "type": "string",
+          "title": "指定边缘机房"
+        },
+        "params": {
+          "type": "string",
+          "title": "额外参数json格式"
+        },
+        "areaType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "mode": {
+          "type": "integer",
+          "format": "int32",
+          "title": "分配模式"
+        },
+        "resourceConfig": {
+          "$ref": "#/definitions/instance_schedulerResourceConfig"
+        },
+        "adminFlag": {
+          "type": "integer",
+          "format": "int32",
+          "title": "1-设置超管"
+        }
+      }
+    },
+    "instance_schedulerAssignInstanceResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/instance_schedulerCommRet"
+        },
+        "instanceId": {
+          "type": "string",
+          "format": "int64",
+          "title": "指定调度的实例id"
+        },
+        "manageAddress": {
+          "type": "string",
+          "title": "实例管理地址"
+        },
+        "accessEndpoint": {
+          "type": "string",
+          "title": "实例接入点"
+        },
+        "mac": {
+          "type": "string",
+          "title": "mac地址"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32",
+          "title": "状态 0-可用 1-重启中"
+        }
+      }
+    },
+    "instance_schedulerCommRet": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        }
+      }
+    },
+    "instance_schedulerGetOrderResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/instance_schedulerCommRet"
+        },
+        "instanceId": {
+          "type": "string",
+          "format": "int64",
+          "title": "指定调度的实例id"
+        },
+        "manageAddress": {
+          "type": "string",
+          "title": "实例管理地址"
+        },
+        "accessEndpoint": {
+          "type": "string",
+          "title": "实例接入点"
+        },
+        "mac": {
+          "type": "string",
+          "title": "mac地址"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32",
+          "title": "状态 0-可用 1-重启中"
+        }
+      }
+    },
+    "instance_schedulerGetResourceStatResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/instance_schedulerCommRet"
+        },
+        "availables": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "instance_schedulerInstance": {
+      "type": "object",
+      "properties": {
+        "mac": {
+          "type": "string"
+        },
+        "ip": {
+          "type": "string"
+        },
+        "assignOrder": {
+          "type": "string"
+        }
+      }
+    },
+    "instance_schedulerInstanceList": {
+      "type": "object",
+      "properties": {
+        "gpuType": {
+          "type": "string"
+        },
+        "available": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "used": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "instance_schedulerInstanceStatusRequest": {
+      "type": "object",
+      "properties": {
+        "instanceId": {
+          "type": "string",
+          "format": "int64",
+          "title": "实例id"
+        },
+        "powerStatus": {
+          "type": "string",
+          "format": "int64"
+        },
+        "runningStatus": {
+          "type": "string",
+          "format": "int64"
+        },
+        "businessStatus": {
+          "type": "string",
+          "format": "int64"
+        },
+        "bootTime": {
+          "type": "string"
+        },
+        "manageAddress": {
+          "type": "string"
+        },
+        "mac": {
+          "type": "string"
+        },
+        "modifyTime": {
+          "type": "string",
+          "format": "int64"
+        },
+        "areaType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "event": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "instance_schedulerInstanceStatusResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/instance_schedulerCommRet"
+        }
+      }
+    },
+    "instance_schedulerLockInstanceRequest": {
+      "type": "object",
+      "properties": {
+        "flowId": {
+          "type": "string",
+          "title": "流水ID"
+        },
+        "source": {
+          "type": "string",
+          "title": "来源"
+        },
+        "instanceId": {
+          "type": "string",
+          "format": "int64",
+          "title": "实例id"
+        },
+        "oldStatus": {
+          "type": "string",
+          "format": "int64",
+          "title": "老状态"
+        },
+        "newStatus": {
+          "type": "string",
+          "format": "int64",
+          "title": "新状态"
+        },
+        "areaType": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "instance_schedulerLockInstanceResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/instance_schedulerCommRet"
+        }
+      }
+    },
+    "instance_schedulerNetInfo": {
+      "type": "object",
+      "properties": {
+        "ip": {
+          "type": "string",
+          "title": "ip地址"
+        },
+        "netmask": {
+          "type": "string",
+          "title": "子网掩码"
+        },
+        "gateway": {
+          "type": "string",
+          "title": "网关地址"
+        },
+        "dns": {
+          "type": "string",
+          "title": "dns地址"
+        },
+        "hostname": {
+          "type": "string",
+          "title": "主机名"
+        },
+        "vlan": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "instance_schedulerNewResourceRequest": {
+      "type": "object",
+      "properties": {
+        "flowId": {
+          "type": "string",
+          "title": "流水ID"
+        },
+        "areaType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "resourceConfig": {
+          "$ref": "#/definitions/instance_schedulerResourceConfig"
+        }
+      }
+    },
+    "instance_schedulerNewResourceResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/instance_schedulerCommRet"
+        }
+      }
+    },
+    "instance_schedulerPoolItem": {
+      "type": "object",
+      "properties": {
+        "areaType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "resourceId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "instanceId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "mac": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "flags": {
+          "type": "string",
+          "format": "int64"
+        },
+        "poolSource": {
+          "type": "string"
+        },
+        "poolOrder": {
+          "type": "string"
+        },
+        "poolStatus": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "assignSource": {
+          "type": "string"
+        },
+        "assignOrder": {
+          "type": "string"
+        },
+        "assignParam": {
+          "type": "string"
+        },
+        "assignResult": {
+          "type": "string"
+        },
+        "assignStatus": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "createTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updateTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "modifyTime": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "instance_schedulerQueryCtyunInstanceResponse": {
+      "type": "object",
+      "properties": {
+        "requestId": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/instance_schedulerStatus"
+        },
+        "lists": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/instance_schedulerInstanceList"
+          }
+        }
+      }
+    },
+    "instance_schedulerRebuildPoolRequest": {
+      "type": "object",
+      "properties": {
+        "flowId": {
+          "type": "string",
+          "title": "流水ID"
+        },
+        "resourceId": {
+          "type": "string",
+          "format": "int64",
+          "title": "资源ID"
+        },
+        "areaType": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "instance_schedulerRebuildPoolResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/instance_schedulerCommRet"
+        }
+      }
+    },
+    "instance_schedulerReleaseCtyunInstanceRequest": {
+      "type": "object",
+      "properties": {
+        "clusterId": {
+          "type": "string"
+        },
+        "assignSource": {
+          "type": "string"
+        },
+        "instances": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/instance_schedulerInstance"
+          }
+        },
+        "requestId": {
+          "type": "string"
+        }
+      }
+    },
+    "instance_schedulerReleaseCtyunInstanceResponse": {
+      "type": "object",
+      "properties": {
+        "requestId": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/instance_schedulerStatus"
+        }
+      }
+    },
+    "instance_schedulerReleaseInstanceRequest": {
+      "type": "object",
+      "properties": {
+        "flowId": {
+          "type": "string",
+          "title": "流水ID"
+        },
+        "source": {
+          "type": "string",
+          "title": "来源"
+        },
+        "instanceId": {
+          "type": "string",
+          "format": "int64",
+          "title": "实例id"
+        },
+        "areaType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "resourceConfig": {
+          "$ref": "#/definitions/instance_schedulerResourceConfig"
+        }
+      }
+    },
+    "instance_schedulerReleaseInstanceResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/instance_schedulerCommRet"
+        }
+      }
+    },
+    "instance_schedulerReleasePoolItemRequest": {
+      "type": "object",
+      "properties": {
+        "flowId": {
+          "type": "string",
+          "title": "流水ID"
+        },
+        "source": {
+          "type": "string",
+          "title": "来源"
+        },
+        "instanceId": {
+          "type": "string",
+          "format": "int64",
+          "title": "实例id"
+        },
+        "areaType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "resourceConfig": {
+          "$ref": "#/definitions/instance_schedulerResourceConfig"
+        }
+      }
+    },
+    "instance_schedulerReleasePoolItemResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/instance_schedulerCommRet"
+        }
+      }
+    },
+    "instance_schedulerResourceConfig": {
+      "type": "object",
+      "properties": {
+        "resourceId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "areaType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "type": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        },
+        "specification": {
+          "type": "string",
+          "format": "int64"
+        },
+        "vlan": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "detail": {
+          "type": "string"
+        },
+        "mode": {
+          "type": "string",
+          "format": "int64"
+        },
+        "capacity": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "buffer": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "init": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "concurrent": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "priority": {
+          "type": "string",
+          "format": "int64"
+        },
+        "preemptable": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "assignConfig": {
+          "type": "string"
+        },
+        "state": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "instance_schedulerSearchPoolBody": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "lists": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/instance_schedulerPoolItem"
+          }
+        }
+      }
+    },
+    "instance_schedulerSearchPoolRequest": {
+      "type": "object",
+      "properties": {
+        "flowId": {
+          "type": "string",
+          "title": "流水ID"
+        },
+        "resourceId": {
+          "type": "string",
+          "format": "int64",
+          "title": "资源ID"
+        },
+        "areaType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "length": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "order": {
+          "type": "string",
+          "title": "asc/desc"
+        },
+        "sortby": {
+          "type": "string"
+        }
+      }
+    },
+    "instance_schedulerSearchPoolResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/instance_schedulerCommRet"
+        },
+        "body": {
+          "$ref": "#/definitions/instance_schedulerSearchPoolBody"
+        }
+      }
+    },
+    "instance_schedulerSearchResourceBody": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "lists": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/instance_schedulerResourceConfig"
+          }
+        }
+      }
+    },
+    "instance_schedulerSearchResourceRequest": {
+      "type": "object",
+      "properties": {
+        "flowId": {
+          "type": "string",
+          "title": "流水ID"
+        },
+        "areaType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "length": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "order": {
+          "type": "string",
+          "title": "asc/desc"
+        },
+        "sortby": {
+          "type": "string"
+        }
+      }
+    },
+    "instance_schedulerSearchResourceResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/instance_schedulerCommRet"
+        },
+        "body": {
+          "$ref": "#/definitions/instance_schedulerSearchResourceBody"
+        }
+      }
+    },
+    "instance_schedulerStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "instance_schedulerStrategy": {
+      "type": "string",
+      "enum": [
+        "strategy_fixed",
+        "strategy_debug",
+        "strategy_healthy",
+        "strategy_available"
+      ],
+      "default": "strategy_fixed",
+      "title": "- strategy_fixed: 指定分配\n - strategy_debug: 分配空闲机器\n - strategy_healthy: 分配健康可用机器\n - strategy_available: 分配允许使用机器"
+    },
+    "instance_schedulerUpdateResourceRequest": {
+      "type": "object",
+      "properties": {
+        "flowId": {
+          "type": "string",
+          "title": "流水ID"
+        },
+        "areaType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "resourceId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "type": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        },
+        "specification": {
+          "type": "string",
+          "format": "int64"
+        },
+        "vlan": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "mode": {
+          "type": "string",
+          "format": "int64"
+        },
+        "capacity": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "buffer": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "init": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "concurrent": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "priority": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "preemptable": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "assignConfig": {
+          "type": "string"
+        },
+        "detail": {
+          "type": "string"
+        },
+        "state": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "instance_schedulerUpdateResourceResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/instance_schedulerCommRet"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    }
+  }
+}

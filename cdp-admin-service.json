@@ -1,0 +1,7456 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "cdp-admin-service",
+    "description": "cdp-admin-service",
+    "version": "v1.0.0"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/cdp/admin/biz/configbizserverinfo": {
+      "post": {
+        "summary": "配置租户服务器信息",
+        "operationId": "ConfigBizServerInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ConfigBizServerInfoResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ConfigBizServerInfoReq"
+            }
+          }
+        ],
+        "tags": [
+          "biz"
+        ]
+      }
+    },
+    "/v1/cdp/admin/biz/configbizstrategy": {
+      "post": {
+        "summary": "配置租户算力策略",
+        "operationId": "ConfigBizStrategy",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ConfigBizStrategyResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ConfigBizStrategyReq"
+            }
+          }
+        ],
+        "tags": [
+          "biz"
+        ]
+      }
+    },
+    "/v1/cdp/admin/biz/configbizvlan": {
+      "post": {
+        "summary": "配置租户Vlan信息",
+        "operationId": "ConfigBizVlan",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ConfigBizVlanResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ConfigBizVlanReq"
+            }
+          }
+        ],
+        "tags": [
+          "biz"
+        ]
+      }
+    },
+    "/v1/cdp/admin/biz/create": {
+      "post": {
+        "summary": "创建租户",
+        "operationId": "CreateBiz",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CreateBizResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateBizReq"
+            }
+          }
+        ],
+        "tags": [
+          "biz"
+        ]
+      }
+    },
+    "/v1/cdp/admin/biz/delete": {
+      "delete": {
+        "summary": "删除租户",
+        "operationId": "DeleteBiz",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonNilJson"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteBizReq"
+            }
+          }
+        ],
+        "tags": [
+          "biz"
+        ]
+      }
+    },
+    "/v1/cdp/admin/biz/deletebizstrategy": {
+      "post": {
+        "summary": "删除租户算力策略",
+        "operationId": "DeleteBizStrategy",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DeleteBizStrategyResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteBizStrategyReq"
+            }
+          }
+        ],
+        "tags": [
+          "biz"
+        ]
+      }
+    },
+    "/v1/cdp/admin/biz/enable": {
+      "put": {
+        "summary": "启用租户",
+        "operationId": "EnableBiz",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/EnableBizResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EnableBizReq"
+            }
+          }
+        ],
+        "tags": [
+          "biz"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ]
+      }
+    },
+    "/v1/cdp/admin/biz/infos": {
+      "post": {
+        "summary": "获取租户信息",
+        "operationId": "GetBizInfos",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/BizInfosResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CommonPageRequest"
+            }
+          }
+        ],
+        "tags": [
+          "biz"
+        ]
+      }
+    },
+    "/v1/cdp/admin/biz/update": {
+      "put": {
+        "summary": "更新租户",
+        "operationId": "UpdateBiz",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonNilJson"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateBizReq"
+            }
+          }
+        ],
+        "tags": [
+          "biz"
+        ]
+      }
+    },
+    "/v1/cdp/admin/biz/updatebizstrategy": {
+      "post": {
+        "summary": "更新租户算力策略",
+        "operationId": "UpdateBizStrategy",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdateBizStrategyResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateBizStrategyReq"
+            }
+          }
+        ],
+        "tags": [
+          "biz"
+        ]
+      }
+    },
+    "/v1/cdp/admin/boot_schema/create": {
+      "post": {
+        "summary": "创建启动方案",
+        "operationId": "CreateBootSchema",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CreateBootSchemaResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateBootSchemaReq"
+            }
+          }
+        ],
+        "tags": [
+          "boot_schema"
+        ]
+      }
+    },
+    "/v1/cdp/admin/boot_schema/delete": {
+      "post": {
+        "summary": "删除启动方案",
+        "operationId": "DeleteBootSchema",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonNilJson"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteBootSchemaReq"
+            }
+          }
+        ],
+        "tags": [
+          "boot_schema"
+        ]
+      }
+    },
+    "/v1/cdp/admin/boot_schema/list": {
+      "post": {
+        "summary": "获取启动方案列表",
+        "operationId": "ListBootSchema",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListBootSchemaResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CommonPageRequest"
+            }
+          }
+        ],
+        "tags": [
+          "boot_schema"
+        ]
+      }
+    },
+    "/v1/cdp/admin/boot_schema/update": {
+      "post": {
+        "summary": "更新启动方案",
+        "operationId": "UpdateBootSchema",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonNilJson"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateBootSchemaReq"
+            }
+          }
+        ],
+        "tags": [
+          "boot_schema"
+        ]
+      }
+    },
+    "/v1/cdp/admin/cache/sync": {
+      "put": {
+        "summary": "缓存同步",
+        "operationId": "CacheSync",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonNilJson"
+            }
+          }
+        },
+        "tags": [
+          "cache"
+        ]
+      }
+    },
+    "/v1/cdp/admin/cache/syncV2": {
+      "put": {
+        "summary": "缓存同步",
+        "operationId": "CacheSyncV2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonNilJson"
+            }
+          }
+        },
+        "tags": [
+          "cache"
+        ]
+      }
+    },
+    "/v1/cdp/admin/cloudbox/cloudboxadd": {
+      "post": {
+        "summary": "添加云盒",
+        "operationId": "CloudBoxAdd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CloudBoxAddResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CloudBoxAddReq"
+            }
+          }
+        ],
+        "tags": [
+          "cloudbox"
+        ]
+      }
+    },
+    "/v1/cdp/admin/cloudbox/cloudboxbatchadd": {
+      "post": {
+        "summary": "云盒批量添加",
+        "operationId": "CloudBoxBatchAdd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CloudBoxBatchAddResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CloudBoxBatchAddReq"
+            }
+          }
+        ],
+        "tags": [
+          "cloudbox"
+        ]
+      }
+    },
+    "/v1/cdp/admin/cloudbox/cloudboxbatchupdate": {
+      "post": {
+        "summary": "云盒批量更新",
+        "operationId": "CloudBoxBatchUpdate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CloudBoxBatchUpdateResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CloudBoxBatchUpdateReq"
+            }
+          }
+        ],
+        "tags": [
+          "cloudbox"
+        ]
+      }
+    },
+    "/v1/cdp/admin/cloudbox/cloudboxcanceladmin": {
+      "post": {
+        "summary": "云盒取消超管",
+        "operationId": "CloudBoxCancelAdmin",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CloudBoxCancelAdminResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CloudBoxCancelAdminReq"
+            }
+          }
+        ],
+        "tags": [
+          "cloudbox"
+        ]
+      }
+    },
+    "/v1/cdp/admin/cloudbox/cloudboxdelete": {
+      "post": {
+        "summary": "删除云盒",
+        "operationId": "CloudBoxDelete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CloudBoxDeleteResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CloudBoxDeleteReq"
+            }
+          }
+        ],
+        "tags": [
+          "cloudbox"
+        ]
+      }
+    },
+    "/v1/cdp/admin/cloudbox/cloudboximport": {
+      "post": {
+        "summary": "云盒信息导入",
+        "operationId": "CloudBoxImport",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CloudBoxImportResp"
+            }
+          }
+        },
+        "tags": [
+          "cloudbox"
+        ]
+      }
+    },
+    "/v1/cdp/admin/cloudbox/cloudboxlist": {
+      "post": {
+        "summary": " 查询云盒列表",
+        "operationId": "CloudBoxList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CloudBoxListResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GetCloudBoxListReq"
+            }
+          }
+        ],
+        "tags": [
+          "cloudbox"
+        ]
+      }
+    },
+    "/v1/cdp/admin/cloudbox/cloudboxsetadmin": {
+      "post": {
+        "summary": "云盒设置超管",
+        "operationId": "CloudBoxSetAdmin",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CloudBoxSetAdminResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CloudBoxSetAdminReq"
+            }
+          }
+        ],
+        "tags": [
+          "cloudbox"
+        ]
+      }
+    },
+    "/v1/cdp/admin/cloudbox/cloudboxupdate": {
+      "post": {
+        "summary": "更新云盒",
+        "operationId": "CloudBoxUpdate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CloudBoxUpdateResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CloudBoxUpdateReq"
+            }
+          }
+        ],
+        "tags": [
+          "cloudbox"
+        ]
+      }
+    },
+    "/v1/cdp/admin/cloudclient/cloudclientadd": {
+      "post": {
+        "summary": "客户机新增",
+        "operationId": "CloudClientAdd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CloudClientAddResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CloudClientAddReq"
+            }
+          }
+        ],
+        "tags": [
+          "cloudclient"
+        ]
+      }
+    },
+    "/v1/cdp/admin/cloudclient/cloudclientassignnotice": {
+      "post": {
+        "summary": "客户机实例分配成功通知",
+        "operationId": "CloudClientAssignNotice",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CloudClientAssignNoticeResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CloudClientAssignNoticeReq"
+            }
+          }
+        ],
+        "tags": [
+          "cloudclient"
+        ]
+      }
+    },
+    "/v1/cdp/admin/cloudclient/cloudclientbatchadd": {
+      "post": {
+        "summary": "批量添加客户机",
+        "operationId": "CloudClientBatchAdd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ClientBatchAddResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ClientBatchAddReq"
+            }
+          }
+        ],
+        "tags": [
+          "cloudclient"
+        ]
+      }
+    },
+    "/v1/cdp/admin/cloudclient/cloudclientbatchupdate": {
+      "post": {
+        "summary": "批量更新客户机",
+        "operationId": "CloudClientBatchUpdate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CloudClientBatchUpdateResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CloudClientBatchUpdateReq"
+            }
+          }
+        ],
+        "tags": [
+          "cloudclient"
+        ]
+      }
+    },
+    "/v1/cdp/admin/cloudclient/cloudclientbindbox": {
+      "post": {
+        "summary": "绑定云盒",
+        "operationId": "CloudClientBindBox",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ClientBindBoxResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ClientBindBoxReq"
+            }
+          }
+        ],
+        "tags": [
+          "cloudclient"
+        ]
+      }
+    },
+    "/v1/cdp/admin/cloudclient/cloudclientcanceladmin": {
+      "post": {
+        "summary": "客户机取消超管",
+        "operationId": "CloudClientCancelAdmin",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CloudClientCancelAdminResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CloudClientCancelAdminReq"
+            }
+          }
+        ],
+        "tags": [
+          "cloudclient"
+        ]
+      }
+    },
+    "/v1/cdp/admin/cloudclient/cloudclientdelete": {
+      "post": {
+        "summary": "客户机删除",
+        "operationId": "CloudClientDelete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CloudClientDeleteResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CloudClientDeleteReq"
+            }
+          }
+        ],
+        "tags": [
+          "cloudclient"
+        ]
+      }
+    },
+    "/v1/cdp/admin/cloudclient/cloudclientimport": {
+      "post": {
+        "summary": "客户机导入",
+        "operationId": "CloudClientImport",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CloudClientImportResp"
+            }
+          }
+        },
+        "tags": [
+          "cloudclient"
+        ]
+      }
+    },
+    "/v1/cdp/admin/cloudclient/cloudclientlist": {
+      "post": {
+        "summary": "客户机查询",
+        "operationId": "CloudClientList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CloudClientListResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CloudClientListReq"
+            }
+          }
+        ],
+        "tags": [
+          "cloudclient"
+        ]
+      }
+    },
+    "/v1/cdp/admin/cloudclient/cloudclientsetadmin": {
+      "post": {
+        "summary": "客户机设置超管",
+        "operationId": "CloudClientSetAdmin",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CloudClientSetAdminResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CloudClientSetAdminReq"
+            }
+          }
+        ],
+        "tags": [
+          "cloudclient"
+        ]
+      }
+    },
+    "/v1/cdp/admin/cloudclient/cloudclientunbindlist": {
+      "post": {
+        "summary": "待绑定客户机列表",
+        "operationId": "CloudClientUnbindList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CloudClientUnbindListResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CloudClientUnbindListReq"
+            }
+          }
+        ],
+        "tags": [
+          "cloudclient"
+        ]
+      }
+    },
+    "/v1/cdp/admin/cloudclient/cloudclientupdate": {
+      "post": {
+        "summary": "客户机更新",
+        "operationId": "CloudClientUpdate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CloudClientUpdateResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CloudClientUpdateReq"
+            }
+          }
+        ],
+        "tags": [
+          "cloudclient"
+        ]
+      }
+    },
+    "/v1/cdp/admin/cloudclient/querycloudclientstrategy": {
+      "post": {
+        "summary": "查询客户机策略",
+        "operationId": "QueryCloudClientStrategy",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/QueryCloudClientStrategyResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/QueryCloudClientStrategyReq"
+            }
+          }
+        ],
+        "tags": [
+          "cloudclient"
+        ]
+      }
+    },
+    "/v1/cdp/admin/idc/idccreate": {
+      "post": {
+        "summary": "创建节点",
+        "operationId": "IdcCreate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CreateIdcResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateIdcReq"
+            }
+          }
+        ],
+        "tags": [
+          "idc"
+        ]
+      }
+    },
+    "/v1/cdp/admin/idc/list": {
+      "post": {
+        "summary": "节点管理",
+        "operationId": "Idc",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/IdcListResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CommonPageRequest"
+            }
+          }
+        ],
+        "tags": [
+          "idc"
+        ]
+      }
+    },
+    "/v1/cdp/admin/instance/addinstance": {
+      "post": {
+        "summary": "添加实例，预留",
+        "operationId": "InstanceAdd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/InstanceAddResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": " 添加实例",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/InstanceAddReq"
+            }
+          }
+        ],
+        "tags": [
+          "instance"
+        ]
+      }
+    },
+    "/v1/cdp/admin/instance/instancebindpool": {
+      "post": {
+        "summary": "实例绑定资源池",
+        "operationId": "InstanceBindPool",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/InstanceBindPoolResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/InstanceBindPoolReq"
+            }
+          }
+        ],
+        "tags": [
+          "instance"
+        ]
+      }
+    },
+    "/v1/cdp/admin/instance/instancelist": {
+      "post": {
+        "summary": "查询实例列表，预留",
+        "operationId": "InstanceList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/InstanceListResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CommonPageRequest"
+            }
+          }
+        ],
+        "tags": [
+          "instance"
+        ]
+      }
+    },
+    "/v1/cdp/admin/instance/instancepooladd": {
+      "post": {
+        "summary": "算力池新增",
+        "operationId": "InstancePoolAdd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/InstancePoolAddResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/InstancePoolAddReq"
+            }
+          }
+        ],
+        "tags": [
+          "instance"
+        ]
+      }
+    },
+    "/v1/cdp/admin/instance/instancepoollist": {
+      "post": {
+        "summary": "查询算力池列表",
+        "operationId": "InstancePoolList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/InstancePoolListResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CommonPageRequest"
+            }
+          }
+        ],
+        "tags": [
+          "instance"
+        ]
+      }
+    },
+    "/v1/cdp/admin/instance/instancepoolrelease": {
+      "post": {
+        "summary": "解散算力池",
+        "operationId": "InstancePoolRelease",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/InstancePoolReleaseResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "  解散算力池",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/InstancePoolReleaseReq"
+            }
+          }
+        ],
+        "tags": [
+          "instance"
+        ]
+      }
+    },
+    "/v1/cdp/admin/instance/instancepoolupdate": {
+      "post": {
+        "summary": "更新算力池信息",
+        "operationId": "InstancePoolUpdate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/InstancePoolUpdateResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": " 更新算力池信息",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/InstancePoolUpdateReq"
+            }
+          }
+        ],
+        "tags": [
+          "instance"
+        ]
+      }
+    },
+    "/v1/cdp/admin/instance/instancestatistic": {
+      "post": {
+        "summary": "查询实例统计",
+        "operationId": "InstanceStatistic",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/InstanceStatisticResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": " 实例统计",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/InstanceStatisticReq"
+            }
+          }
+        ],
+        "tags": [
+          "instance"
+        ]
+      }
+    },
+    "/v1/cdp/admin/instance/instanceupdate": {
+      "post": {
+        "summary": "编辑实例，预留",
+        "operationId": "InstanceUpdate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/InstanceUpdateResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": " 编辑实例",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/InstanceUpdateReq"
+            }
+          }
+        ],
+        "tags": [
+          "instance"
+        ]
+      }
+    },
+    "/v1/cdp/admin/instance/queryinststragyinfo": {
+      "post": {
+        "summary": "查询算力池信息paas 调用",
+        "operationId": "QueryInstStragyInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/QueryInstStragyInfoResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/QueryInstStragyInfoReq"
+            }
+          }
+        ],
+        "tags": [
+          "instance"
+        ]
+      }
+    },
+    "/v1/cdp/admin/instance/querystrategyinstance": {
+      "post": {
+        "summary": "查询策略资源实例",
+        "operationId": "StrategyQueryInstances",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/StrategyQueryInstancesResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": " 查询策略实例",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/StrategyQueryInstancesReq"
+            }
+          }
+        ],
+        "tags": [
+          "instance"
+        ]
+      }
+    },
+    "/v1/cdp/admin/instance/strategyadd": {
+      "post": {
+        "summary": "添加算力策略",
+        "operationId": "StrategyAdd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/StrategyAddResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": " 添加算力策略",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/StrategyAddReq"
+            }
+          }
+        ],
+        "tags": [
+          "instance"
+        ]
+      }
+    },
+    "/v1/cdp/admin/instance/strategydelete": {
+      "post": {
+        "summary": "删除力策略",
+        "operationId": "StrategyDelete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/StrategyDeleteResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/StrategyDeleteReq"
+            }
+          }
+        ],
+        "tags": [
+          "instance"
+        ]
+      }
+    },
+    "/v1/cdp/admin/instance/strategyinstnoscheduing": {
+      "post": {
+        "summary": "禁止策略中实例被调度",
+        "operationId": "StrategyInstNoScheduing",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/StrategyInstNoScheduingResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/StrategyInstNoScheduingReq"
+            }
+          }
+        ],
+        "tags": [
+          "instance"
+        ]
+      }
+    },
+    "/v1/cdp/admin/instance/strategylist": {
+      "post": {
+        "summary": "查询算力策略列表",
+        "operationId": "StrategyList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/StrategyListResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CommonPageRequest"
+            }
+          }
+        ],
+        "tags": [
+          "instance"
+        ]
+      }
+    },
+    "/v1/cdp/admin/instance/strategyreebuildpool": {
+      "post": {
+        "summary": "重建策略资源池",
+        "operationId": "StrategyReBuildPool",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/StrategyReBuildPoolResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/StrategyReBuildPoolReq"
+            }
+          }
+        ],
+        "tags": [
+          "instance"
+        ]
+      }
+    },
+    "/v1/cdp/admin/instance/strategyreleaseinstance": {
+      "post": {
+        "summary": "释放策略资源实例",
+        "operationId": "StrategyReleaseInstances",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/StrategyReleaseInstancesResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/StrategyReleaseInstancesReq"
+            }
+          }
+        ],
+        "tags": [
+          "instance"
+        ]
+      }
+    },
+    "/v1/cdp/admin/instance/strategyupdate": {
+      "post": {
+        "summary": "编辑算力策略",
+        "operationId": "StrategyUpdate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/StrategyUpdateResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": " 编辑算力策略",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/StrategyUpdateReq"
+            }
+          }
+        ],
+        "tags": [
+          "instance"
+        ]
+      }
+    },
+    "/v1/cdp/admin/servermgr/serverinfoadd": {
+      "post": {
+        "summary": "添加服务器信息",
+        "operationId": "ServerInfoAdd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ServerInfoAddResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": " 添加算力策略",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ServerInfoAddReq"
+            }
+          }
+        ],
+        "tags": [
+          "servermgr"
+        ]
+      }
+    },
+    "/v1/cdp/admin/servermgr/serverinfolist": {
+      "post": {
+        "summary": "服务器信息列表查询",
+        "operationId": "ServerInfoList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ServerInfoListResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CommonPageRequest"
+            }
+          }
+        ],
+        "tags": [
+          "servermgr"
+        ]
+      }
+    },
+    "/v1/cdp/admin/servermgr/serverinfoupdate": {
+      "post": {
+        "summary": "更新服务器信息",
+        "operationId": "ServerInfoUpdate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ServerInfoUpdateResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": " 编辑算力策略",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ServerInfoUpdateReq"
+            }
+          }
+        ],
+        "tags": [
+          "servermgr"
+        ]
+      }
+    },
+    "/v1/cdp/admin/spec/speclist": {
+      "post": {
+        "summary": "规格管理",
+        "operationId": "Spec",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/SpecListResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SpecListReq"
+            }
+          }
+        ],
+        "tags": [
+          "spec"
+        ]
+      }
+    },
+    "/v1/cdp/admin/sys/log/loglist": {
+      "post": {
+        "summary": "日志列表",
+        "operationId": "GetLogList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/LogListResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CommonPageRequest"
+            }
+          }
+        ],
+        "tags": [
+          "sys/log"
+        ]
+      }
+    },
+    "/v1/cdp/admin/sys/menu/addmenu": {
+      "post": {
+        "summary": "添加菜单",
+        "operationId": "AddMenu",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/AddMenuResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddMenuReq"
+            }
+          }
+        ],
+        "tags": [
+          "sys/menu"
+        ]
+      }
+    },
+    "/v1/cdp/admin/sys/menu/deletemenu": {
+      "delete": {
+        "summary": "删除菜单",
+        "operationId": "DeleteMenu",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DeleteMenuResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteMenuReq"
+            }
+          }
+        ],
+        "tags": [
+          "sys/menu"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ]
+      }
+    },
+    "/v1/cdp/admin/sys/menu/menulist": {
+      "post": {
+        "summary": "菜单列表",
+        "operationId": "GetMenuList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/MenuListResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CommonPageRequest"
+            }
+          }
+        ],
+        "tags": [
+          "sys/menu"
+        ]
+      }
+    },
+    "/v1/cdp/admin/sys/menu/rolemenutree": {
+      "get": {
+        "summary": "获取角色菜单树",
+        "operationId": "GetRoleMenuTree",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/MenuListResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "角色id",
+            "description": " 角色id",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "sys/menu"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ]
+      }
+    },
+    "/v1/cdp/admin/sys/menu/updatemenu": {
+      "post": {
+        "summary": "更新菜单",
+        "operationId": "UpdateMenu",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdateMenuResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateMenuReq"
+            }
+          }
+        ],
+        "tags": [
+          "sys/menu"
+        ]
+      }
+    },
+    "/v1/cdp/admin/sys/role/addrole": {
+      "post": {
+        "summary": "添加角色",
+        "operationId": "AddRole",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/AddRoleResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddRoleReq"
+            }
+          }
+        ],
+        "tags": [
+          "sys/role"
+        ]
+      }
+    },
+    "/v1/cdp/admin/sys/role/deleterole": {
+      "delete": {
+        "summary": "删除角色",
+        "operationId": "DeleteRole",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DeleteRoleResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteRoleReq"
+            }
+          }
+        ],
+        "tags": [
+          "sys/role"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ]
+      }
+    },
+    "/v1/cdp/admin/sys/role/getrolemenuperms": {
+      "get": {
+        "summary": "获取角色菜单权限",
+        "operationId": "GetRoleMenuPerms",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/RoleMenuPermsResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "sys/role"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ]
+      }
+    },
+    "/v1/cdp/admin/sys/role/rolelist": {
+      "post": {
+        "summary": "角色列表",
+        "operationId": "GetSysRoleList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/RoleListResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CommonPageRequest"
+            }
+          }
+        ],
+        "tags": [
+          "sys/role"
+        ]
+      }
+    },
+    "/v1/cdp/admin/sys/role/updaterole": {
+      "post": {
+        "summary": "更新角色",
+        "operationId": "UpdateRole",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdateRoleResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateRoleReq"
+            }
+          }
+        ],
+        "tags": [
+          "sys/role"
+        ]
+      }
+    },
+    "/v1/cdp/admin/sys/role/updaterolemenuperms": {
+      "post": {
+        "summary": "配置角色菜单权限",
+        "operationId": "UpdateRoleMenuPerms",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdateRoleMenuPermsResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateRoleMenuPermsReq"
+            }
+          }
+        ],
+        "tags": [
+          "sys/role"
+        ]
+      }
+    },
+    "/v1/cdp/admin/user/area_infos": {
+      "get": {
+        "summary": "获取用户节点信息",
+        "operationId": "GetUserAreaTypes",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/AreaInfosResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "region_id",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "user"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ]
+      }
+    },
+    "/v1/cdp/admin/user/create": {
+      "post": {
+        "summary": "创建用户",
+        "operationId": "CreateUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CreateUserResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateUserReq"
+            }
+          }
+        ],
+        "tags": [
+          "user"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ]
+      }
+    },
+    "/v1/cdp/admin/user/delete": {
+      "post": {
+        "summary": "删除用户",
+        "operationId": "DeleteUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonNilJson"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteUserReq"
+            }
+          }
+        ],
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/v1/cdp/admin/user/info": {
+      "get": {
+        "summary": "用户资料",
+        "operationId": "GetUserInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UserInfoResp"
+            }
+          }
+        },
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/v1/cdp/admin/user/list": {
+      "post": {
+        "summary": "用户列表",
+        "operationId": "GetUserList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UserInfoListResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CommonPageRequest"
+            }
+          }
+        ],
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/v1/cdp/admin/user/login": {
+      "post": {
+        "summary": "登录",
+        "operationId": "Login",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/LoginResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LoginReq"
+            }
+          }
+        ],
+        "tags": [
+          "user"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ]
+      }
+    },
+    "/v1/cdp/admin/user/logout": {
+      "post": {
+        "summary": "退出",
+        "operationId": "Logout",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/v1/cdp/admin/user/password/reset": {
+      "post": {
+        "summary": "重置密码",
+        "operationId": "ResetPassword",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ResetPasswordResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ResetPasswordReq"
+            }
+          }
+        ],
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/v1/cdp/admin/user/password/update": {
+      "post": {
+        "summary": "更新密码",
+        "operationId": "UpdateUserPassword",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonNilJson"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdatePasswordReq"
+            }
+          }
+        ],
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/v1/cdp/admin/user/permmenu": {
+      "get": {
+        "summary": "权限菜单",
+        "operationId": "GetUserPermMenu",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UserPermMenuResp"
+            }
+          }
+        },
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/v1/cdp/admin/user/regions": {
+      "get": {
+        "summary": "获取用户域信息",
+        "operationId": "GetUserRegions",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/RegionsResp"
+            }
+          }
+        },
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/v1/cdp/admin/user/update": {
+      "post": {
+        "summary": "更新用户资料",
+        "operationId": "UpdateUserInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonNilJson"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateUserInfoReq"
+            }
+          }
+        ],
+        "tags": [
+          "user"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "AddMenuReq": {
+      "type": "object",
+      "properties": {
+        "menu": {
+          "$ref": "#/definitions/Menu"
+        }
+      },
+      "title": "AddMenuReq",
+      "required": [
+        "menu",
+        "菜单"
+      ]
+    },
+    "AddMenuResp": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "AddMenuResp",
+      "required": [
+        "id",
+        "编号"
+      ]
+    },
+    "AddRoleReq": {
+      "type": "object",
+      "properties": {
+        "role": {
+          "$ref": "#/definitions/Role"
+        }
+      },
+      "title": "AddRoleReq",
+      "required": [
+        "role"
+      ]
+    },
+    "AddRoleResp": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "AddRoleResp",
+      "required": [
+        "id"
+      ]
+    },
+    "AreaInfo": {
+      "type": "object",
+      "properties": {
+        "primary_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "agent_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "area_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        },
+        "region_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "deployment_type": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "remark": {
+          "type": "string"
+        },
+        "proxy_addr": {
+          "type": "string"
+        }
+      },
+      "title": "AreaInfo",
+      "required": [
+        "primary_id",
+        "agent_id",
+        "area_id",
+        "name",
+        "region_id",
+        "deployment_type",
+        "remark",
+        "proxy_addr"
+      ]
+    },
+    "AreaInfosReq": {
+      "type": "object",
+      "properties": {
+        "region_id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "AreaInfosReq",
+      "required": [
+        "region_id"
+      ]
+    },
+    "AreaInfosResp": {
+      "type": "object",
+      "properties": {
+        "area_infos": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AreaInfo"
+          }
+        }
+      },
+      "title": "AreaInfosResp",
+      "required": [
+        "area_infos"
+      ]
+    },
+    "BizInfo": {
+      "type": "object",
+      "properties": {
+        "biz_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "biz_name": {
+          "type": "string"
+        },
+        "contact_person": {
+          "type": "string"
+        },
+        "mobile": {
+          "type": "string"
+        },
+        "area_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "area_name": {
+          "type": "string"
+        },
+        "region_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "create_by": {
+          "type": "string"
+        },
+        "create_time": {
+          "type": "string"
+        },
+        "update_time": {
+          "type": "string"
+        },
+        "remark": {
+          "type": "string"
+        },
+        "strategy_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BizStrategyInfo"
+          }
+        },
+        "vlan_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "box_vlan_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 云盒Vlan ID"
+        },
+        "server_info": {
+          "type": "string"
+        },
+        "client_num_limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 终端数量限制"
+        },
+        "authorized_client_num": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 授权客户机数量"
+        }
+      },
+      "title": "BizInfo",
+      "required": [
+        "biz_id",
+        "biz_name",
+        "contact_person",
+        "mobile",
+        "area_id",
+        "area_name",
+        "region_id",
+        "status",
+        "create_by",
+        "create_time",
+        "update_time",
+        "remark",
+        "strategy_list",
+        "vlan_id",
+        "server_info",
+        "client_num_limit",
+        "authorized_client_num"
+      ]
+    },
+    "BizInfosResp": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BizInfo"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "BizInfosResp",
+      "required": [
+        "list",
+        "total"
+      ]
+    },
+    "BizStrategyInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "inst_strategy_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "inst_strategy_name": {
+          "type": "string"
+        },
+        "spec_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "spec_name": {
+          "type": "string"
+        },
+        "outer_spec_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "total_instances": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "remark": {
+          "type": "string"
+        },
+        "hourly_pool_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "per_use_pool_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "boot_schema_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "boot_schema_name": {
+          "type": "string"
+        },
+        "config_id": {
+          "type": "string"
+        },
+        "boot_type": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 启动模式  0-预开机 1-实时开机"
+        }
+      },
+      "title": "BizStrategyInfo",
+      "required": [
+        "id",
+        "inst_strategy_id",
+        "inst_strategy_name",
+        "spec_id",
+        "spec_name",
+        "outer_spec_id",
+        "total_instances",
+        "remark",
+        "hourly_pool_id",
+        "per_use_pool_id",
+        "boot_schema_id",
+        "boot_schema_name",
+        "config_id",
+        "boot_type"
+      ]
+    },
+    "BootSchemaInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "schema_info": {
+          "$ref": "#/definitions/SchemaInfo"
+        },
+        "script_infos": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ScriptInfo"
+          }
+        },
+        "create_time": {
+          "type": "string"
+        },
+        "update_time": {
+          "type": "string"
+        },
+        "biz_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "create_by": {
+          "type": "string"
+        },
+        "update_by": {
+          "type": "string"
+        },
+        "modify_time": {
+          "type": "string"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "area_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "remark": {
+          "type": "string"
+        }
+      },
+      "title": "BootSchemaInfo",
+      "required": [
+        "id",
+        "ID",
+        "name",
+        "名称",
+        "schema_info",
+        "方案信息",
+        "script_infos",
+        "脚本信息",
+        "create_time",
+        "创建时间",
+        "update_time",
+        "更新时间",
+        "biz_id",
+        "业务ID",
+        "create_by",
+        "创建者",
+        "update_by",
+        "更新者",
+        "modify_time",
+        "修改时间",
+        "status",
+        "状态",
+        "area_id",
+        "区域ID",
+        "remark",
+        "备注"
+      ]
+    },
+    "ClientBatchAddItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 自增长ID"
+        },
+        "client_name": {
+          "type": "string",
+          "description": " 客户机名称"
+        },
+        "host_ip": {
+          "type": "string",
+          "description": " 主机IP"
+        },
+        "error_msg": {
+          "type": "string",
+          "description": " 错误信息"
+        }
+      },
+      "title": "ClientBatchAddItem",
+      "required": [
+        "id",
+        "client_name",
+        "host_ip",
+        "error_msg"
+      ]
+    },
+    "ClientBatchAddReq": {
+      "type": "object",
+      "properties": {
+        "biz_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 租户ID"
+        },
+        "area_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 节点区域ID"
+        },
+        "client_num": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 客户机数量"
+        },
+        "boot_schema_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 启动方案ID"
+        },
+        "start_ip": {
+          "type": "string",
+          "description": " 起始IP"
+        },
+        "prefix_name": {
+          "type": "string",
+          "description": " 机器名前缀"
+        },
+        "start_number": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 起始编号"
+        }
+      },
+      "title": "ClientBatchAddReq",
+      "required": [
+        "biz_id",
+        "租户ID",
+        "area_id",
+        "节点区域ID",
+        "client_num",
+        "客户机数量",
+        "boot_schema_id",
+        "启动方案ID",
+        "start_ip",
+        "开始IP",
+        "prefix_name",
+        "前缀",
+        "start_number",
+        "起始编号"
+      ]
+    },
+    "ClientBatchAddResp": {
+      "type": "object",
+      "properties": {
+        "success_item": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ClientBatchAddItem"
+          },
+          "description": " 成功添加的客户机"
+        },
+        "failed_item": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ClientBatchAddItem"
+          },
+          "description": " 失败添加的客户机"
+        }
+      },
+      "title": "ClientBatchAddResp",
+      "required": [
+        "success_item",
+        "failed_item"
+      ]
+    },
+    "ClientBindBoxReq": {
+      "type": "object",
+      "properties": {
+        "biz_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 租户ID"
+        },
+        "client_name": {
+          "type": "string",
+          "description": " 客户机名称"
+        },
+        "cloud_box_mac": {
+          "type": "string",
+          "description": " 云盒MAC地址"
+        }
+      },
+      "title": "ClientBindBoxReq",
+      "required": [
+        "biz_id",
+        "租户ID",
+        "client_name",
+        "客户机名称",
+        "cloud_box_mac",
+        "云盒MAC地址"
+      ]
+    },
+    "ClientBindBoxResp": {
+      "type": "object",
+      "title": "ClientBindBoxResp"
+    },
+    "CloudBoxAddItem": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "start_mode": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 2=本地盘启动， 1=无盘启动 0也为无盘"
+        },
+        "mac": {
+          "type": "string"
+        },
+        "ip": {
+          "type": "string"
+        },
+        "config_id": {
+          "type": "string"
+        },
+        "image_version": {
+          "type": "string"
+        },
+        "resolution": {
+          "type": "string"
+        },
+        "refresh_rate": {
+          "type": "string"
+        }
+      },
+      "title": "CloudBoxAddItem",
+      "required": [
+        "云盒名称",
+        "start_mode",
+        "启动方式",
+        "mac",
+        "Mac地址",
+        "ip",
+        "云盒的IP地址",
+        "config_id",
+        "配置方案Id",
+        "镜像版本",
+        "分辨率",
+        "刷新率"
+      ]
+    },
+    "CloudBoxAddReq": {
+      "type": "object",
+      "properties": {
+        "biz_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 租户ID"
+        },
+        "area_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 节点区域ID"
+        },
+        "vlan_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 网络vlanId"
+        },
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CloudBoxAddItem"
+          },
+          "description": " 云盒信息列表"
+        }
+      },
+      "title": "CloudBoxAddReq",
+      "required": [
+        "biz_id",
+        "租户ID",
+        "area_id",
+        "节点区域ID",
+        "vlan_id",
+        "网络vlanId",
+        "list",
+        "云盒信息列表"
+      ]
+    },
+    "CloudBoxAddResp": {
+      "type": "object",
+      "title": "CloudBoxAddResp"
+    },
+    "CloudBoxBatchAddItem": {
+      "type": "object",
+      "properties": {
+        "cloud_box_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 云盒ID"
+        },
+        "ip": {
+          "type": "string",
+          "description": " IP地址"
+        },
+        "mac": {
+          "type": "string",
+          "description": " Mac地址"
+        },
+        "error_msg": {
+          "type": "string",
+          "description": " 错误信息"
+        }
+      },
+      "title": "CloudBoxBatchAddItem",
+      "required": [
+        "cloud_box_id",
+        "云盒ID",
+        "ip",
+        "IP地址",
+        "mac",
+        "Mac地址",
+        "error_msg"
+      ]
+    },
+    "CloudBoxBatchAddReq": {
+      "type": "object",
+      "properties": {
+        "biz_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "area_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "start_ip": {
+          "type": "string",
+          "description": " 起始IP"
+        },
+        "first_strategy_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 启动策略ID主"
+        },
+        "second_strategy_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 启动策略ID从"
+        },
+        "start_mode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "启动方式"
+        },
+        "boot_schema_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 配置方案ID"
+        },
+        "mac_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CloudBoxMacItem"
+          }
+        }
+      },
+      "title": "CloudBoxBatchAddReq",
+      "required": [
+        "biz_id",
+        "租户ID",
+        "area_id",
+        "节点区域ID",
+        "start_ip",
+        "开始IP",
+        "first_strategy_id",
+        "启动策略ID",
+        "start_mode",
+        "启动方式",
+        "boot_schema_id",
+        "启动方案ID",
+        "mac_list",
+        "Mac地址列表"
+      ]
+    },
+    "CloudBoxBatchAddResp": {
+      "type": "object",
+      "properties": {
+        "success_item": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CloudBoxBatchAddItem"
+          },
+          "description": " 成功添加的云盒"
+        },
+        "failed_item": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CloudBoxBatchAddItem"
+          },
+          "description": " 失败添加的云盒"
+        }
+      },
+      "title": "CloudBoxBatchAddResp",
+      "required": [
+        "success_item",
+        "failed_item"
+      ]
+    },
+    "CloudBoxBatchUpdateItem": {
+      "type": "object",
+      "properties": {
+        "cloud_box_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 云盒ID"
+        },
+        "error_msg": {
+          "type": "string",
+          "description": " 错误信息"
+        }
+      },
+      "title": "CloudBoxBatchUpdateItem",
+      "required": [
+        "cloud_box_id",
+        "云盒ID",
+        "error_msg"
+      ]
+    },
+    "CloudBoxBatchUpdateReq": {
+      "type": "object",
+      "properties": {
+        "biz_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "area_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "cloud_box_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "description": " 云盒ID列表"
+        },
+        "first_strategy_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 启动策略ID主"
+        },
+        "second_strategy_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 启动策略ID从"
+        }
+      },
+      "title": "CloudBoxBatchUpdateReq",
+      "required": [
+        "biz_id",
+        "租户ID",
+        "area_id",
+        "节点区域ID",
+        "cloud_box_ids",
+        "云盒ID",
+        "启动策略ID"
+      ]
+    },
+    "CloudBoxBatchUpdateResp": {
+      "type": "object",
+      "properties": {
+        "success_item": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CloudBoxBatchUpdateItem"
+          },
+          "description": " 成功更新的云盒"
+        },
+        "failed_item": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CloudBoxBatchUpdateItem"
+          },
+          "description": " 失败更新的云盒"
+        }
+      },
+      "title": "CloudBoxBatchUpdateResp",
+      "required": [
+        "success_item",
+        "failed_item"
+      ]
+    },
+    "CloudBoxCancelAdminReq": {
+      "type": "object",
+      "properties": {
+        "biz_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "area_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "instance_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "mac": {
+          "type": "string"
+        },
+        "host_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "image_id": {
+          "type": "string"
+        },
+        "manager_state": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        },
+        "os_version": {
+          "type": "string"
+        },
+        "remark": {
+          "type": "string"
+        },
+        "flatten_flag": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "CloudBoxCancelAdminReq",
+      "required": [
+        "biz_id",
+        "租户ID",
+        "area_id",
+        "节点区域ID",
+        "instance_id",
+        "实例Id",
+        "mac",
+        "Mac地址",
+        "host_id",
+        "硬件id",
+        "镜像ID",
+        "镜像状态",
+        "镜像名称",
+        "系统类型",
+        "备注",
+        "是否拍平"
+      ]
+    },
+    "CloudBoxCancelAdminResp": {
+      "type": "object",
+      "title": "CloudBoxCancelAdminResp"
+    },
+    "CloudBoxDeleteItem": {
+      "type": "object",
+      "properties": {
+        "cloud_box_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "instance_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "mac": {
+          "type": "string"
+        }
+      },
+      "title": "CloudBoxDeleteItem",
+      "required": [
+        "cloud_box_id",
+        "设备Id",
+        "instance_id",
+        "实例Id",
+        "mac",
+        "Mac地址"
+      ]
+    },
+    "CloudBoxDeleteReq": {
+      "type": "object",
+      "properties": {
+        "biz_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "area_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CloudBoxDeleteItem"
+          }
+        }
+      },
+      "title": "CloudBoxDeleteReq",
+      "required": [
+        "biz_id",
+        "租户ID",
+        "area_id",
+        "节点区域ID",
+        "list",
+        "云盒信息列表"
+      ]
+    },
+    "CloudBoxDeleteResp": {
+      "type": "object",
+      "title": "CloudBoxDeleteResp"
+    },
+    "CloudBoxImportResp": {
+      "type": "object",
+      "title": "CloudBoxImportResp"
+    },
+    "CloudBoxInfo": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "cloud_box_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "device_number": {
+          "type": "string"
+        },
+        "power_status_desc": {
+          "type": "string"
+        },
+        "manage_status_desc": {
+          "type": "string"
+        },
+        "running_status_desc": {
+          "type": "string"
+        },
+        "image_publish_process": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "image_publish_state": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 0=未启动,1=进行中,2=已完成:成功,3=已完成:失败"
+        },
+        "mac": {
+          "type": "string"
+        },
+        "ip": {
+          "type": "string"
+        },
+        "config_id": {
+          "type": "string"
+        },
+        "image_use": {
+          "type": "string"
+        },
+        "net_card_speed": {
+          "type": "string"
+        },
+        "boot_time": {
+          "type": "string"
+        },
+        "instance_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "user_mode": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 0=超管模式 1=普通模式"
+        },
+        "host_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "keep_type": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 0-normal 1-ready 2-done"
+        },
+        "start_mode": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 2=本地盘启动， 1=无盘启动 0也为无盘"
+        },
+        "boot_schema_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "cloud_client_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "cloud_client_name": {
+          "type": "string"
+        },
+        "first_strategy_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "second_strategy_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "first_strategy_name": {
+          "type": "string"
+        },
+        "second_strategy_name": {
+          "type": "string"
+        }
+      },
+      "title": "CloudBoxInfo",
+      "required": [
+        "name",
+        "云盒名称",
+        "cloud_box_id",
+        "设备ID",
+        "device_number",
+        "设备编号",
+        "power_status_desc",
+        "电源状态",
+        "manage_status_desc",
+        "管理状态",
+        "running_status_desc",
+        "系统状态",
+        "image_publish_process",
+        "镜像发布进度",
+        "image_publish_state",
+        "镜像发布状态",
+        "mac",
+        "Mac地址",
+        "ip",
+        "IP地址",
+        "config_id",
+        "配置方案Id",
+        "image_use",
+        "使用镜像",
+        "net_card_speed",
+        "网卡速率",
+        "boot_time",
+        "开机时间",
+        "instance_id",
+        "实例Id",
+        "user_mode",
+        "超管模式",
+        "host_id",
+        "硬件id",
+        "keep_type",
+        "KeepType",
+        "start_mode",
+        "启动方式",
+        "boot_schema_id",
+        "启动方案ID",
+        "cloud_client_id",
+        "客户机Id",
+        "cloud_client_name",
+        "客户机名称",
+        "first_strategy_id",
+        "启动策略Id",
+        "second_strategy_id",
+        "first_strategy_name",
+        "启动策略名称",
+        "second_strategy_name"
+      ]
+    },
+    "CloudBoxListResp": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CloudBoxInfo"
+          }
+        }
+      },
+      "title": "CloudBoxListResp",
+      "required": [
+        "total",
+        "list"
+      ]
+    },
+    "CloudBoxMacItem": {
+      "type": "object",
+      "properties": {
+        "mac": {
+          "type": "string"
+        },
+        "cloud_client_id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "CloudBoxMacItem",
+      "required": [
+        "mac",
+        "Mac地址",
+        "客户机ID"
+      ]
+    },
+    "CloudBoxSetAdminReq": {
+      "type": "object",
+      "properties": {
+        "biz_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "area_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "cloud_box_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "instance_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "host_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "mac": {
+          "type": "string"
+        }
+      },
+      "title": "CloudBoxSetAdminReq",
+      "required": [
+        "biz_id",
+        "租户ID",
+        "area_id",
+        "节点区域ID",
+        "cloud_box_id",
+        "云盒Id",
+        "instance_id",
+        "实例Id",
+        "host_id",
+        "硬件id",
+        "mac",
+        "Mac地址"
+      ]
+    },
+    "CloudBoxSetAdminResp": {
+      "type": "object",
+      "title": "CloudBoxSetAdminResp"
+    },
+    "CloudBoxUpdateReq": {
+      "type": "object",
+      "properties": {
+        "biz_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "area_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "cloud_box_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "ip": {
+          "type": "string"
+        },
+        "start_mode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "boot_schema_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 启动方案ID"
+        },
+        "first_strategy_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 启动方案Id"
+        },
+        "second_strategy_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "instance_id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "CloudBoxUpdateReq",
+      "required": [
+        "biz_id",
+        "租户ID",
+        "area_id",
+        "节点区域ID",
+        "cloud_box_id",
+        "设备Id",
+        "ip",
+        "IP地址",
+        "start_mode",
+        "启动方式",
+        "启动方案ID",
+        "first_strategy_id",
+        "启动策略Id",
+        "实例Id"
+      ]
+    },
+    "CloudBoxUpdateResp": {
+      "type": "object",
+      "title": "CloudBoxUpdateResp"
+    },
+    "CloudClientAddReq": {
+      "type": "object",
+      "properties": {
+        "biz_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 租户ID"
+        },
+        "area_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "  节点区域ID"
+        },
+        "cloud_box_mac": {
+          "type": "string",
+          "description": " 云盒MAC地址"
+        },
+        "cloud_host_name": {
+          "type": "string",
+          "description": " 串流的实例 room name"
+        },
+        "cloud_host_ip": {
+          "type": "string",
+          "description": " 主机IP地址"
+        },
+        "first_boot_schema_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 启动方案ID 主"
+        },
+        "second_boot_schema_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 启动方案ID 备"
+        },
+        "client_type": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 客户机类型  1-1.0客户机 2-2.0客户机"
+        }
+      },
+      "title": "CloudClientAddReq",
+      "required": [
+        "biz_id",
+        "租户ID",
+        "area_id",
+        "节点区域ID",
+        "cloud_box_mac",
+        "云盒MAC地址",
+        "cloud_host_name",
+        "云主机名",
+        "cloud_host_ip",
+        "主机IP地址",
+        "启动方案ID 主",
+        "启动方案ID 备",
+        "client_type",
+        "客户机类型"
+      ]
+    },
+    "CloudClientAddResp": {
+      "type": "object",
+      "title": "CloudClientAddResp"
+    },
+    "CloudClientAssignNoticeReq": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string",
+          "description": " 流水ID"
+        },
+        "biz_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 租户ID"
+        },
+        "area_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 节点区域ID"
+        },
+        "vm_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 实例Id"
+        },
+        "mac": {
+          "type": "string",
+          "description": " Mac地址"
+        },
+        "cloud_host_name": {
+          "type": "string",
+          "description": "  串流的实例 room name"
+        }
+      },
+      "title": "CloudClientAssignNoticeReq",
+      "required": [
+        "flow_id",
+        "流水ID",
+        "biz_id",
+        "租户ID",
+        "area_id",
+        "节点区域ID",
+        "vm_id",
+        "实例Id",
+        "mac",
+        "Mac地址",
+        "cloud_host_name",
+        "云主机名"
+      ]
+    },
+    "CloudClientAssignNoticeResp": {
+      "type": "object",
+      "title": "CloudClientAssignNoticeResp"
+    },
+    "CloudClientBatchUpdateItem": {
+      "type": "object",
+      "properties": {
+        "cloud_client_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 客户机ID"
+        },
+        "error_msg": {
+          "type": "string",
+          "description": " 错误信息"
+        }
+      },
+      "title": "CloudClientBatchUpdateItem",
+      "required": [
+        "cloud_client_id",
+        "客户机ID",
+        "error_msg"
+      ]
+    },
+    "CloudClientBatchUpdateReq": {
+      "type": "object",
+      "properties": {
+        "biz_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 租户ID"
+        },
+        "area_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 节点区域ID"
+        },
+        "cloud_client_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "description": " 客户机ID列表"
+        },
+        "boot_schema_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 启动方案ID"
+        }
+      },
+      "title": "CloudClientBatchUpdateReq",
+      "required": [
+        "biz_id",
+        "租户ID",
+        "area_id",
+        "节点区域ID",
+        "cloud_client_ids",
+        "客户机ID",
+        "boot_schema_id",
+        "启动方案ID"
+      ]
+    },
+    "CloudClientBatchUpdateResp": {
+      "type": "object",
+      "properties": {
+        "success_item": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CloudClientBatchUpdateItem"
+          },
+          "description": " 成功更新的客户机"
+        },
+        "failed_item": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CloudClientBatchUpdateItem"
+          },
+          "description": " 失败更新的客户机"
+        }
+      },
+      "title": "CloudClientBatchUpdateResp",
+      "required": [
+        "success_item",
+        "failed_item"
+      ]
+    },
+    "CloudClientCancelAdminReq": {
+      "type": "object",
+      "properties": {
+        "biz_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 租户ID"
+        },
+        "area_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 节点区域ID"
+        },
+        "instance_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 实例Id"
+        },
+        "mac": {
+          "type": "string",
+          "description": " Mac地址"
+        },
+        "cloud_client_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 座位号ID"
+        },
+        "host_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 硬件id"
+        },
+        "image_id": {
+          "type": "string",
+          "description": " 镜像ID"
+        },
+        "manager_state": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 镜像状态"
+        },
+        "name": {
+          "type": "string",
+          "description": " 镜像名称"
+        },
+        "os_version": {
+          "type": "string",
+          "description": " 系统类型"
+        },
+        "remark": {
+          "type": "string",
+          "description": " 备注"
+        },
+        "flatten_flag": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 是否拍平"
+        }
+      },
+      "title": "CloudClientCancelAdminReq",
+      "required": [
+        "biz_id",
+        "租户ID",
+        "area_id",
+        "节点区域ID",
+        "instance_id",
+        "实例Id",
+        "mac",
+        "Mac地址",
+        "cloud_client_id",
+        "座位号ID",
+        "host_id",
+        "硬件id",
+        "镜像ID",
+        "镜像状态",
+        "镜像名称",
+        "系统类型",
+        "备注",
+        "是否拍平"
+      ]
+    },
+    "CloudClientCancelAdminResp": {
+      "type": "object",
+      "title": "CloudClientCancelAdminResp"
+    },
+    "CloudClientDeleteItem": {
+      "type": "object",
+      "properties": {
+        "cloud_client_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 设备ID"
+        },
+        "cloud_box_mac": {
+          "type": "string",
+          "description": " 云盒MAC地址"
+        }
+      },
+      "title": "CloudClientDeleteItem",
+      "required": [
+        "cloud_client_id",
+        "设备ID",
+        "cloud_box_mac",
+        "云盒MAC地址"
+      ]
+    },
+    "CloudClientDeleteReq": {
+      "type": "object",
+      "properties": {
+        "biz_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 租户ID"
+        },
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CloudClientDeleteItem"
+          },
+          "description": " 客户机删除列表"
+        }
+      },
+      "title": "CloudClientDeleteReq",
+      "required": [
+        "biz_id",
+        "租户ID",
+        "list",
+        "客户机删除列表"
+      ]
+    },
+    "CloudClientDeleteResp": {
+      "type": "object",
+      "title": "CloudClientDeleteResp"
+    },
+    "CloudClientImportResp": {
+      "type": "object",
+      "title": "CloudClientImportResp"
+    },
+    "CloudClientInfo": {
+      "type": "object",
+      "properties": {
+        "cloud_client_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 客户机ID"
+        },
+        "cloud_client_name": {
+          "type": "string",
+          "description": "\t客户机名称"
+        },
+        "cloud_box_mac": {
+          "type": "string",
+          "description": " 云盒MAC地址"
+        },
+        "cloud_box_ip": {
+          "type": "string",
+          "description": " 云盒IP地址"
+        },
+        "cloud_host_mac": {
+          "type": "string",
+          "description": " 主机MAC地址"
+        },
+        "cloud_host_ip": {
+          "type": "string",
+          "description": "\t主机IP地址"
+        },
+        "cloud_host_name": {
+          "type": "string",
+          "description": "  串流的实例 DeviceNumber"
+        },
+        "stream_state": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 房间的串流状态,0=可用,1=激活,2=上架,3=下架,4=删除5=串流中"
+        },
+        "first_strategy_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 算力池ID(主)"
+        },
+        "second_strategy_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 算力池ID(备)"
+        },
+        "first_boot_schema_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 启动方案ID(主)"
+        },
+        "second_boot_schema_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 启动方案ID(备)"
+        },
+        "first_strategy_name": {
+          "type": "string",
+          "description": " 算力池名主"
+        },
+        "second_strategy_name": {
+          "type": "string",
+          "description": " 算力池名备"
+        },
+        "first_boot_schema_name": {
+          "type": "string",
+          "description": " 启动方案名主"
+        },
+        "second_boot_schema_name": {
+          "type": "string",
+          "description": " 启动方案名主"
+        },
+        "image_use": {
+          "type": "string",
+          "description": " 使用镜像"
+        },
+        "power_status_desc": {
+          "type": "string",
+          "description": " 电源状态"
+        },
+        "manage_status_desc": {
+          "type": "string",
+          "description": " 管理状态"
+        },
+        "net_card_speed": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 网卡速率"
+        },
+        "boot_time": {
+          "type": "string",
+          "description": " 开机时间"
+        },
+        "instance_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 实例Id"
+        },
+        "user_mode": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 0=超管模式 1=普通模式"
+        },
+        "host_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 硬件id"
+        },
+        "keep_type": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 0-normal 1-ready 2-done"
+        },
+        "stream_boot_schema_name": {
+          "type": "string",
+          "description": " 启动方案名称"
+        },
+        "client_type": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 客户机类型 1-本地客户机 2-客户机"
+        },
+        "process": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 开机进度"
+        },
+        "data_image": {
+          "type": "string",
+          "description": " 游戏镜像"
+        }
+      },
+      "title": "CloudClientInfo",
+      "required": [
+        "cloud_client_id",
+        "客户机ID",
+        "cloud_client_name",
+        "客户机名称",
+        "cloud_box_mac",
+        "云盒MAC地址",
+        "cloud_box_ip",
+        "云盒IP地址",
+        "cloud_host_mac",
+        "主机MAC地址",
+        "cloud_host_ip",
+        "主机IP地址",
+        "cloud_host_name",
+        "云主机名",
+        "stream_state",
+        "串流状态",
+        "first_strategy_id",
+        "算力池ID主",
+        "second_strategy_id",
+        "算力池ID备",
+        "first_boot_schema_id",
+        "启动方案ID主",
+        "second_boot_schema_id",
+        "启动方案ID备",
+        "first_strategy_name",
+        "算力池名主",
+        "second_strategy_name",
+        "算力池名备",
+        "first_boot_schema_name",
+        "启动方案名主",
+        "second_boot_schema_name",
+        "启动方案备主",
+        "image_use",
+        "使用镜像",
+        "power_status_desc",
+        "电源状态",
+        "manage_status_desc",
+        "管理状态",
+        "net_card_speed",
+        "网卡速率",
+        "boot_time",
+        "开机时间",
+        "instance_id",
+        "实例Id",
+        "user_mode",
+        "超管模式",
+        "host_id",
+        "硬件id",
+        "keep_type",
+        "KeepType",
+        "stream_boot_schema_name",
+        "启动方案名称",
+        "client_type",
+        "客户机类型",
+        "process",
+        "处理状态",
+        "data_image",
+        "数据盘镜像"
+      ]
+    },
+    "CloudClientListReq": {
+      "type": "object",
+      "properties": {
+        "area_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "cond_list": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sorts": {
+          "type": "string"
+        },
+        "orders": {
+          "type": "string"
+        }
+      },
+      "title": "CloudClientListReq",
+      "required": [
+        "area_id",
+        "区域Id",
+        "offset",
+        "页数",
+        "limit",
+        "条数",
+        "cond_list",
+        "查询条件",
+        "sorts",
+        "排序方式",
+        "orders",
+        "排序字段"
+      ]
+    },
+    "CloudClientListResp": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CloudClientInfo"
+          }
+        }
+      },
+      "title": "CloudClientListResp",
+      "required": [
+        "total",
+        "list"
+      ]
+    },
+    "CloudClientSetAdminReq": {
+      "type": "object",
+      "properties": {
+        "biz_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 租户ID"
+        },
+        "area_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 节点区域ID"
+        },
+        "instance_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 实例Id"
+        },
+        "mac": {
+          "type": "string",
+          "description": " Mac地址"
+        },
+        "cloud_client_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 座位号ID"
+        },
+        "host_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 硬件id"
+        }
+      },
+      "title": "CloudClientSetAdminReq",
+      "required": [
+        "biz_id",
+        "租户ID",
+        "area_id",
+        "节点区域ID",
+        "instance_id",
+        "实例Id",
+        "mac",
+        "Mac地址",
+        "cloud_client_id",
+        "座位号ID",
+        "host_id",
+        "硬件id"
+      ]
+    },
+    "CloudClientSetAdminResp": {
+      "type": "object",
+      "title": "CloudClientSetAdminResp"
+    },
+    "CloudClientUnbindListReq": {
+      "type": "object",
+      "properties": {
+        "biz_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 租户ID"
+        },
+        "area_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 节点区域ID"
+        }
+      },
+      "title": "CloudClientUnbindListReq",
+      "required": [
+        "biz_id",
+        "租户ID",
+        "area_id",
+        "节点区域ID"
+      ]
+    },
+    "CloudClientUnbindListResp": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CloudClientInfo"
+          }
+        }
+      },
+      "title": "CloudClientUnbindListResp",
+      "required": [
+        "list"
+      ]
+    },
+    "CloudClientUpdateReq": {
+      "type": "object",
+      "properties": {
+        "biz_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 租户ID"
+        },
+        "area_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 节点区域ID"
+        },
+        "cloud_client_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 座位号ID"
+        },
+        "cloud_host_name": {
+          "type": "string",
+          "description": "\t云主机名"
+        },
+        "cloud_host_ip": {
+          "type": "string",
+          "description": " 主机IP地址"
+        },
+        "client_type": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 客户机类型"
+        },
+        "cloud_box_mac": {
+          "type": "string",
+          "description": " 云盒MAC地址 客户机,本地客户机"
+        },
+        "first_boot_schema_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 启动方案ID 主\t 客户机"
+        },
+        "second_boot_schema_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 启动方案ID 备 客户机"
+        }
+      },
+      "title": "CloudClientUpdateReq",
+      "required": [
+        "biz_id",
+        "租户ID",
+        "area_id",
+        "节点区域ID",
+        "cloud_client_id",
+        "座位号ID",
+        "cloud_host_name",
+        "云主机名",
+        "cloud_host_ip",
+        "主机IP地址",
+        "客户机类型",
+        "云盒MAC地址",
+        "启动方案ID 主",
+        "启动方案ID 备"
+      ]
+    },
+    "CloudClientUpdateResp": {
+      "type": "object",
+      "title": "CloudClientUpdateResp"
+    },
+    "CommonNilJson": {
+      "type": "object",
+      "title": "CommonNilJson"
+    },
+    "CommonPageRequest": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "cond_list": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "orders": {
+          "type": "string"
+        },
+        "sorts": {
+          "type": "string"
+        }
+      },
+      "title": "CommonPageRequest",
+      "required": [
+        "limit",
+        "offset",
+        "cond_list",
+        "orders",
+        "sorts"
+      ]
+    },
+    "CommonRet": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/Ret"
+        },
+        "body": {
+          "type": "object"
+        }
+      },
+      "title": "CommonRet",
+      "required": [
+        "ret"
+      ]
+    },
+    "ConfigBizServerInfoReq": {
+      "type": "object",
+      "properties": {
+        "biz_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 租户ID"
+        },
+        "server_info": {
+          "type": "string",
+          "description": " 服务器信息"
+        }
+      },
+      "title": "ConfigBizServerInfoReq",
+      "required": [
+        "biz_id",
+        "server_info"
+      ]
+    },
+    "ConfigBizServerInfoResp": {
+      "type": "object",
+      "title": "ConfigBizServerInfoResp"
+    },
+    "ConfigBizStrategyInfo": {
+      "type": "object",
+      "properties": {
+        "strategy_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 算力策略ID"
+        }
+      },
+      "title": "ConfigBizStrategyInfo",
+      "required": [
+        "strategy_id"
+      ]
+    },
+    "ConfigBizStrategyReq": {
+      "type": "object",
+      "properties": {
+        "biz_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 租户ID"
+        },
+        "biz_strategy_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ConfigBizStrategyInfo"
+          },
+          "description": " 策略列表"
+        }
+      },
+      "title": "ConfigBizStrategyReq",
+      "required": [
+        "biz_id",
+        "biz_strategy_list"
+      ]
+    },
+    "ConfigBizStrategyResp": {
+      "type": "object",
+      "properties": {
+        "err_msgs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": " 错误信息"
+        }
+      },
+      "title": "ConfigBizStrategyResp",
+      "required": [
+        "err_msgs"
+      ]
+    },
+    "ConfigBizVlanReq": {
+      "type": "object",
+      "properties": {
+        "biz_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 租户ID"
+        },
+        "vlan_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " Vlan ID"
+        },
+        "box_vlan_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 云盒Vlan ID"
+        }
+      },
+      "title": "ConfigBizVlanReq",
+      "required": [
+        "biz_id",
+        "vlan_id"
+      ]
+    },
+    "ConfigBizVlanResp": {
+      "type": "object",
+      "title": "ConfigBizVlanResp"
+    },
+    "CreateBizReq": {
+      "type": "object",
+      "properties": {
+        "biz_name": {
+          "type": "string"
+        },
+        "contact_person": {
+          "type": "string"
+        },
+        "mobile": {
+          "type": "string"
+        },
+        "area_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "remark": {
+          "type": "string"
+        },
+        "client_num_limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 终端数量限制"
+        }
+      },
+      "title": "CreateBizReq",
+      "required": [
+        "biz_name",
+        "contact_person",
+        "mobile",
+        "area_id",
+        "remark",
+        "client_num_limit"
+      ]
+    },
+    "CreateBizResp": {
+      "type": "object",
+      "properties": {
+        "biz_id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "CreateBizResp",
+      "required": [
+        "biz_id"
+      ]
+    },
+    "CreateBootSchemaReq": {
+      "type": "object",
+      "properties": {
+        "biz_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "schema_info": {
+          "$ref": "#/definitions/SchemaInfo"
+        },
+        "script_infos": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ScriptInfo"
+          }
+        }
+      },
+      "title": "CreateBootSchemaReq",
+      "required": [
+        "biz_id",
+        "业务ID",
+        "name",
+        "名称",
+        "schema_info",
+        "方案信息",
+        "script_infos",
+        "脚本信息"
+      ]
+    },
+    "CreateBootSchemaResp": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "CreateBootSchemaResp",
+      "required": [
+        "id",
+        "ID"
+      ]
+    },
+    "CreateIdcReq": {
+      "type": "object",
+      "properties": {
+        "primary_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        },
+        "area_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "region_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "deployment_type": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "remark": {
+          "type": "string"
+        },
+        "schema_config": {
+          "type": "string"
+        },
+        "reset_schema_config": {
+          "type": "string"
+        }
+      },
+      "title": "CreateIdcReq",
+      "required": [
+        "primary_id",
+        "name",
+        "area_id",
+        "region_id",
+        "deployment_type",
+        "remark",
+        "schema_config"
+      ]
+    },
+    "CreateIdcResp": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "agent_id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "CreateIdcResp",
+      "required": [
+        "id",
+        "agent_id"
+      ]
+    },
+    "CreateUserReq": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "nickname": {
+          "type": "string"
+        },
+        "avatar": {
+          "type": "string"
+        },
+        "mobile": {
+          "type": "string"
+        },
+        "role_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "area_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "area_regions": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "biz_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "biz_regions": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "status": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "remark": {
+          "type": "string"
+        },
+        "platform": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "CreateUserReq",
+      "required": [
+        "account",
+        "账号",
+        "password",
+        "密码",
+        "nickname",
+        "昵称",
+        "头像",
+        "手机号",
+        "role_id",
+        "角色ID",
+        "area_ids",
+        "区域ID",
+        "area_regions",
+        "区域区域",
+        "biz_ids",
+        "业务ID",
+        "biz_regions",
+        "业务区域",
+        "status",
+        "状态",
+        "remark",
+        "备注",
+        "platform",
+        "平台 1-算力平台 2-施工平台"
+      ]
+    },
+    "CreateUserResp": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "CreateUserResp",
+      "required": [
+        "id"
+      ]
+    },
+    "DeleteBizReq": {
+      "type": "object",
+      "properties": {
+        "biz_id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "DeleteBizReq",
+      "required": [
+        "biz_id"
+      ]
+    },
+    "DeleteBizStrategyReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 策略ID"
+        }
+      },
+      "title": "DeleteBizStrategyReq",
+      "required": [
+        "id"
+      ]
+    },
+    "DeleteBizStrategyResp": {
+      "type": "object",
+      "title": "DeleteBizStrategyResp"
+    },
+    "DeleteBootSchemaReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "DeleteBootSchemaReq",
+      "required": [
+        "ID"
+      ]
+    },
+    "DeleteMenuReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "DeleteMenuReq",
+      "required": [
+        "id",
+        "编号"
+      ]
+    },
+    "DeleteMenuResp": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "DeleteMenuResp",
+      "required": [
+        "id",
+        "编号"
+      ]
+    },
+    "DeleteRoleReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "DeleteRoleReq",
+      "required": [
+        "id"
+      ]
+    },
+    "DeleteRoleResp": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "DeleteRoleResp",
+      "required": [
+        "id"
+      ]
+    },
+    "DeleteUserReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "DeleteUserReq",
+      "required": [
+        "id",
+        "ID"
+      ]
+    },
+    "EnableBizReq": {
+      "type": "object",
+      "properties": {
+        "biz_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "platform": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "EnableBizReq",
+      "required": [
+        "biz_id",
+        "platform"
+      ]
+    },
+    "EnableBizResp": {
+      "type": "object",
+      "title": "EnableBizResp"
+    },
+    "GetCloudBoxListReq": {
+      "type": "object",
+      "properties": {
+        "offset": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "cond_list": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sorts": {
+          "type": "string"
+        },
+        "orders": {
+          "type": "string"
+        },
+        "biz_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 租户ID"
+        },
+        "area_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 节点区域ID"
+        },
+        "cloud_client_name": {
+          "type": "string",
+          "description": " 客户机名称"
+        },
+        "first_strategy_name": {
+          "type": "string",
+          "description": " 主算力策略名称"
+        },
+        "second_strategy_name": {
+          "type": "string",
+          "description": " 从算力策略名称"
+        }
+      },
+      "title": "GetCloudBoxListReq",
+      "required": [
+        "offset",
+        "页数",
+        "limit",
+        "条数",
+        "cond_list",
+        "查询条件",
+        "sorts",
+        "排序方式",
+        "orders",
+        "排序字段",
+        "biz_id",
+        "租户ID",
+        "area_id",
+        "节点区域ID",
+        "客户机名称",
+        "主算力策略名称",
+        "从算力策略名称"
+      ]
+    },
+    "Idc": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "primary_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "agent_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "area_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        },
+        "region_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "deployment_type": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "remark": {
+          "type": "string"
+        },
+        "proxy_addr": {
+          "type": "string"
+        },
+        "create_by": {
+          "type": "string"
+        },
+        "update_by": {
+          "type": "string"
+        },
+        "create_time": {
+          "type": "string"
+        },
+        "update_time": {
+          "type": "string"
+        },
+        "modify_time": {
+          "type": "string"
+        }
+      },
+      "title": "Idc",
+      "required": [
+        "id",
+        "primary_id",
+        "agent_id",
+        "area_id",
+        "name",
+        "region_id",
+        "deployment_type",
+        "remark",
+        "proxy_addr",
+        "create_by",
+        "update_by",
+        "create_time",
+        "update_time",
+        "modify_time"
+      ]
+    },
+    "IdcListResp": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Idc"
+          }
+        }
+      },
+      "title": "IdcListResp",
+      "required": [
+        "total",
+        "list"
+      ]
+    },
+    "InstanceAddReq": {
+      "type": "object",
+      "title": "InstanceAddReq"
+    },
+    "InstanceAddResp": {
+      "type": "object",
+      "title": "InstanceAddResp"
+    },
+    "InstanceBindPoolReq": {
+      "type": "object",
+      "properties": {
+        "instance_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "description": " 实例ID列表"
+        },
+        "pool_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 算力池ID"
+        },
+        "area_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 区域ID"
+        }
+      },
+      "title": "InstanceBindPoolReq",
+      "required": [
+        "instance_ids",
+        "pool_id",
+        "area_id"
+      ]
+    },
+    "InstanceBindPoolResp": {
+      "type": "object",
+      "properties": {
+        "success_instance_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "description": " 成功绑定实例ID列表"
+        },
+        "failed_instance_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "description": " 失败绑定实例ID列表"
+        }
+      },
+      "title": "InstanceBindPoolResp",
+      "required": [
+        "success_instance_ids",
+        "failed_instance_ids"
+      ]
+    },
+    "InstanceInfo": {
+      "type": "object",
+      "title": "InstanceInfo"
+    },
+    "InstanceListResp": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/InstanceInfo"
+          },
+          "description": " 实例列表"
+        }
+      },
+      "title": "InstanceListResp",
+      "required": [
+        "total",
+        "list"
+      ]
+    },
+    "InstancePoolAddReq": {
+      "type": "object",
+      "properties": {
+        "area_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 区域ID"
+        },
+        "pool_name": {
+          "type": "string",
+          "description": " 算力池名称"
+        },
+        "inst_ids": {
+          "type": "string",
+          "description": " 实例ID列表 vmid1,vmid2,vmid3"
+        },
+        "remark": {
+          "type": "string",
+          "description": " 备注"
+        }
+      },
+      "title": "InstancePoolAddReq",
+      "required": [
+        "area_id",
+        "pool_name",
+        "inst_ids",
+        "remark"
+      ]
+    },
+    "InstancePoolAddResp": {
+      "type": "object",
+      "properties": {
+        "pool_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 算力池ID"
+        }
+      },
+      "title": "InstancePoolAddResp",
+      "required": [
+        "pool_id"
+      ]
+    },
+    "InstancePoolInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 自增长ID"
+        },
+        "pool_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 算力池ID"
+        },
+        "pool_name": {
+          "type": "string",
+          "description": " 算力池名称"
+        },
+        "inst_count": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 实例数"
+        },
+        "occupy_count": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 占用实例数"
+        },
+        "idle_count": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 空闲实例数"
+        },
+        "spec_name": {
+          "type": "string",
+          "description": " 规格名称"
+        },
+        "remark": {
+          "type": "string",
+          "description": " 备注"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 状态"
+        },
+        "create_by": {
+          "type": "string",
+          "description": " 创建人"
+        },
+        "update_by": {
+          "type": "string",
+          "description": " 更新人"
+        },
+        "create_time": {
+          "type": "string",
+          "description": " 创建时间"
+        },
+        "update_time": {
+          "type": "string",
+          "description": " 更行时间"
+        },
+        "strategy_name_list": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": " 关联的策略名称列表"
+        }
+      },
+      "title": "InstancePoolInfo",
+      "required": [
+        "id",
+        "pool_id",
+        "pool_name",
+        "inst_count",
+        "occupy_count",
+        "idle_count",
+        "spec_name",
+        "remark",
+        "status",
+        "create_by",
+        "update_by",
+        "create_time",
+        "update_time",
+        "strategy_name_list"
+      ]
+    },
+    "InstancePoolListResp": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/InstancePoolInfo"
+          },
+          "description": " 实例列表"
+        }
+      },
+      "title": "InstancePoolListResp",
+      "required": [
+        "total",
+        "list"
+      ]
+    },
+    "InstancePoolReleaseReq": {
+      "type": "object",
+      "properties": {
+        "area_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 区域ID"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 自增长ID"
+        }
+      },
+      "title": "InstancePoolReleaseReq",
+      "required": [
+        "area_id",
+        "id"
+      ]
+    },
+    "InstancePoolReleaseResp": {
+      "type": "object",
+      "title": "InstancePoolReleaseResp"
+    },
+    "InstancePoolUpdateReq": {
+      "type": "object",
+      "properties": {
+        "area_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 区域ID"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 自增长ID"
+        },
+        "pool_name": {
+          "type": "string",
+          "description": " 算力池名称"
+        },
+        "inst_ids": {
+          "type": "string",
+          "description": " 实例ID列表 vmid1,vmid2,vmid3 最新"
+        },
+        "remark": {
+          "type": "string",
+          "description": " 备注"
+        }
+      },
+      "title": "InstancePoolUpdateReq",
+      "required": [
+        "area_id",
+        "id",
+        "pool_name",
+        "inst_ids",
+        "remark"
+      ]
+    },
+    "InstancePoolUpdateResp": {
+      "type": "object",
+      "title": "InstancePoolUpdateResp"
+    },
+    "InstanceStatisticReq": {
+      "type": "object",
+      "properties": {
+        "area_id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "InstanceStatisticReq",
+      "required": [
+        "area_id"
+      ]
+    },
+    "InstanceStatisticResp": {
+      "type": "object",
+      "properties": {
+        "total_instances": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "used_instances": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "free_instances": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "in_valid_instances": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "InstanceStatisticResp",
+      "required": [
+        "total_instances",
+        "used_instances",
+        "free_instances",
+        "in_valid_instances"
+      ]
+    },
+    "InstanceUpdateReq": {
+      "type": "object",
+      "title": "InstanceUpdateReq"
+    },
+    "InstanceUpdateResp": {
+      "type": "object",
+      "title": "InstanceUpdateResp"
+    },
+    "ListBootSchemaResp": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BootSchemaInfo"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "ListBootSchemaResp",
+      "required": [
+        "list",
+        "列表",
+        "total",
+        "总数"
+      ]
+    },
+    "Log": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 编号"
+        },
+        "user_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 操作账号"
+        },
+        "account": {
+          "type": "string",
+          "description": " 账号"
+        },
+        "ip": {
+          "type": "string",
+          "description": " ip"
+        },
+        "uri": {
+          "type": "string",
+          "description": " 请求路径"
+        },
+        "type": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 类型 1=登录日志 2=操作日志"
+        },
+        "request": {
+          "type": "string",
+          "description": " 请求数据"
+        },
+        "response": {
+          "type": "string",
+          "description": " 响应数据"
+        },
+        "platform": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 平台 1-算力平台 2-施工平台"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 状态 0=失败 1=成功"
+        },
+        "create_time": {
+          "type": "string",
+          "description": " 创建时间"
+        },
+        "update_time": {
+          "type": "string",
+          "description": " 更新时间"
+        },
+        "modify_time": {
+          "type": "string",
+          "description": " 修改时间"
+        }
+      },
+      "title": "Log",
+      "required": [
+        "id",
+        "编号",
+        "user_id",
+        "操作账号",
+        "account",
+        "账号",
+        "ip",
+        "uri",
+        "请求路径",
+        "type",
+        "类型",
+        "request",
+        "请求数据",
+        "response",
+        "响应数据",
+        "platform",
+        "平台",
+        "status",
+        "状态",
+        "create_time",
+        "创建时间",
+        "update_time",
+        "更新时间",
+        "modify_time",
+        "修改时间"
+      ]
+    },
+    "LogListResp": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 总数"
+        },
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Log"
+          },
+          "description": " 日志列表"
+        }
+      },
+      "title": "LogListResp",
+      "required": [
+        "total",
+        "总数",
+        "list",
+        "日志列表"
+      ]
+    },
+    "LoginReq": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "platform": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "LoginReq",
+      "required": [
+        "account",
+        "账号",
+        "password",
+        "密码",
+        "platform",
+        "平台 1-算力平台 2-施工平台"
+      ]
+    },
+    "LoginResp": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        },
+        "user_info": {
+          "$ref": "#/definitions/UserInfoResp"
+        }
+      },
+      "title": "LoginResp",
+      "required": [
+        "token",
+        "user_info"
+      ]
+    },
+    "Menu": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "parent_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 父级id"
+        },
+        "name": {
+          "type": "string",
+          "description": " 名称"
+        },
+        "router": {
+          "type": "string",
+          "description": " 路由"
+        },
+        "type": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 类型 0=目录 1=菜单 2=权限"
+        },
+        "icon": {
+          "type": "string",
+          "description": " 图标"
+        },
+        "order_num": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 排序值"
+        },
+        "view_path": {
+          "type": "string",
+          "description": " 视图路径"
+        },
+        "is_show": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 显示状态 0=隐藏 1=显示"
+        },
+        "active_router": {
+          "type": "string",
+          "description": " 激活路由"
+        },
+        "system_host": {
+          "type": "string",
+          "description": " 系统标识"
+        },
+        "is_private": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 是否仅超管账号可见 0=否 1=是"
+        },
+        "is_admin": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 是否仅管理员角色可见 0=否 1=是"
+        },
+        "perms": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Perm"
+          },
+          "description": " 权限"
+        },
+        "create_by": {
+          "type": "string",
+          "description": " 创建者"
+        },
+        "create_time": {
+          "type": "string",
+          "description": " 创建时间"
+        },
+        "update_by": {
+          "type": "string",
+          "description": " 更新者"
+        },
+        "update_time": {
+          "type": "string",
+          "description": " 更新时间"
+        },
+        "modify_time": {
+          "type": "string",
+          "description": " 修改时间"
+        }
+      },
+      "title": "Menu",
+      "required": [
+        "编号",
+        "父级id",
+        "name",
+        "名称",
+        "路由",
+        "type",
+        "类型",
+        "icon",
+        "图标",
+        "order_num",
+        "排序值",
+        "view_path",
+        "视图路径",
+        "is_show",
+        "显示状态",
+        "active_router",
+        "激活路由",
+        "system_host",
+        "系统标识",
+        "is_private",
+        "是否仅超管账号可见",
+        "is_admin",
+        "是否仅管理员角色可见",
+        "perms",
+        "权限",
+        "创建者",
+        "创建时间",
+        "更新者",
+        "更新时间",
+        "修改时间"
+      ]
+    },
+    "MenuListResp": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 总数"
+        },
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Menu"
+          },
+          "description": " 菜单列表"
+        }
+      },
+      "title": "MenuListResp",
+      "required": [
+        "total",
+        "总数",
+        "list",
+        "菜单列表"
+      ]
+    },
+    "PageReq": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "PageReq",
+      "required": [
+        "page",
+        "页数",
+        "limit",
+        "条数"
+      ]
+    },
+    "Pagination": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "Pagination",
+      "required": [
+        "page",
+        "limit",
+        "total"
+      ]
+    },
+    "Perm": {
+      "type": "object",
+      "properties": {
+        "perm": {
+          "type": "string",
+          "description": " 权限"
+        },
+        "logging_enable": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 日志开关 0=否 1=是"
+        }
+      },
+      "title": "Perm",
+      "required": [
+        "perm",
+        "权限",
+        "logging_enable",
+        "日志开关"
+      ]
+    },
+    "PoolItem": {
+      "type": "object",
+      "properties": {
+        "area_type": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 区域ID"
+        },
+        "resource_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 资源ID"
+        },
+        "instance_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 实例ID"
+        },
+        "mac": {
+          "type": "string",
+          "description": " MAC地址"
+        },
+        "address": {
+          "type": "string",
+          "description": " IP地址"
+        },
+        "flags": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "pool_source": {
+          "type": "string",
+          "description": "  资源池来源"
+        },
+        "pool_order": {
+          "type": "string",
+          "description": " 资源池订单号"
+        },
+        "pool_status": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 资源池状态 1-待启动 10-分配中 50-启动中 60-健康可用 100-占用中 750-资源池可分配 760-资源池已分配 800-释放中 900-已释放"
+        },
+        "assign_source": {
+          "type": "string",
+          "description": " 分配来源"
+        },
+        "assign_order": {
+          "type": "string",
+          "description": " 分配流水"
+        },
+        "assign_param": {
+          "type": "string",
+          "description": " 分配额外参数 uid/gid/device_id json格式"
+        },
+        "assign_result": {
+          "type": "string",
+          "description": " 分配结果"
+        },
+        "assign_status": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 分配状态 同pool_status"
+        },
+        "create_time": {
+          "type": "string",
+          "description": " 创建时间"
+        },
+        "update_time": {
+          "type": "string",
+          "description": " 更新时间"
+        },
+        "modify_time": {
+          "type": "string",
+          "description": " 更新时间"
+        }
+      },
+      "title": "PoolItem",
+      "required": [
+        "area_type",
+        "resource_id",
+        "instance_id",
+        "mac",
+        "address",
+        "flags",
+        "pool_source",
+        "pool_order",
+        "pool_status",
+        "assign_source",
+        "assign_order",
+        "assign_param",
+        "assign_result",
+        "assign_status",
+        "create_time",
+        "update_time",
+        "modify_time"
+      ]
+    },
+    "QueryCloudClientStrategyReq": {
+      "type": "object",
+      "properties": {
+        "flowId": {
+          "type": "string",
+          "description": " 流水ID"
+        },
+        "bizId": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 租户ID"
+        },
+        "mac": {
+          "type": "string",
+          "description": " 云盒mac"
+        }
+      },
+      "title": "QueryCloudClientStrategyReq",
+      "required": [
+        "flowId",
+        "流水ID",
+        "bizId",
+        "租户ID",
+        "mac",
+        "云盒mac"
+      ]
+    },
+    "QueryCloudClientStrategyResp": {
+      "type": "object",
+      "properties": {
+        "cloud_client_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 座位号ID"
+        },
+        "mac": {
+          "type": "string",
+          "description": " 云盒MAC地址"
+        },
+        "config_info": {
+          "type": "string",
+          "description": " 配置信息"
+        },
+        "admin_state": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 管理状态"
+        },
+        "host_ip": {
+          "type": "string",
+          "description": " 主机IP地址"
+        },
+        "host_gateway": {
+          "type": "string",
+          "description": " 主机网关"
+        },
+        "host_netmask": {
+          "type": "string",
+          "description": " 主机子网掩码"
+        },
+        "host_name": {
+          "type": "string",
+          "description": " 主机名"
+        },
+        "host_mac": {
+          "type": "string",
+          "description": " 主机MAC地址"
+        }
+      },
+      "title": "QueryCloudClientStrategyResp",
+      "required": [
+        "cloud_client_id",
+        "mac",
+        "config_info",
+        "admin_state",
+        "host_ip",
+        "host_gateway",
+        "host_netmask",
+        "host_name",
+        "host_mac"
+      ]
+    },
+    "QueryInstStragyInfoReq": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string",
+          "description": " 流程ID"
+        },
+        "area_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 区域ID"
+        },
+        "biz_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 业务ID"
+        },
+        "pool_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 算力池ID"
+        },
+        "mac": {
+          "type": "string",
+          "description": " 云盒MAC地址"
+        }
+      },
+      "title": "QueryInstStragyInfoReq",
+      "required": [
+        "flow_id",
+        "area_id",
+        "biz_id",
+        "pool_id",
+        "mac"
+      ]
+    },
+    "QueryInstStragyInfoResp": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string",
+          "description": " 流程ID"
+        },
+        "strategy_info": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/StrategyData"
+          },
+          "description": " 云盒MAC地址"
+        }
+      },
+      "title": "QueryInstStragyInfoResp",
+      "required": [
+        "flow_id",
+        "strategy_info"
+      ]
+    },
+    "RegionsResp": {
+      "type": "object",
+      "properties": {
+        "area_regions": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "biz_regions": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "title": "RegionsResp",
+      "required": [
+        "area_regions",
+        "biz_regions"
+      ]
+    },
+    "ResetPasswordReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "ResetPasswordReq",
+      "required": [
+        "id",
+        "ID"
+      ]
+    },
+    "ResetPasswordResp": {
+      "type": "object",
+      "properties": {
+        "new_password": {
+          "type": "string"
+        }
+      },
+      "title": "ResetPasswordResp",
+      "required": [
+        "new_password"
+      ]
+    },
+    "Ret": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "request_id": {
+          "type": "string"
+        }
+      },
+      "title": "Ret",
+      "required": [
+        "code",
+        "msg",
+        "request_id"
+      ]
+    },
+    "Role": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "remark": {
+          "type": "string"
+        },
+        "platform": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 平台 1-算力平台 2-施工平台"
+        },
+        "is_admin": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 是否为管理员 1-是 0-否"
+        },
+        "region_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 区域ID"
+        },
+        "create_by": {
+          "type": "string"
+        },
+        "update_by": {
+          "type": "string"
+        },
+        "create_time": {
+          "type": "string"
+        },
+        "update_time": {
+          "type": "string"
+        },
+        "modify_time": {
+          "type": "string"
+        }
+      },
+      "title": "Role",
+      "required": [
+        "name",
+        "platform"
+      ]
+    },
+    "RoleListResp": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Role"
+          },
+          "description": " 角色列表"
+        }
+      },
+      "title": "RoleListResp",
+      "required": [
+        "total",
+        "总数",
+        "list"
+      ]
+    },
+    "RoleMenuPermsReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "RoleMenuPermsReq",
+      "required": [
+        "id"
+      ]
+    },
+    "RoleMenuPermsResp": {
+      "type": "object",
+      "properties": {
+        "menus": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Menu"
+          }
+        }
+      },
+      "title": "RoleMenuPermsResp",
+      "required": [
+        "menus"
+      ]
+    },
+    "RoleMenuTreeReq": {
+      "type": "object",
+      "properties": {
+        "role_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 角色id"
+        }
+      },
+      "title": "RoleMenuTreeReq",
+      "required": [
+        "role_id",
+        "角色id"
+      ]
+    },
+    "RoleMenuTreeResp": {
+      "type": "object",
+      "properties": {
+        "menus": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Menu"
+          },
+          "description": " 菜单列表"
+        }
+      },
+      "title": "RoleMenuTreeResp",
+      "required": [
+        "menus",
+        "菜单列表"
+      ]
+    },
+    "SchemaInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "os_image_id": {
+          "type": "string"
+        },
+        "os_snapshot_id": {
+          "type": "string"
+        }
+      },
+      "title": "SchemaInfo",
+      "required": [
+        "ID",
+        "name",
+        "名称",
+        "os_image_id",
+        "操作系统镜像ID",
+        "os_snapshot_id",
+        "操作系统快照ID"
+      ]
+    },
+    "ScriptInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "script": {
+          "type": "string"
+        },
+        "script_type": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "ScriptInfo",
+      "required": [
+        "ID",
+        "name",
+        "名称",
+        "script",
+        "脚本",
+        "script_type",
+        "脚本类型"
+      ]
+    },
+    "ServerInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 自增ID"
+        },
+        "area_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 区域ID"
+        },
+        "ip": {
+          "type": "string",
+          "description": " 服务器IP地址"
+        },
+        "type": {
+          "type": "string",
+          "description": " 服务器类型 1,2,3  1=镜像服务器 2=回写服务器 3=数据服务器"
+        },
+        "boot_time": {
+          "type": "string",
+          "description": " 启动时间"
+        },
+        "remark": {
+          "type": "string",
+          "description": " 备注"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 0=删除 1=启用  2=禁用"
+        },
+        "create_time": {
+          "type": "string",
+          "description": " 创建时间"
+        },
+        "update_time": {
+          "type": "string",
+          "description": " 更新时间"
+        },
+        "modify_time": {
+          "type": "string",
+          "description": " 更新时间"
+        }
+      },
+      "title": "ServerInfo",
+      "required": [
+        "id",
+        "area_id",
+        "ip",
+        "type",
+        "boot_time",
+        "remark",
+        "status",
+        "create_time",
+        "update_time",
+        "modify_time"
+      ]
+    },
+    "ServerInfoAddReq": {
+      "type": "object",
+      "properties": {
+        "ip": {
+          "type": "string",
+          "description": " 服务器IP地址"
+        },
+        "area_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 区域ID"
+        },
+        "type": {
+          "type": "string",
+          "description": " 服务器类型 1,2,3  1=镜像服务器 2=回写服务器 3=数据服务器"
+        },
+        "remark": {
+          "type": "string",
+          "description": " 备注"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 0=删除 1=启用  2=禁用"
+        }
+      },
+      "title": "ServerInfoAddReq",
+      "required": [
+        "ip",
+        "area_id",
+        "type",
+        "remark",
+        "status"
+      ]
+    },
+    "ServerInfoAddResp": {
+      "type": "object",
+      "title": "ServerInfoAddResp"
+    },
+    "ServerInfoListResp": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ServerInfo"
+          }
+        }
+      },
+      "title": "ServerInfoListResp",
+      "required": [
+        "total",
+        "list"
+      ]
+    },
+    "ServerInfoUpdateReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 算力策略ID"
+        },
+        "ip": {
+          "type": "string",
+          "description": " 服务器IP地址"
+        },
+        "type": {
+          "type": "string",
+          "description": " 服务器类型 1|2|3"
+        },
+        "remark": {
+          "type": "string",
+          "description": " 备注"
+        }
+      },
+      "title": "ServerInfoUpdateReq",
+      "required": [
+        "id",
+        "ip",
+        "type",
+        "remark"
+      ]
+    },
+    "ServerInfoUpdateResp": {
+      "type": "object",
+      "title": "ServerInfoUpdateResp"
+    },
+    "Spec": {
+      "type": "object",
+      "properties": {
+        "outer_spec_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "inner_spec_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "title": "Spec",
+      "required": [
+        "outer_spec_id",
+        "inner_spec_id",
+        "name"
+      ]
+    },
+    "SpecListReq": {
+      "type": "object",
+      "properties": {
+        "primary_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "agent_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "area_id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "SpecListReq"
+    },
+    "SpecListResp": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Spec"
+          }
+        }
+      },
+      "title": "SpecListResp",
+      "required": [
+        "total",
+        "list"
+      ]
+    },
+    "StrategyAddReq": {
+      "type": "object",
+      "properties": {
+        "area_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 区域ID"
+        },
+        "name": {
+          "type": "string",
+          "description": " 算力策略名称"
+        },
+        "total_instances": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 算力路数上限"
+        },
+        "vlan_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " VLAN ID"
+        },
+        "inst_pool_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 算力池ID"
+        },
+        "boot_type": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 启动模式  0-预开机 1-实时开机"
+        },
+        "pre_boot_schema_id_info": {
+          "type": "string",
+          "description": " 预开编排方案列表 json 结构体"
+        },
+        "pre_boot_count": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 预开路数"
+        },
+        "remark": {
+          "type": "string",
+          "description": " 备注"
+        }
+      },
+      "title": "StrategyAddReq",
+      "required": [
+        "area_id",
+        "name",
+        "inst_pool_id",
+        "boot_type"
+      ]
+    },
+    "StrategyAddResp": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "inst_pool_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 算力池ID"
+        },
+        "total_instances": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "vlan_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "boot_type": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 启动模式 0-预开机 1-实时开机"
+        },
+        "pre_boot_schema_id_info": {
+          "type": "string",
+          "description": " 预开编排方案列表 json 结构体"
+        },
+        "pre_boot_count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "预开路数"
+        },
+        "remark": {
+          "type": "string"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "create_by": {
+          "type": "string"
+        },
+        "update_by": {
+          "type": "string"
+        },
+        "create_time": {
+          "type": "string"
+        },
+        "update_time": {
+          "type": "string"
+        },
+        "modify_time": {
+          "type": "string"
+        }
+      },
+      "title": "StrategyAddResp",
+      "required": [
+        "id",
+        "name",
+        "inst_pool_id",
+        "total_instances",
+        "vlan_id",
+        "boot_type",
+        "pre_boot_schema_id_info",
+        "pre_boot_count",
+        "remark",
+        "status",
+        "create_by",
+        "update_by",
+        "create_time",
+        "update_time",
+        "modify_time"
+      ]
+    },
+    "StrategyData": {
+      "type": "object",
+      "properties": {
+        "boot_type": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 启动模式 0-预开机 1-实时开机"
+        },
+        "strategy_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 策略ID"
+        },
+        "strategy_name": {
+          "type": "string",
+          "description": " 策略名称"
+        },
+        "inst_pool_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 算力池ID"
+        },
+        "boot_schema_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 启动方案ID"
+        }
+      },
+      "title": "StrategyData",
+      "required": [
+        "boot_type",
+        "strategy_id",
+        "strategy_name",
+        "inst_pool_id",
+        "boot_schema_id"
+      ]
+    },
+    "StrategyDeleteReq": {
+      "type": "object",
+      "properties": {
+        "area_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 区域ID"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 算力策略ID"
+        }
+      },
+      "title": "StrategyDeleteReq",
+      "required": [
+        "area_id",
+        "id"
+      ]
+    },
+    "StrategyDeleteResp": {
+      "type": "object",
+      "title": "StrategyDeleteResp"
+    },
+    "StrategyExt": {
+      "type": "object",
+      "properties": {
+        "strategy_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 策略ID"
+        },
+        "strategy_name": {
+          "type": "string",
+          "description": " 策略名称"
+        },
+        "inst_pool_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 算力池ID"
+        },
+        "boot_schema_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 预启动方案ID"
+        }
+      },
+      "title": "StrategyExt",
+      "required": [
+        "strategy_id",
+        "strategy_name",
+        "inst_pool_id",
+        "boot_schema_id"
+      ]
+    },
+    "StrategyInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "applicable_lever": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "spec_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "spec_name": {
+          "type": "string"
+        },
+        "outer_spec_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 外部规格ID"
+        },
+        "inst_pool_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 算力池ID"
+        },
+        "total_instances": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "vlan_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "boot_type": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 启动模式 1=预开机模式；2=实时开机模式"
+        },
+        "pre_boot_schema_id_info": {
+          "type": "string",
+          "description": " 预开编排方案列表 json 结构体"
+        },
+        "pre_boot_count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "预开路数"
+        },
+        "remark": {
+          "type": "string"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "create_by": {
+          "type": "string"
+        },
+        "update_by": {
+          "type": "string"
+        },
+        "create_time": {
+          "type": "string"
+        },
+        "update_time": {
+          "type": "string"
+        },
+        "modify_time": {
+          "type": "string"
+        },
+        "biz_name_list": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "StrategyInfo",
+      "required": [
+        "id",
+        "name",
+        "applicable_lever",
+        "spec_id",
+        "spec_name",
+        "outer_spec_id",
+        "inst_pool_id",
+        "total_instances",
+        "vlan_id",
+        "boot_type",
+        "pre_boot_schema_id_info",
+        "pre_boot_count",
+        "remark",
+        "status",
+        "create_by",
+        "update_by",
+        "create_time",
+        "update_time",
+        "modify_time",
+        "biz_name_list"
+      ]
+    },
+    "StrategyInstNoScheduingItem": {
+      "type": "object",
+      "properties": {
+        "area_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 区域ID"
+        },
+        "flow_id": {
+          "type": "string",
+          "description": "  流水ID ==\u003e pool_order"
+        },
+        "source": {
+          "type": "string",
+          "description": " 来源 ==\u003e pool_source"
+        },
+        "instance_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 实例id"
+        }
+      },
+      "title": "StrategyInstNoScheduingItem",
+      "required": [
+        "area_id",
+        "flow_id",
+        "source",
+        "instance_id"
+      ]
+    },
+    "StrategyInstNoScheduingReq": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/StrategyInstNoScheduingItem"
+          },
+          "description": " 实例ID列表"
+        }
+      },
+      "title": "StrategyInstNoScheduingReq",
+      "required": [
+        "items"
+      ]
+    },
+    "StrategyInstNoScheduingResp": {
+      "type": "object",
+      "properties": {
+        "success_instance_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "description": " 成功禁止调度实例ID列表"
+        },
+        "failed_instance_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "description": " 失败禁止调度实例ID列表"
+        }
+      },
+      "title": "StrategyInstNoScheduingResp",
+      "required": [
+        "success_instance_ids",
+        "failed_instance_ids"
+      ]
+    },
+    "StrategyListResp": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/StrategyInfo"
+          }
+        }
+      },
+      "title": "StrategyListResp",
+      "required": [
+        "total",
+        "list"
+      ]
+    },
+    "StrategyQueryInstancesReq": {
+      "type": "object",
+      "properties": {
+        "area_type": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "resource_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "order": {
+          "type": "string",
+          "description": " asc/desc"
+        },
+        "sortby": {
+          "type": "string"
+        }
+      },
+      "title": "StrategyQueryInstancesReq"
+    },
+    "StrategyQueryInstancesResp": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PoolItem"
+          },
+          "description": " 实例列表"
+        }
+      },
+      "title": "StrategyQueryInstancesResp",
+      "required": [
+        "total",
+        "list"
+      ]
+    },
+    "StrategyReBuildPoolReq": {
+      "type": "object",
+      "properties": {
+        "area_type": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 区域类型"
+        },
+        "resource_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 资源ID"
+        }
+      },
+      "title": "StrategyReBuildPoolReq",
+      "required": [
+        "area_type",
+        "resource_id"
+      ]
+    },
+    "StrategyReBuildPoolResp": {
+      "type": "object",
+      "title": "StrategyReBuildPoolResp"
+    },
+    "StrategyReleaseInstanceItem": {
+      "type": "object",
+      "properties": {
+        "area_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 区域ID"
+        },
+        "mode": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 模式 1-重建 ,回到自己池 2-释放，回到默认池"
+        },
+        "flow_id": {
+          "type": "string",
+          "description": "  流水ID ==\u003e pool_order"
+        },
+        "source": {
+          "type": "string",
+          "description": " 来源 ==\u003e pool_source"
+        },
+        "instance_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 实例id"
+        }
+      },
+      "title": "StrategyReleaseInstanceItem",
+      "required": [
+        "area_id",
+        "mode",
+        "flow_id",
+        "source",
+        "instance_id"
+      ]
+    },
+    "StrategyReleaseInstancesReq": {
+      "type": "object",
+      "properties": {
+        "item": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/StrategyReleaseInstanceItem"
+          }
+        }
+      },
+      "title": "StrategyReleaseInstancesReq",
+      "required": [
+        "item"
+      ]
+    },
+    "StrategyReleaseInstancesResp": {
+      "type": "object",
+      "title": "StrategyReleaseInstancesResp"
+    },
+    "StrategyUpdateReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 算力策略ID"
+        },
+        "area_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 区域ID"
+        },
+        "name": {
+          "type": "string",
+          "description": " 算力策略名称"
+        },
+        "total_instances": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 实例数"
+        },
+        "inst_pool_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 算力池ID"
+        },
+        "vlan_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "pre_boot_schema_id_info": {
+          "type": "string",
+          "description": " 预开编排方案列表 json 结构体"
+        },
+        "pre_boot_count": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 预开路数"
+        },
+        "remark": {
+          "type": "string",
+          "description": " 备注"
+        }
+      },
+      "title": "StrategyUpdateReq",
+      "required": [
+        "id",
+        "area_id",
+        "name",
+        "total_instances",
+        "inst_pool_id"
+      ]
+    },
+    "StrategyUpdateResp": {
+      "type": "object",
+      "title": "StrategyUpdateResp"
+    },
+    "UpdateBizReq": {
+      "type": "object",
+      "properties": {
+        "biz_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "biz_name": {
+          "type": "string"
+        },
+        "contact_person": {
+          "type": "string"
+        },
+        "mobile": {
+          "type": "string"
+        },
+        "remark": {
+          "type": "string"
+        },
+        "client_num_limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 终端数量限制"
+        }
+      },
+      "title": "UpdateBizReq",
+      "required": [
+        "biz_id",
+        "biz_name",
+        "contact_person",
+        "mobile",
+        "remark",
+        "client_num_limit"
+      ]
+    },
+    "UpdateBizStrategyReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 策略ID"
+        },
+        "biz_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 租户ID"
+        }
+      },
+      "title": "UpdateBizStrategyReq",
+      "required": [
+        "id",
+        "biz_id"
+      ]
+    },
+    "UpdateBizStrategyResp": {
+      "type": "object",
+      "title": "UpdateBizStrategyResp"
+    },
+    "UpdateBootSchemaReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "schema_info": {
+          "$ref": "#/definitions/SchemaInfo"
+        },
+        "script_infos": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ScriptInfo"
+          }
+        }
+      },
+      "title": "UpdateBootSchemaReq",
+      "required": [
+        "ID",
+        "名称",
+        "方案信息",
+        "脚本信息"
+      ]
+    },
+    "UpdateMenuReq": {
+      "type": "object",
+      "properties": {
+        "menu": {
+          "$ref": "#/definitions/Menu"
+        }
+      },
+      "title": "UpdateMenuReq",
+      "required": [
+        "menu",
+        "菜单"
+      ]
+    },
+    "UpdateMenuResp": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "UpdateMenuResp",
+      "required": [
+        "id",
+        "编号"
+      ]
+    },
+    "UpdatePasswordReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "old_password": {
+          "type": "string"
+        },
+        "new_password": {
+          "type": "string"
+        }
+      },
+      "title": "UpdatePasswordReq",
+      "required": [
+        "id",
+        "ID",
+        "old_password",
+        "旧密码",
+        "new_password",
+        "新密码"
+      ]
+    },
+    "UpdateRoleMenuPermsReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "menu_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "title": "UpdateRoleMenuPermsReq",
+      "required": [
+        "id",
+        "menu_ids"
+      ]
+    },
+    "UpdateRoleMenuPermsResp": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "UpdateRoleMenuPermsResp",
+      "required": [
+        "id"
+      ]
+    },
+    "UpdateRoleReq": {
+      "type": "object",
+      "properties": {
+        "role": {
+          "$ref": "#/definitions/Role"
+        }
+      },
+      "title": "UpdateRoleReq",
+      "required": [
+        "role"
+      ]
+    },
+    "UpdateRoleResp": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "UpdateRoleResp",
+      "required": [
+        "id"
+      ]
+    },
+    "UpdateUserInfoReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "nickname": {
+          "type": "string"
+        },
+        "mobile": {
+          "type": "string"
+        },
+        "avatar": {
+          "type": "string"
+        },
+        "remark": {
+          "type": "string"
+        },
+        "area_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "area_regions": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "biz_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "biz_regions": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "role_id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "UpdateUserInfoReq",
+      "required": [
+        "id",
+        "ID",
+        "nickname",
+        "昵称",
+        "mobile",
+        "手机号",
+        "头像",
+        "备注",
+        "area_ids",
+        "区域ID",
+        "area_regions",
+        "区域区域",
+        "biz_ids",
+        "业务ID",
+        "biz_regions",
+        "业务区域",
+        "role_id",
+        "角色ID"
+      ]
+    },
+    "UserInfoListResp": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UserInfoResp"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "UserInfoListResp",
+      "required": [
+        "list",
+        "total"
+      ]
+    },
+    "UserInfoResp": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "account": {
+          "type": "string"
+        },
+        "nickname": {
+          "type": "string"
+        },
+        "avatar": {
+          "type": "string"
+        },
+        "mobile": {
+          "type": "string"
+        },
+        "role_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "area_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "area_regions": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "biz_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "biz_regions": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "platform": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "remark": {
+          "type": "string"
+        }
+      },
+      "title": "UserInfoResp",
+      "required": [
+        "id",
+        "account",
+        "nickname",
+        "avatar",
+        "mobile",
+        "role_id",
+        "area_ids",
+        "area_regions",
+        "biz_ids",
+        "biz_regions",
+        "platform",
+        "status",
+        "remark"
+      ]
+    },
+    "UserPermMenuResp": {
+      "type": "object",
+      "properties": {
+        "menus": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Menu"
+          }
+        }
+      },
+      "title": "UserPermMenuResp",
+      "required": [
+        "menus"
+      ]
+    }
+  },
+  "securityDefinitions": {
+    "apiKey": {
+      "type": "apiKey",
+      "description": "Enter JWT Bearer token **_only_**",
+      "name": "Authorization",
+      "in": "header"
+    }
+  }
+}

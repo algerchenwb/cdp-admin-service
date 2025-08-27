@@ -1,0 +1,447 @@
+syntax = "proto3";
+option go_package = "gitlab.vrviu.com/diskless_stack/diskless_stack/protocol/instance_scheduler";
+package instance_scheduler;
+
+// 需要http接口需要引入这个proto
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
+
+service InstanceScheduler {
+  rpc AssignInstance(AssignInstanceRequest) returns (AssignInstanceResponse) {
+    option (google.api.http) = {
+      post: "/v1/instance_scheduler/assign_instance"
+      body: "*"
+    };
+  }
+  rpc GetOrder(GetOrderRequest) returns (GetOrderResponse) {
+    option (google.api.http) = {
+      get: "/v1/instance_scheduler/get_order"
+    };
+  }
+  rpc ReleaseInstance(ReleaseInstanceRequest) returns (ReleaseInstanceResponse) {
+    option (google.api.http) = {
+      post: "/v1/instance_scheduler/release_instance"
+      body: "*"
+    };
+  }
+  rpc InstanceStatusCallback(InstanceStatusRequest) returns (InstanceStatusResponse) {
+    option (google.api.http) = {
+      post: "/v1/instance_scheduler/instance_status_cb"
+      body: "*"
+    };
+  }
+  rpc LockInstance(LockInstanceRequest) returns (LockInstanceResponse) {
+    option (google.api.http) = {
+      post: "/v1/instance_scheduler/lock_instance"
+      body: "*"
+      additional_bindings {
+        post: "/v1/instance_scheduler/unlock_instance"
+        body: "*"
+      }
+    };
+  }
+
+  // pool mgr
+  rpc RebuildPool(RebuildPoolRequest) returns (RebuildPoolResponse) {
+    option (google.api.http) = {
+      post: "/v1/instance_scheduler/rebuild_pool"
+      body: "*"
+    };
+  }
+  rpc ReleasePoolItem(ReleasePoolItemRequest) returns (ReleasePoolItemResponse) {
+    option (google.api.http) = {
+      post: "/v1/instance_scheduler/release_pool_item"
+      body: "*"
+    };
+  }
+  rpc SearchPool(SearchPoolRequest) returns (SearchPoolResponse) {
+    option (google.api.http) = {
+      post: "/v1/instance_scheduler/search_pool"
+      body: "*"
+    };
+  }
+
+  // resource management
+  rpc GetResourceStat(GetResourceStatRequest) returns (GetResourceStatResponse) {
+    option (google.api.http) = {
+      get: "/v1/instance_scheduler/get_resource_stat"
+    };
+  }
+  rpc NewResource(NewResourceRequest) returns (NewResourceResponse) {
+    option (google.api.http) = {
+      post: "/v1/instance_scheduler/new_resource"
+      body: "*"
+    };
+  }
+  rpc UpdateResource(UpdateResourceRequest) returns (UpdateResourceResponse) {
+    option (google.api.http) = {
+      post: "/v1/instance_scheduler/update_resource"
+      body: "*"
+    };
+  }
+  rpc SearchResource(SearchResourceRequest) returns (SearchResourceResponse) {
+    option (google.api.http) = {
+      post: "/v1/instance_scheduler/search_resource"
+      body: "*"
+    };
+  }
+  
+  // ctyun
+  rpc AssignCtyunInstance(AssignCtyunInstanceRequest) returns (AssignCtyunInstanceResponse) {
+    option (google.api.http) = {
+      post: "/v1/instance_scheduler/mux/instance/assign"
+      body: "*"
+    };
+  }
+  rpc ReleaseCtyunInstance(ReleaseCtyunInstanceRequest) returns (ReleaseCtyunInstanceResponse) {
+    option (google.api.http) = {
+      post: "/v1/instance_scheduler/mux/instance/release"
+      body: "*"
+    };
+  }
+  rpc QueryCtyunInstances(QueryCtyunInstanceRequest) returns (QueryCtyunInstanceResponse) {
+    option (google.api.http) = {
+      get: "/v1/instance_scheduler/mux/instance/info"
+    };
+  }
+}
+
+enum ErrorCode {
+  e_ok = 0;
+  e_param = -1;
+  e_sys = -2;
+  e_busy = -3;
+  e_conflict = -4;
+  e_again = -5;
+  e_status = -6;
+  e_not_exists = -7;
+  e_no_resource = -1001;
+}
+
+enum Strategy {
+  strategy_fixed = 0; // 指定分配
+  strategy_debug = 1; // 分配空闲机器
+  strategy_healthy = 2; // 分配健康可用机器
+  strategy_available = 3; // 分配允许使用机器
+}
+
+enum Mode {
+  mode_normal = 0;
+  mode_freeze = 0x1; // 冻结
+  mode_unfreeze = 0x3; // 解冻
+  mode_dynamic = 0x4; // 动态调度
+  mode_book = 0x8; // 预定
+}
+
+enum InstanceStatus {
+  status_available = 0; // 空闲
+  status_upgrading = 1001; // 升级中
+}
+
+message CommRet {
+  int32 code = 1;
+  string msg = 2;
+}
+
+message NetInfo {
+  string ip = 1; // ip地址
+  string netmask = 2; // 子网掩码
+  string gateway = 3; // 网关地址
+  string dns = 4; // dns地址
+  string hostname = 5; // 主机名
+  int32 vlan = 6;
+}
+
+message ResourceConfig {
+  int64 resource_id = 1;
+  int32 area_type = 2;
+  int32 type = 3;
+  string name = 4;
+  int64 specification = 5;
+  int32 vlan = 6;
+  string detail = 7;
+  int64 mode = 8;
+  int32 capacity = 9;
+  int32 buffer = 10;
+  int32 init = 11;
+  int32 concurrent = 12;
+  int64 priority = 13;
+  int32 preemptable = 14;
+  string assign_config = 15;
+  int32 state = 16;
+}
+
+message AssignInstanceRequest {
+  string flow_id = 1; // 流水ID
+  string source = 2; // 来源
+  Strategy strategy = 3; // 分配策略
+  int64 instance_id = 4; // 指定调度的实例id
+  int64 scheme_id = 5; // 业务编排方案
+  NetInfo net_info = 6; // 网络信息
+  int32 vlan = 7;
+  int64 resource_id = 8; // 资源ID
+  string edge = 9; // 指定边缘机房
+  string params = 10; // 额外参数json格式
+  int32 area_type = 12;
+  int32 mode = 13; // 分配模式
+  ResourceConfig resource_config = 14;
+  int32 admin_flag = 15; // 1-设置超管
+}
+
+message AssignInstanceResponse {
+  CommRet ret = 1;
+  int64 instance_id = 2; // 指定调度的实例id
+  string manage_address = 3; // 实例管理地址
+  string access_endpoint = 4; // 实例接入点
+  string mac = 5; // mac地址
+  int32 status = 6; // 状态 0-可用 1-重启中
+}
+
+message GetOrderRequest {
+  string flow_id = 1; // 流水ID
+  string source = 2; // 来源
+  int32 area_type = 3;
+}
+
+message GetOrderResponse {
+  CommRet ret = 1;
+  int64 instance_id = 2; // 指定调度的实例id
+  string manage_address = 3; // 实例管理地址
+  string access_endpoint = 4; // 实例接入点
+  string mac = 5; // mac地址
+  int32 status = 6; // 状态 0-可用 1-重启中
+}
+
+message AssignCtyunInstanceRequest {
+  string assign_order = 1; // 分配订单号，需保证唯一
+  string cluster_id = 2; // 来源
+  string assign_source = 3; // 分配来源
+  string gpu_type = 4; // 资源类型
+  int32 mirror_id = 5; // 镜像id
+  int32 num = 6; //资源申请数量
+  string request_id = 7;
+}
+
+message Status{
+  string code = 1;
+  string message = 2;
+}
+
+message Instance{
+  string mac = 1;
+  string ip = 2;
+  string assign_order = 3;
+}
+
+message AssignCtyunInstanceResponse {
+  Status status = 1;
+  repeated string instances = 2;
+}
+
+message ReleaseCtyunInstanceRequest {
+  string cluster_id = 2;
+  string assign_source = 3;
+  repeated Instance instances = 4;
+  string request_id = 5;
+}
+
+message ReleaseCtyunInstanceResponse {
+  string requestId = 1;
+  Status status = 2;
+}
+
+message QueryCtyunInstanceRequest {
+  string flow_id = 1; // 流水ID
+  string cluster_id = 2;
+  string request_id = 3;
+}
+
+message InstanceList{
+  string gpu_type = 1;
+  int32 available = 2;
+  int32 used = 3;
+}
+
+message QueryCtyunInstanceResponse {
+  string requestId = 1;
+  Status status = 2;
+  repeated InstanceList lists = 3;
+}
+message ReleaseInstanceRequest {
+  string flow_id = 1; // 流水ID
+  string source = 2; // 来源
+  int64 instance_id = 3; // 实例id
+  int32 area_type = 4;
+  ResourceConfig resource_config = 5;
+}
+
+message ReleaseInstanceResponse {
+  CommRet ret = 1;
+}
+
+enum InstanceEvent {
+  ev_init = 0;
+  ev_power_on = 100;
+  ev_dhcp = 200;
+  ev_running = 300;
+  ev_health = 400;
+}
+
+message InstanceStatusRequest {
+  int64 instance_id = 1; // 实例id
+  int64 power_status = 2;
+  int64 running_status = 3;
+  int64 business_status = 4;
+  string boot_time = 5;
+  string manage_address = 6;
+  string mac = 7;
+  int64 modify_time = 8;
+  int32 area_type = 9;
+  int32 event = 10;
+}
+
+message InstanceStatusResponse {
+  CommRet ret = 1;
+}
+
+message LockInstanceRequest {
+  string flow_id = 1; // 流水ID
+  string source = 2; // 来源
+  int64 instance_id = 3; // 实例id
+  int64 old_status = 4; // 老状态
+  int64 new_status = 5; // 新状态
+  int32 area_type = 6;
+}
+
+message LockInstanceResponse {
+  CommRet ret = 1;
+}
+
+message RebuildPoolRequest {
+  string flow_id = 1; // 流水ID
+  int64 resource_id = 2; // 资源ID
+  int32 area_type = 3;
+}
+
+message RebuildPoolResponse {
+  CommRet ret = 1;
+}
+
+message GetResourceStatRequest {
+  string flow_id = 1; // 流水ID
+  int64 resource_id = 2; // 资源ID
+  int32 area_type = 3;
+}
+
+message GetResourceStatResponse {
+  CommRet ret = 1;
+  int32 availables = 2;
+}
+
+message SearchPoolRequest {
+  string flow_id = 1; // 流水ID
+  int64 resource_id = 2; // 资源ID
+  int32 area_type = 3;
+  repeated string conditions = 4;
+  int32 offset = 5;
+  int32 length = 6;
+  string order = 7; // asc/desc
+  string sortby = 8;
+}
+
+message PoolItem {
+  int32 area_type = 1;
+  int64 resource_id = 2;
+  int64 instance_id = 3;
+  string mac = 4;
+  string address = 5;
+  int64 flags = 6;
+  string pool_source = 7;
+  string pool_order = 8;
+  int32 pool_status = 9;
+  string assign_source = 10;
+  string assign_order = 11;
+  string assign_param = 12;
+  string assign_result = 13;
+  int32 assign_status = 14;
+  google.protobuf.Timestamp create_time = 15;
+  google.protobuf.Timestamp update_time = 16;
+  google.protobuf.Timestamp modify_time = 17;
+}
+
+message SearchPoolBody {
+  int32 total = 1;
+  repeated PoolItem lists = 2;
+}
+
+message SearchPoolResponse {
+  CommRet ret = 1;
+  SearchPoolBody body = 2;
+}
+
+message ReleasePoolItemRequest {
+  string flow_id = 1; // 流水ID
+  string source = 2; // 来源
+  int64 instance_id = 3; // 实例id
+  int32 area_type = 4;
+  ResourceConfig resource_config = 5;
+}
+
+message ReleasePoolItemResponse {
+  CommRet ret = 1;
+}
+
+message NewResourceRequest {
+  string flow_id = 1; // 流水ID
+  int32 area_type = 2;
+  ResourceConfig resource_config = 3;
+}
+
+message NewResourceResponse {
+  CommRet ret = 1;
+}
+
+message UpdateResourceRequest {
+  string flow_id = 1; // 流水ID
+  int32 area_type = 2;
+  google.protobuf.Int64Value resource_id = 3;
+  google.protobuf.Int32Value type = 4;
+  google.protobuf.StringValue name = 5;
+  google.protobuf.Int64Value specification = 6;
+  google.protobuf.Int32Value vlan = 7;
+  google.protobuf.Int64Value mode = 8;
+  google.protobuf.Int32Value capacity = 9;
+  google.protobuf.Int32Value buffer = 10;
+  google.protobuf.Int32Value init = 11;
+  google.protobuf.Int32Value concurrent = 12;
+  google.protobuf.Int32Value priority = 13;
+  google.protobuf.Int32Value preemptable = 14;
+  google.protobuf.StringValue assign_config = 15;
+  google.protobuf.StringValue detail = 16;
+  google.protobuf.Int32Value state = 17;
+}
+
+message UpdateResourceResponse {
+  CommRet ret = 1;
+}
+
+message SearchResourceRequest {
+  string flow_id = 1; // 流水ID
+  int32 area_type = 2;
+  repeated string conditions = 3;
+  int32 offset = 4;
+  int32 length = 5;
+  string order = 6; // asc/desc
+  string sortby = 7;
+}
+
+message SearchResourceBody {
+  int32 total = 1;
+  repeated ResourceConfig lists = 2;
+}
+
+message SearchResourceResponse {
+  CommRet ret = 1;
+  SearchResourceBody body = 2;
+}

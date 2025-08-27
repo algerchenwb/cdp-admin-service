@@ -1,0 +1,2023 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "network_service/service.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "NetworkService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/network_service/add_default_ip": {
+      "post": {
+        "summary": "运营\r\n交换机列表：增删改查\r\n实例列表：增删改查\r\n默认网络列表：增删改查",
+        "operationId": "NetworkService_AddDefaultIp",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/network_serviceAddDefaultIpResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/network_serviceAddDefaultIpRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NetworkService"
+        ]
+      }
+    },
+    "/v1/network_service/add_default_ip_from_csv": {
+      "post": {
+        "operationId": "NetworkService_AddDefaultIpFromCSV",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/network_serviceAddDefaultIpFromCSVResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/network_serviceAddDefaultIpFromCSVRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NetworkService"
+        ]
+      }
+    },
+    "/v1/network_service/add_default_net": {
+      "post": {
+        "summary": "添加一个默认网段(自动绑定到实例)",
+        "operationId": "NetworkService_AddDefaultNet",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/network_serviceAddDefaultNetResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/network_serviceAddDefaultNetRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NetworkService"
+        ]
+      }
+    },
+    "/v1/network_service/add_dynamic_ip": {
+      "post": {
+        "summary": "租户网络列表：增删改查",
+        "operationId": "NetworkService_AddDynamicIp",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/network_serviceAddDynamicIpResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/network_serviceAddDynamicIpRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NetworkService"
+        ]
+      }
+    },
+    "/v1/network_service/add_dynamic_ip_from_csv": {
+      "post": {
+        "operationId": "NetworkService_AddDynamicIpFromCSV",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/network_serviceAddDynamicIpFromCSVResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/network_serviceAddDynamicIpFromCSVRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NetworkService"
+        ]
+      }
+    },
+    "/v1/network_service/add_dynamic_net": {
+      "post": {
+        "summary": "添加一个租户网段",
+        "operationId": "NetworkService_AddDynamicNet",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/network_serviceAddDynamicNetResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/network_serviceAddDynamicNetRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NetworkService"
+        ]
+      }
+    },
+    "/v1/network_service/add_switch_info": {
+      "post": {
+        "operationId": "NetworkService_AddSwitchInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/network_serviceAddSwitchInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/network_serviceAddSwitchInfoRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NetworkService"
+        ]
+      }
+    },
+    "/v1/network_service/add_switch_info_from_csv": {
+      "post": {
+        "operationId": "NetworkService_AddSwitchFromCSV",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/network_serviceAddSwitchFromCSVResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/network_serviceAddSwitchInfoFromCSVRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NetworkService"
+        ]
+      }
+    },
+    "/v1/network_service/add_vlan": {
+      "post": {
+        "summary": "switch\r\n部署\r\n添加一批交换机\r\nvlan",
+        "operationId": "NetworkService_AddVlan",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/network_serviceAddVlanResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/network_serviceAddVlanRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NetworkService"
+        ]
+      }
+    },
+    "/v1/network_service/callback_szctyun_setvlan_task": {
+      "post": {
+        "operationId": "NetworkService_UpdateSZCtyunSetVlanTask",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/network_serviceUpdateSZCtyunSetVlanTaskResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/network_serviceUpdateSZCtyunSetVlanTaskRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NetworkService"
+        ]
+      }
+    },
+    "/v1/network_service/del_default_ip": {
+      "post": {
+        "operationId": "NetworkService_DelDefaultIp",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/network_serviceDelDefaultIpResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/network_serviceDelDefaultIpRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NetworkService"
+        ]
+      }
+    },
+    "/v1/network_service/del_dynamic_ip": {
+      "post": {
+        "operationId": "NetworkService_DelDynamicIp",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/network_serviceDelDynamicIpResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/network_serviceDelDynamicIpRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NetworkService"
+        ]
+      }
+    },
+    "/v1/network_service/del_switch_info": {
+      "post": {
+        "operationId": "NetworkService_DelSwitchInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/network_serviceDelSwitchInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/network_serviceDelSwitchInfoRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NetworkService"
+        ]
+      }
+    },
+    "/v1/network_service/del_vlan": {
+      "post": {
+        "operationId": "NetworkService_DelVlan",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/network_serviceDelVlanResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/network_serviceDelVlanRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NetworkService"
+        ]
+      }
+    },
+    "/v1/network_service/get_default_ip_csv_template": {
+      "post": {
+        "operationId": "NetworkService_GetDefaultIpCSVTemplate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/network_serviceCSVTemplateResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/network_serviceCSVTemplateRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NetworkService"
+        ]
+      }
+    },
+    "/v1/network_service/get_dynamic_ip_csv_template": {
+      "post": {
+        "operationId": "NetworkService_GetDynamicIpCSVTemplate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/network_serviceCSVTemplateResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/network_serviceCSVTemplateRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NetworkService"
+        ]
+      }
+    },
+    "/v1/network_service/get_net_info_by_ip": {
+      "get": {
+        "operationId": "NetworkService_GetNetInfoByIp",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/network_serviceGetNetInfoByIpResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "flow_id",
+            "description": "流水ID",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "ip",
+            "description": "网络信息主键ip",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "NetworkService"
+        ]
+      }
+    },
+    "/v1/network_service/get_switch_info_csv_template": {
+      "post": {
+        "operationId": "NetworkService_GetSwitchInfoCSVTemplate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/network_serviceCSVTemplateResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/network_serviceCSVTemplateRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NetworkService"
+        ]
+      }
+    },
+    "/v1/network_service/occupy_default_ip": {
+      "post": {
+        "operationId": "NetworkService_OccupyDefaultIp",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/network_serviceUpdateDefaultIpResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/network_serviceUpdateDefaultIpRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NetworkService"
+        ]
+      }
+    },
+    "/v1/network_service/query_default_ip": {
+      "post": {
+        "operationId": "NetworkService_QueryDefaultIp",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/network_serviceQueryDefaultIpResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/network_serviceQueryDefaultIpRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NetworkService"
+        ]
+      }
+    },
+    "/v1/network_service/query_dynamic_ip": {
+      "post": {
+        "operationId": "NetworkService_QueryDynamicIp",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/network_serviceQueryDynamicIpResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/network_serviceQueryDynamicIpRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NetworkService"
+        ]
+      }
+    },
+    "/v1/network_service/query_switch_info": {
+      "post": {
+        "operationId": "NetworkService_QuerySwitchInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/network_serviceQuerySwitchInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/network_serviceQuerySwitchInfoRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NetworkService"
+        ]
+      }
+    },
+    "/v1/network_service/query_szctyun_setvlan_task": {
+      "get": {
+        "operationId": "NetworkService_QuerySZCtyunSetVlanTask",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/network_serviceQuerySZCtyunSetVlanTaskResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "NetworkService"
+        ]
+      }
+    },
+    "/v1/network_service/query_vlan": {
+      "post": {
+        "operationId": "NetworkService_QueryVlan",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/network_serviceQueryVlanResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/network_serviceQueryVlanRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NetworkService"
+        ]
+      }
+    },
+    "/v1/network_service/reset_default_ip": {
+      "post": {
+        "operationId": "NetworkService_ResetDefaultIp",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/network_serviceUpdateDefaultIpResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/network_serviceUpdateDefaultIpRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NetworkService"
+        ]
+      }
+    },
+    "/v1/network_service/switch_set_vlan": {
+      "post": {
+        "operationId": "NetworkService_SwitchSetVlan",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/network_serviceSwitchSetVlanResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/network_serviceSwitchSetVlanRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NetworkService"
+        ]
+      }
+    },
+    "/v1/network_service/update_default_ip": {
+      "post": {
+        "operationId": "NetworkService_UpdateDefaultIp",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/network_serviceUpdateDefaultIpResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/network_serviceUpdateDefaultIpRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NetworkService"
+        ]
+      }
+    },
+    "/v1/network_service/update_dynamic_ip": {
+      "post": {
+        "operationId": "NetworkService_UpdateDynamicIp",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/network_serviceUpdateDynamicIpResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/network_serviceUpdateDynamicIpRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NetworkService"
+        ]
+      }
+    },
+    "/v1/network_service/update_switch_info": {
+      "post": {
+        "operationId": "NetworkService_UpdateSwitchInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/network_serviceUpdateSwitchInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/network_serviceUpdateSwitchInfoRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NetworkService"
+        ]
+      }
+    },
+    "/v1/network_service/update_vlan": {
+      "post": {
+        "operationId": "NetworkService_UpdateVlan",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/network_serviceUpdateVlanResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/network_serviceUpdateVlanRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NetworkService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "commonRspInfo": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        }
+      }
+    },
+    "googlerpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "network_serviceAddDefaultIpFromCSVRequest": {
+      "type": "object",
+      "properties": {
+        "fileContent": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "network_serviceAddDefaultIpFromCSVResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/commonRspInfo"
+        }
+      }
+    },
+    "network_serviceAddDefaultIpRequest": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string",
+          "title": "流水ID"
+        },
+        "net_info": {
+          "$ref": "#/definitions/network_serviceDefaultNet"
+        }
+      }
+    },
+    "network_serviceAddDefaultIpResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/commonRspInfo"
+        }
+      }
+    },
+    "network_serviceAddDefaultNetRequest": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string",
+          "title": "流水ID"
+        },
+        "ip": {
+          "type": "string"
+        },
+        "mask": {
+          "type": "string"
+        },
+        "gateway": {
+          "type": "string"
+        },
+        "dns1": {
+          "type": "string"
+        },
+        "dns2": {
+          "type": "string"
+        },
+        "host_name_prefix": {
+          "type": "string"
+        },
+        "vlan_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "num": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "network_serviceAddDefaultNetResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/commonRspInfo"
+        }
+      }
+    },
+    "network_serviceAddDynamicIpFromCSVRequest": {
+      "type": "object",
+      "properties": {
+        "fileContent": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "network_serviceAddDynamicIpFromCSVResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/commonRspInfo"
+        }
+      }
+    },
+    "network_serviceAddDynamicIpRequest": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string",
+          "title": "流水ID"
+        },
+        "net_info": {
+          "$ref": "#/definitions/network_serviceDynamicNet"
+        }
+      }
+    },
+    "network_serviceAddDynamicIpResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/commonRspInfo"
+        }
+      }
+    },
+    "network_serviceAddDynamicNetRequest": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string",
+          "title": "流水ID"
+        },
+        "ip": {
+          "type": "string"
+        },
+        "mask": {
+          "type": "string"
+        },
+        "gateway": {
+          "type": "string"
+        },
+        "dns1": {
+          "type": "string"
+        },
+        "dns2": {
+          "type": "string"
+        },
+        "host_name_prefix": {
+          "type": "string"
+        },
+        "vlan_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "num": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "network_serviceAddDynamicNetResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/commonRspInfo"
+        }
+      }
+    },
+    "network_serviceAddSwitchFromCSVResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/commonRspInfo"
+        }
+      }
+    },
+    "network_serviceAddSwitchInfoFromCSVRequest": {
+      "type": "object",
+      "properties": {
+        "fileContent": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "network_serviceAddSwitchInfoRequest": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string",
+          "title": "流水ID"
+        },
+        "id": {
+          "type": "number",
+          "format": "double",
+          "title": "主键"
+        },
+        "address": {
+          "type": "string"
+        },
+        "dev_type": {
+          "type": "string"
+        },
+        "manufacturer": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "remark": {
+          "type": "string"
+        }
+      }
+    },
+    "network_serviceAddSwitchInfoResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/commonRspInfo"
+        }
+      }
+    },
+    "network_serviceAddVlanRequest": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string",
+          "title": "流水ID"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "vlan_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ip": {
+          "type": "string"
+        },
+        "mask": {
+          "type": "string"
+        },
+        "gateway": {
+          "type": "string"
+        },
+        "dns1": {
+          "type": "string"
+        },
+        "dns2": {
+          "type": "string"
+        },
+        "host_name_prefix": {
+          "type": "string"
+        },
+        "num": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "vlan"
+    },
+    "network_serviceAddVlanResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/commonRspInfo"
+        }
+      }
+    },
+    "network_serviceCSVTemplateRequest": {
+      "type": "object",
+      "title": "请求 CSV 模板的空消息体"
+    },
+    "network_serviceCSVTemplateResponse": {
+      "type": "object",
+      "properties": {
+        "csvContent": {
+          "type": "string",
+          "title": "模板内容，以文本形式返回"
+        },
+        "responseStatus": {
+          "$ref": "#/definitions/commonRspInfo",
+          "title": "响应状态信息"
+        }
+      },
+      "title": "返回 CSV 模板的响应"
+    },
+    "network_serviceDefaultNet": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "format": "double",
+          "title": "主键"
+        },
+        "ip": {
+          "type": "string"
+        },
+        "mask": {
+          "type": "string"
+        },
+        "gateway": {
+          "type": "string"
+        },
+        "dns1": {
+          "type": "string"
+        },
+        "dns2": {
+          "type": "string"
+        },
+        "host_name": {
+          "type": "string"
+        },
+        "vlan_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "expire_time": {
+          "type": "string"
+        },
+        "bind_mac": {
+          "type": "string"
+        },
+        "state": {
+          "type": "integer",
+          "format": "int32",
+          "title": "状态：0 - 正常; 1 - 废弃"
+        },
+        "create_time": {
+          "type": "string",
+          "title": "创建时间"
+        },
+        "update_time": {
+          "type": "string",
+          "title": "用户最后更新时间"
+        },
+        "modify_time": {
+          "type": "string",
+          "title": "db最后更新时间"
+        }
+      }
+    },
+    "network_serviceDelDefaultIpRequest": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string",
+          "title": "流水ID"
+        },
+        "ip": {
+          "type": "string",
+          "title": "网络信息主键ip"
+        }
+      }
+    },
+    "network_serviceDelDefaultIpResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/commonRspInfo"
+        }
+      }
+    },
+    "network_serviceDelDynamicIpRequest": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string",
+          "title": "流水ID"
+        },
+        "ip": {
+          "type": "string",
+          "title": "网络信息主键ip"
+        }
+      }
+    },
+    "network_serviceDelDynamicIpResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/commonRspInfo"
+        }
+      }
+    },
+    "network_serviceDelSwitchInfoRequest": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string",
+          "title": "流水ID"
+        },
+        "id": {
+          "type": "number",
+          "format": "double",
+          "title": "主键"
+        }
+      }
+    },
+    "network_serviceDelSwitchInfoResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/commonRspInfo"
+        }
+      }
+    },
+    "network_serviceDelVlanRequest": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string",
+          "title": "流水ID"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "vlan_id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "network_serviceDelVlanResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/commonRspInfo"
+        }
+      }
+    },
+    "network_serviceDynamicNet": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "format": "double",
+          "title": "主键"
+        },
+        "ip": {
+          "type": "string"
+        },
+        "mask": {
+          "type": "string"
+        },
+        "gateway": {
+          "type": "string"
+        },
+        "dns1": {
+          "type": "string"
+        },
+        "dns2": {
+          "type": "string"
+        },
+        "host_name": {
+          "type": "string"
+        },
+        "vlan_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "state": {
+          "type": "integer",
+          "format": "int32",
+          "title": "状态：0 - 正常; 1 - 废弃"
+        },
+        "create_time": {
+          "type": "string",
+          "title": "创建时间"
+        },
+        "update_time": {
+          "type": "string",
+          "title": "用户最后更新时间"
+        },
+        "modify_time": {
+          "type": "string",
+          "title": "db最后更新时间"
+        }
+      }
+    },
+    "network_serviceGetNetInfoByIpResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/commonRspInfo"
+        },
+        "net_info": {
+          "$ref": "#/definitions/network_serviceNetInfoData"
+        }
+      }
+    },
+    "network_serviceNetInfoData": {
+      "type": "object",
+      "properties": {
+        "ip": {
+          "type": "string"
+        },
+        "mask": {
+          "type": "string"
+        },
+        "gateway": {
+          "type": "string"
+        },
+        "dns1": {
+          "type": "string"
+        },
+        "dns2": {
+          "type": "string"
+        },
+        "host_name": {
+          "type": "string"
+        },
+        "vlan_id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "network_serviceQueryDefaultIpRequest": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "cond_list": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sorts": {
+          "type": "string"
+        },
+        "orders": {
+          "type": "string"
+        }
+      }
+    },
+    "network_serviceQueryDefaultIpResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/commonRspInfo"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "list": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/network_serviceDefaultNet"
+          }
+        }
+      }
+    },
+    "network_serviceQueryDynamicIpRequest": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "cond_list": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sorts": {
+          "type": "string"
+        },
+        "orders": {
+          "type": "string"
+        }
+      }
+    },
+    "network_serviceQueryDynamicIpResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/commonRspInfo"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "list": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/network_serviceDynamicNet"
+          }
+        }
+      }
+    },
+    "network_serviceQuerySZCtyunSetVlanTaskResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/commonRspInfo"
+        },
+        "szctyun_setvlan_task": {
+          "$ref": "#/definitions/network_serviceSZCtyunSetVlanTask"
+        }
+      }
+    },
+    "network_serviceQuerySwitchInfoRequest": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "cond_list": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sorts": {
+          "type": "string"
+        },
+        "orders": {
+          "type": "string"
+        }
+      }
+    },
+    "network_serviceQuerySwitchInfoResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/commonRspInfo"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "list": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/network_serviceSwitchInfo"
+          }
+        }
+      }
+    },
+    "network_serviceQueryVlanRequest": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "cond_list": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sorts": {
+          "type": "string"
+        },
+        "orders": {
+          "type": "string"
+        }
+      }
+    },
+    "network_serviceQueryVlanResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/commonRspInfo"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "list": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/network_serviceVlanInfo"
+          }
+        }
+      }
+    },
+    "network_serviceSZCtyunSetVlanTask": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "task_id": {
+          "type": "string",
+          "format": "int64",
+          "title": "unique_key"
+        },
+        "mac": {
+          "type": "string"
+        },
+        "vlan": {
+          "type": "string"
+        },
+        "state": {
+          "type": "integer",
+          "format": "int32",
+          "title": "状态: 0-初始化; 1-调用失败; 2-调用成功; 3-回调成功; 4-超时失败"
+        },
+        "set_code": {
+          "type": "string"
+        },
+        "cb_code": {
+          "type": "string"
+        },
+        "setfinish_time": {
+          "type": "string"
+        },
+        "ctyuncb_time": {
+          "type": "string"
+        },
+        "timetout_time": {
+          "type": "string"
+        },
+        "create_time": {
+          "type": "string"
+        },
+        "update_time": {
+          "type": "string"
+        },
+        "modify_time": {
+          "type": "string"
+        }
+      }
+    },
+    "network_serviceStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "network_serviceSwitchInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "format": "double",
+          "title": "主键"
+        },
+        "address": {
+          "type": "string"
+        },
+        "dev_type": {
+          "type": "string"
+        },
+        "manufacturer": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "remark": {
+          "type": "string"
+        }
+      }
+    },
+    "network_serviceSwitchSetVlanRequest": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string",
+          "title": "流水ID"
+        },
+        "switch_id": {
+          "type": "string",
+          "format": "int64",
+          "title": "交换机ID"
+        },
+        "switch_port": {
+          "type": "integer",
+          "format": "int32",
+          "title": "交换机端口"
+        },
+        "vlan": {
+          "type": "integer",
+          "format": "int32",
+          "title": "vlan"
+        },
+        "mac": {
+          "type": "string",
+          "title": "mac"
+        }
+      }
+    },
+    "network_serviceSwitchSetVlanResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/commonRspInfo"
+        }
+      }
+    },
+    "network_serviceUpdateDefaultIpRequest": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string",
+          "title": "流水ID"
+        },
+        "net_info": {
+          "$ref": "#/definitions/network_serviceDefaultNet"
+        }
+      }
+    },
+    "network_serviceUpdateDefaultIpResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/commonRspInfo"
+        }
+      }
+    },
+    "network_serviceUpdateDynamicIpRequest": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string",
+          "title": "流水ID"
+        },
+        "net_info": {
+          "$ref": "#/definitions/network_serviceDynamicNet"
+        }
+      }
+    },
+    "network_serviceUpdateDynamicIpResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/commonRspInfo"
+        }
+      }
+    },
+    "network_serviceUpdateSZCtyunSetVlanTaskRequest": {
+      "type": "object",
+      "properties": {
+        "task_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "state": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "network_serviceUpdateSZCtyunSetVlanTaskResponse": {
+      "type": "object",
+      "properties": {
+        "requestId": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/network_serviceStatus"
+        }
+      }
+    },
+    "network_serviceUpdateSwitchInfoRequest": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string",
+          "title": "流水ID"
+        },
+        "switch_info": {
+          "$ref": "#/definitions/network_serviceSwitchInfo"
+        }
+      }
+    },
+    "network_serviceUpdateSwitchInfoResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/commonRspInfo"
+        }
+      }
+    },
+    "network_serviceUpdateVlanRequest": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string",
+          "title": "流水ID"
+        },
+        "vlan_info": {
+          "$ref": "#/definitions/network_serviceVlanInfo",
+          "title": "新内容"
+        }
+      }
+    },
+    "network_serviceUpdateVlanResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/commonRspInfo"
+        }
+      }
+    },
+    "network_serviceVlanInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "format": "double",
+          "title": "主键"
+        },
+        "vlan_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ip": {
+          "type": "string"
+        },
+        "mask": {
+          "type": "string"
+        },
+        "gateway": {
+          "type": "string"
+        },
+        "dns1": {
+          "type": "string"
+        },
+        "dns2": {
+          "type": "string"
+        },
+        "host_name_prefix": {
+          "type": "string"
+        },
+        "state": {
+          "type": "integer",
+          "format": "int32",
+          "title": "状态：0 - 正常; 1 - 废弃"
+        },
+        "create_time": {
+          "type": "string",
+          "title": "创建时间"
+        },
+        "update_time": {
+          "type": "string",
+          "title": "用户最后更新时间"
+        },
+        "modify_time": {
+          "type": "string",
+          "title": "db最后更新时间"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    }
+  }
+}

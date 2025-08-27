@@ -1,0 +1,67 @@
+syntax = "v1"
+import "../common.api"
+info(
+	title: "节点管理"
+	desc: "节点管理"
+	author: "jeff.chen"
+	email: "jeff.chen@icloudsky.com"
+)
+type (
+	IdcListResp {
+		Total int   `json:"total"`
+		List  []Idc `json:"list"`
+	}
+	Idc {
+		Id             int    `json:"id"`
+		PrimaryId      int    `json:"primary_id"`
+		AgentId        int    `json:"agent_id"`
+		AreaId         int32  `json:"area_id"`
+		Name           string `json:"name"`
+		RegionId       int    `json:"region_id"`
+		DeploymentType int    `json:"deployment_type"`
+		Remark         string `json:"remark"`
+		ProxyAddr      string `json:"proxy_addr"`
+		CreateBy       string `json:"create_by"`
+		UpdateBy       string `json:"update_by"`
+		CreateTime     string `json:"create_time"`
+		UpdateTime     string `json:"update_time"`
+		ModifyTime     string `json:"modify_time"`
+	}
+)
+
+type (
+	CreateIdcReq {
+		PrimaryId      int    `json:"primary_id"`
+		Name           string `json:"name"`
+		AreaId         int32  `json:"area_id"`
+		RegionId       int    `json:"region_id"`
+		DeploymentType int    `json:"deployment_type"`
+		Remark         string `json:"remark"`
+		SchemaConfig   string `json:"schema_config"`
+		ResetSchemaConfig string `json:"reset_schema_config,optional"`
+	}
+	CreateIdcResp {
+		Id      int `json:"id"`
+		AgentId int `json:"agent_id"`
+	}
+)
+
+@server(
+	group : idc
+	prefix : /v1/cdp/admin/idc
+	middleware: LogwayHandleMiddleware,AuthInterceptorMiddleware
+)
+
+service cdp-admin-service-api {
+	@doc(
+		summary: "节点管理"
+	)
+	@handler Idc
+	post /list(CommonPageRequest) returns (IdcListResp)
+
+	@doc(
+		summary: "创建节点"
+	)
+	@handler IdcCreate
+	post /idccreate(CreateIdcReq) returns (CreateIdcResp)
+}

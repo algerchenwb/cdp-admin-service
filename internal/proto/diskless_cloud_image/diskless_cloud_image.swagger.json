@@ -1,0 +1,1148 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "diskless_cloud_image/diskless_cloud_image.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "DisklessCloudImage"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/DisklessCloudImage/AddOsVersion": {
+      "post": {
+        "summary": "os_version",
+        "operationId": "DisklessCloudImage_AddOsVersion",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/diskless_cloud_imageAddOsVersionResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/diskless_cloud_imageAddOsVersionRequest"
+            }
+          }
+        ],
+        "tags": [
+          "DisklessCloudImage"
+        ]
+      }
+    },
+    "/v1/DisklessCloudImage/CreateImageFromAreaInstance": {
+      "post": {
+        "operationId": "DisklessCloudImage_CreateImageFromAreaInstance",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/diskless_cloud_imageCreateImageFromAreaInstanceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/diskless_cloud_imageCreateImageFromAreaInstanceRequest"
+            }
+          }
+        ],
+        "tags": [
+          "DisklessCloudImage"
+        ]
+      }
+    },
+    "/v1/DisklessCloudImage/DeleteCloudImage": {
+      "post": {
+        "summary": "删除指定镜像",
+        "operationId": "DisklessCloudImage_DeleteCloudImage",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/diskless_cloud_imageDeleteCloudImageResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/diskless_cloud_imageDeleteCloudImageRequest"
+            }
+          }
+        ],
+        "tags": [
+          "DisklessCloudImage"
+        ]
+      }
+    },
+    "/v1/DisklessCloudImage/DeleteOsVersion": {
+      "post": {
+        "operationId": "DisklessCloudImage_DeleteOsVersion",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/diskless_cloud_imageDeleteOsVersionResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/diskless_cloud_imageDeleteOsVersionRequest"
+            }
+          }
+        ],
+        "tags": [
+          "DisklessCloudImage"
+        ]
+      }
+    },
+    "/v1/DisklessCloudImage/DownloadImageToArea": {
+      "post": {
+        "summary": "下载镜像到机房(获取镜像下载链接，调用机房导入接口）",
+        "operationId": "DisklessCloudImage_DownloadImageToArea",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/diskless_cloud_imageDownloadImageToAreaResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/diskless_cloud_imageDownloadImageToAreaRequest"
+            }
+          }
+        ],
+        "tags": [
+          "DisklessCloudImage"
+        ]
+      }
+    },
+    "/v1/DisklessCloudImage/GetImageDownloadUrl": {
+      "post": {
+        "summary": "获取镜像下载链接",
+        "operationId": "DisklessCloudImage_GetImageDownloadUrl",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/diskless_cloud_imageGetImageDownloadUrlResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/diskless_cloud_imageGetImageDownloadUrlRequest"
+            }
+          }
+        ],
+        "tags": [
+          "DisklessCloudImage"
+        ]
+      }
+    },
+    "/v1/DisklessCloudImage/QueryCloudImageList": {
+      "post": {
+        "summary": "查询镜像列表",
+        "operationId": "DisklessCloudImage_QueryCloudImageList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/diskless_cloud_imageQueryCloudImageListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/diskless_cloud_imageQueryCloudImageListRequest"
+            }
+          }
+        ],
+        "tags": [
+          "DisklessCloudImage"
+        ]
+      }
+    },
+    "/v1/DisklessCloudImage/QueryOsVersionMap": {
+      "post": {
+        "operationId": "DisklessCloudImage_QueryOsVersionMap",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/diskless_cloud_imageQueryOsVersionMapResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/diskless_cloud_imageQueryOsVersionMapRequest"
+            }
+          }
+        ],
+        "tags": [
+          "DisklessCloudImage"
+        ]
+      }
+    },
+    "/v1/DisklessCloudImage/RegisterCloudImage": {
+      "post": {
+        "summary": "登记一个oss上的镜像",
+        "operationId": "DisklessCloudImage_RegisterCloudImage",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/diskless_cloud_imageRegisterCloudImageResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/diskless_cloud_imageRegisterCloudImageRequest"
+            }
+          }
+        ],
+        "tags": [
+          "DisklessCloudImage"
+        ]
+      }
+    },
+    "/v1/DisklessCloudImage/UpdateCloudImageInfo": {
+      "post": {
+        "summary": "编辑镜像信息",
+        "operationId": "DisklessCloudImage_UpdateCloudImageInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/diskless_cloud_imageUpdateCloudImageInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/diskless_cloud_imageUpdateCloudImageInfoRequest"
+            }
+          }
+        ],
+        "tags": [
+          "DisklessCloudImage"
+        ]
+      }
+    },
+    "/v1/DisklessCloudImage/UpdateOsVersion": {
+      "post": {
+        "operationId": "DisklessCloudImage_UpdateOsVersion",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/diskless_cloud_imageUpdateOsVersionResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/diskless_cloud_imageUpdateOsVersionRequest"
+            }
+          }
+        ],
+        "tags": [
+          "DisklessCloudImage"
+        ]
+      }
+    },
+    "/v1/DisklessCloudImage/UploadAreaImage": {
+      "post": {
+        "summary": "上传机房镜像(获取镜像上传链接，调用机房导出接口)",
+        "operationId": "DisklessCloudImage_UploadAreaImage",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/diskless_cloud_imageUploadAreaImageResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/diskless_cloud_imageUploadAreaImageRequest"
+            }
+          }
+        ],
+        "tags": [
+          "DisklessCloudImage"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "commonRspInfo": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        }
+      }
+    },
+    "diskless_cloud_imageAddOsVersionBody": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string"
+        }
+      }
+    },
+    "diskless_cloud_imageAddOsVersionRequest": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string"
+        },
+        "os_version": {
+          "type": "string",
+          "title": "内置os版本描述：win10LTSC-64"
+        }
+      }
+    },
+    "diskless_cloud_imageAddOsVersionResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/commonRspInfo"
+        },
+        "body": {
+          "$ref": "#/definitions/diskless_cloud_imageAddOsVersionBody"
+        }
+      }
+    },
+    "diskless_cloud_imageCloudImageInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "title": "自增ID"
+        },
+        "image_id": {
+          "type": "string",
+          "title": "全局唯一ID(31020)"
+        },
+        "name": {
+          "type": "string",
+          "title": "镜像名：云电竞通用镜像win10"
+        },
+        "os_version": {
+          "type": "string",
+          "title": "内置os版本描述：win10LTSC-64"
+        },
+        "size": {
+          "type": "string",
+          "format": "int64",
+          "title": "挂载出来的盘的字节数"
+        },
+        "remark": {
+          "type": "string",
+          "title": "备注信息"
+        },
+        "manager_state": {
+          "type": "integer",
+          "format": "int32",
+          "title": "1-启动， 2-停用"
+        },
+        "state": {
+          "type": "integer",
+          "format": "int32",
+          "title": "状态 0-正常，1-异常不可用，2-上传中，3-未上传，4-已移除"
+        },
+        "image_src_area": {
+          "type": "string",
+          "format": "int64",
+          "title": "上传任务所在机房"
+        },
+        "upload_task_id": {
+          "type": "string",
+          "format": "int64",
+          "title": "上传任务ID"
+        },
+        "create_time": {
+          "type": "string",
+          "title": "创建时间"
+        },
+        "update_time": {
+          "type": "string",
+          "title": "用户最后更新时间"
+        },
+        "modify_time": {
+          "type": "string",
+          "title": "db最后更新时间"
+        }
+      }
+    },
+    "diskless_cloud_imageCreateImageFromAreaInstanceBody": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string"
+        },
+        "task_id": {
+          "type": "string",
+          "format": "int64",
+          "title": "创建任务ID"
+        },
+        "image_id": {
+          "type": "string",
+          "title": "全局唯一ID(31020)"
+        }
+      }
+    },
+    "diskless_cloud_imageCreateImageFromAreaInstanceRequest": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string"
+        },
+        "image_id": {
+          "type": "string",
+          "title": "全局唯一ID(31020)"
+        },
+        "name": {
+          "type": "string",
+          "title": "镜像名：云电竞通用镜像win10"
+        },
+        "os_version": {
+          "type": "string",
+          "title": "内置os版本描述：win10LTSC-64"
+        },
+        "remark": {
+          "type": "string",
+          "title": "备注信息"
+        },
+        "manager_state": {
+          "type": "integer",
+          "format": "int32",
+          "title": "1-启动， 2-停用"
+        },
+        "area_id": {
+          "type": "string",
+          "format": "int64",
+          "title": "生成镜像的机房"
+        },
+        "vm_id": {
+          "type": "string",
+          "format": "int64",
+          "title": "生成镜像的实例"
+        },
+        "os_volume_id": {
+          "type": "number",
+          "format": "double",
+          "title": "生成镜像的卷"
+        }
+      }
+    },
+    "diskless_cloud_imageCreateImageFromAreaInstanceResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/commonRspInfo"
+        },
+        "body": {
+          "$ref": "#/definitions/diskless_cloud_imageCreateImageFromAreaInstanceBody"
+        }
+      }
+    },
+    "diskless_cloud_imageDeleteCloudImageBody": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string"
+        }
+      }
+    },
+    "diskless_cloud_imageDeleteCloudImageRequest": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "title": "自增ID"
+        }
+      }
+    },
+    "diskless_cloud_imageDeleteCloudImageResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/commonRspInfo"
+        },
+        "body": {
+          "$ref": "#/definitions/diskless_cloud_imageDeleteCloudImageBody"
+        }
+      }
+    },
+    "diskless_cloud_imageDeleteOsVersionBody": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string"
+        }
+      }
+    },
+    "diskless_cloud_imageDeleteOsVersionRequest": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "diskless_cloud_imageDeleteOsVersionResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/commonRspInfo"
+        },
+        "body": {
+          "$ref": "#/definitions/diskless_cloud_imageDeleteOsVersionBody"
+        }
+      }
+    },
+    "diskless_cloud_imageDownloadImageToAreaBody": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string"
+        },
+        "task_id": {
+          "type": "string",
+          "format": "int64",
+          "title": "下载任务ID"
+        }
+      }
+    },
+    "diskless_cloud_imageDownloadImageToAreaRequest": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string"
+        },
+        "image_id": {
+          "type": "string",
+          "title": "全局唯一ID(31020)"
+        },
+        "name": {
+          "type": "string",
+          "title": "镜像名：云电竞通用镜像win10"
+        },
+        "os_version": {
+          "type": "string",
+          "title": "内置os版本描述：win10LTSC-64"
+        },
+        "remark": {
+          "type": "string",
+          "title": "备注信息"
+        },
+        "manager_state": {
+          "type": "integer",
+          "format": "int32",
+          "title": "1-启动， 2-停用"
+        },
+        "area_id": {
+          "type": "string",
+          "format": "int64",
+          "title": "下载镜像的机房"
+        }
+      }
+    },
+    "diskless_cloud_imageDownloadImageToAreaResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/commonRspInfo"
+        },
+        "body": {
+          "$ref": "#/definitions/diskless_cloud_imageDownloadImageToAreaBody"
+        }
+      }
+    },
+    "diskless_cloud_imageGetImageDownloadUrlBody": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "diskless_cloud_imageGetImageDownloadUrlRequest": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string"
+        },
+        "image_id": {
+          "type": "string",
+          "title": "全局唯一ID(31020)"
+        }
+      }
+    },
+    "diskless_cloud_imageGetImageDownloadUrlResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/commonRspInfo"
+        },
+        "body": {
+          "$ref": "#/definitions/diskless_cloud_imageGetImageDownloadUrlBody"
+        }
+      }
+    },
+    "diskless_cloud_imageOsVersion": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "os_version": {
+          "type": "string",
+          "title": "内置os版本描述：win10LTSC-64"
+        },
+        "create_time": {
+          "type": "string",
+          "title": "创建时间"
+        },
+        "update_time": {
+          "type": "string",
+          "title": "用户最后更新时间"
+        },
+        "modify_time": {
+          "type": "string",
+          "title": "db最后更新时间"
+        }
+      }
+    },
+    "diskless_cloud_imageQueryCloudImageListBody": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "list": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/diskless_cloud_imageCloudImageInfo"
+          }
+        }
+      }
+    },
+    "diskless_cloud_imageQueryCloudImageListRequest": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "cond_list": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sorts": {
+          "type": "string"
+        },
+        "orders": {
+          "type": "string"
+        }
+      }
+    },
+    "diskless_cloud_imageQueryCloudImageListResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/commonRspInfo"
+        },
+        "body": {
+          "$ref": "#/definitions/diskless_cloud_imageQueryCloudImageListBody"
+        }
+      }
+    },
+    "diskless_cloud_imageQueryOsVersionMapBody": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "list": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/diskless_cloud_imageOsVersion"
+          }
+        }
+      }
+    },
+    "diskless_cloud_imageQueryOsVersionMapRequest": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "cond_list": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sorts": {
+          "type": "string"
+        },
+        "orders": {
+          "type": "string"
+        }
+      }
+    },
+    "diskless_cloud_imageQueryOsVersionMapResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/commonRspInfo"
+        },
+        "body": {
+          "$ref": "#/definitions/diskless_cloud_imageQueryOsVersionMapBody"
+        }
+      }
+    },
+    "diskless_cloud_imageRegisterCloudImageBody": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "title": "自增ID"
+        },
+        "upload_url": {
+          "type": "string",
+          "title": "http put上传链接"
+        },
+        "desc": {
+          "type": "string",
+          "title": "上传说明"
+        }
+      }
+    },
+    "diskless_cloud_imageRegisterCloudImageRequest": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string"
+        },
+        "image_id": {
+          "type": "string",
+          "title": "全局唯一ID(31020)"
+        },
+        "name": {
+          "type": "string",
+          "title": "镜像名：云电竞通用镜像win10"
+        },
+        "os_version": {
+          "type": "string",
+          "title": "内置os版本描述：win10LTSC-64"
+        },
+        "remark": {
+          "type": "string",
+          "title": "备注信息"
+        },
+        "manager_state": {
+          "type": "integer",
+          "format": "int32",
+          "title": "1-启动， 2-停用"
+        },
+        "image_src_area": {
+          "type": "string",
+          "format": "int64",
+          "title": "上传机房"
+        }
+      }
+    },
+    "diskless_cloud_imageRegisterCloudImageResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/commonRspInfo"
+        },
+        "body": {
+          "$ref": "#/definitions/diskless_cloud_imageRegisterCloudImageBody"
+        }
+      }
+    },
+    "diskless_cloud_imageUpdateCloudImageInfoBody": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string"
+        }
+      }
+    },
+    "diskless_cloud_imageUpdateCloudImageInfoRequest": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "title": "自增ID"
+        },
+        "image_id": {
+          "type": "string",
+          "title": "全局唯一ID(31020)"
+        },
+        "name": {
+          "type": "string",
+          "title": "镜像名：云电竞通用镜像win10"
+        },
+        "os_version": {
+          "type": "string",
+          "title": "内置os版本描述：win10LTSC-64"
+        },
+        "size": {
+          "type": "string",
+          "format": "int64",
+          "title": "挂载出来的盘的字节数"
+        },
+        "remark": {
+          "type": "string",
+          "title": "备注信息"
+        },
+        "manager_state": {
+          "type": "integer",
+          "format": "int32",
+          "title": "1-启动， 2-停用"
+        },
+        "state": {
+          "type": "integer",
+          "format": "int32",
+          "title": "状态 0-正常，1-异常不可用，2-上传中，3-未上传，4-已移除"
+        },
+        "image_src_area": {
+          "type": "string",
+          "format": "int64",
+          "title": "上传任务所在机房"
+        },
+        "upload_task_id": {
+          "type": "string",
+          "format": "int64",
+          "title": "上传任务ID"
+        }
+      }
+    },
+    "diskless_cloud_imageUpdateCloudImageInfoResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/commonRspInfo"
+        },
+        "body": {
+          "$ref": "#/definitions/diskless_cloud_imageUpdateCloudImageInfoBody"
+        }
+      }
+    },
+    "diskless_cloud_imageUpdateOsVersionBody": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string"
+        }
+      }
+    },
+    "diskless_cloud_imageUpdateOsVersionRequest": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "new_os_version": {
+          "type": "string",
+          "title": "内置os版本描述：win10LTSC-64"
+        }
+      }
+    },
+    "diskless_cloud_imageUpdateOsVersionResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/commonRspInfo"
+        },
+        "body": {
+          "$ref": "#/definitions/diskless_cloud_imageUpdateOsVersionBody"
+        }
+      }
+    },
+    "diskless_cloud_imageUploadAreaImageBody": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string"
+        },
+        "task_id": {
+          "type": "string",
+          "format": "int64",
+          "title": "上传任务ID"
+        }
+      }
+    },
+    "diskless_cloud_imageUploadAreaImageRequest": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string"
+        },
+        "image_id": {
+          "type": "string",
+          "title": "全局唯一ID(31020)"
+        },
+        "name": {
+          "type": "string",
+          "title": "镜像名：云电竞通用镜像win10"
+        },
+        "os_version": {
+          "type": "string",
+          "title": "内置os版本描述：win10LTSC-64"
+        },
+        "remark": {
+          "type": "string",
+          "title": "备注信息"
+        },
+        "manager_state": {
+          "type": "integer",
+          "format": "int32",
+          "title": "1-启动， 2-停用"
+        },
+        "area_id": {
+          "type": "string",
+          "format": "int64",
+          "title": "镜像所在机房"
+        }
+      }
+    },
+    "diskless_cloud_imageUploadAreaImageResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/commonRspInfo"
+        },
+        "body": {
+          "$ref": "#/definitions/diskless_cloud_imageUploadAreaImageBody"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

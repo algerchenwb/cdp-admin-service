@@ -1,0 +1,235 @@
+syntax = "v1"
+
+info(
+	title: "个人中心"
+	desc: "个人中心"
+	author: "kane.fang"
+	email: "kane.fang@icloudsky.com"
+	middleware: LogwayHandle,AuthInterceptor
+)
+
+type (
+	LoginReq {
+		Account    string `json:"account"     label:"账号"`
+		Password   string `json:"password"    label:"密码"`
+		Platform   int64  `json:"platform"    label:"平台 1-算力平台 2-施工平台"`
+	}
+	LoginResp {
+		Token string `json:"token"`
+		UserInfo UserInfoResp `json:"user_info"`
+	}
+)
+
+
+type (
+	UserInfoResp {
+		Id       	int64  		`json:"id"`
+		Account  	string 		`json:"account"`
+		Nickname 	string 		`json:"nickname"`
+		Avatar   	string 		`json:"avatar"`
+		Mobile   	string 		`json:"mobile"`
+		RoleId  	int64 		`json:"role_id"`
+		AreaIds  	[]int64 	`json:"area_ids"`
+		AreaRegions []int64 	`json:"area_regions"`
+		BizIds      []int64 	`json:"biz_ids"`
+		BizRegions  []int64 	`json:"biz_regions"`
+		Platform    int64  		`json:"platform"`
+		Status      int64  		`json:"status"`
+		Remark      string 		`json:"remark"`
+	}	
+)
+type (
+	CreateUserReq {
+		Account  string `json:"account" validate:"required,min=2,max=12" label:"账号"`
+		Password string `json:"password" validate:"required,min=6,max=12" label:"密码"`
+		Nickname string `json:"nickname" validate:"required,min=2,max=12" label:"昵称"`
+		Avatar   string `json:"avatar,optional" validate:"omitempty,url" label:"头像"`
+		Mobile   string `json:"mobile,optional" validate:"omitempty,len=11" label:"手机号"`
+		RoleId   int64  `json:"role_id" validate:"required" label:"角色ID"`
+		AreaIds  []int32 `json:"area_ids" validate:"required" label:"区域ID"`
+		AreaRegions []int64 `json:"area_regions" validate:"required" label:"区域区域"`
+		BizIds      []int64 `json:"biz_ids" validate:"required" label:"业务ID"`
+		BizRegions  []int64 `json:"biz_regions" validate:"required" label:"业务区域"`
+		Status      int64  `json:"status" validate:"required" label:"状态"`
+		Remark      string `json:"remark" validate:"required,min=2,max=12" label:"备注"`
+		Platform    int64  `json:"platform" validate:"required" label:"平台 1-算力平台 2-施工平台"`
+	}
+	CreateUserResp {
+		Id int64 `json:"id"`
+	}
+)
+
+type (
+	UpdateUserInfoReq {
+		Id       int64  `json:"id" validate:"required" label:"ID"`
+		Nickname string `json:"nickname"  validate:"omitempty,min=2,max=12"  label:"昵称"`
+		Mobile   string `json:"mobile"    validate:"omitempty,len=11"        label:"手机号"`
+		Avatar   string `json:"avatar,optional"    validate:"omitempty,url"           label:"头像"`
+		Remark   string `json:"remark,optional" label:"备注"`
+		AreaIds  []int32 `json:"area_ids" validate:"required" label:"区域ID"`
+		AreaRegions []int64 `json:"area_regions" validate:"required" label:"区域区域"`
+		BizIds      []int64 `json:"biz_ids" validate:"required" label:"业务ID"`
+		BizRegions  []int64 `json:"biz_regions" validate:"required" label:"业务区域"`
+		RoleId     int64   `json:"role_id" validate:"required" label:"角色ID"`
+	}
+)
+type (
+    UserInfoListResp {
+        List []UserInfoResp `json:"list"`
+        Total int64 `json:"total"`
+    }
+)
+type (
+	DeleteUserReq {
+		Id int64 `json:"id" validate:"required" label:"ID"`
+	}
+)
+type (
+	
+	UserPermMenuResp {
+		Menus []Menu   `json:"menus"`
+	}
+)
+
+type (
+	UpdatePasswordReq {
+		Id int64 `json:"id" validate:"required" label:"ID"`
+		OldPassword string `json:"old_password"  validate:"required"  label:"旧密码"`
+		NewPassword string `json:"new_password"  validate:"required"  label:"新密码"`
+	}
+)
+
+type (
+	AreaInfosReq {
+		RegionId int64 `form:"region_id,optional"  validate:"number,gte=0"  label:"region_id"`
+	}
+	AreaInfosResp {
+		AreaInfos []AreaInfo `json:"area_infos"`
+	}
+	AreaInfo {
+		PrimaryId int64 `json:"primary_id"`
+		AgentId int64 `json:"agent_id"`
+		AreaId int32 `json:"area_id"`
+		Name string `json:"name"`
+		RegionId int64 `json:"region_id"`
+		DeploymentType int64 `json:"deployment_type"`
+		Remark string `json:"remark"`
+		ProxyAddr string `json:"proxy_addr"`
+
+	}
+)
+type (
+	RegionsResp {
+		AreaRegions []int64 `json:"area_regions"`
+		BizRegions []int64 `json:"biz_regions"`
+	}
+)
+
+type (
+	ResetPasswordReq {
+		Id int64 `json:"id" validate:"required" label:"ID"`
+	}
+	ResetPasswordResp {
+		NewPassword string `json:"new_password"`
+	}
+)
+
+
+@server (
+	group : user
+	prefix : /v1/cdp/admin/user
+	middleware: LogwayHandleMiddleware
+)
+service cdp-admin-service-api {
+	@doc(
+		summary: "登录"
+	)
+	@handler Login
+	post /login (LoginReq) returns (LoginResp)
+	
+
+	@doc(
+		summary: "退出"
+	)
+	@handler Logout
+	post /logout
+}
+
+
+@server(
+	group : user
+	prefix : /v1/cdp/admin/user
+	middleware: LogwayHandleMiddleware,AuthInterceptorMiddleware
+)
+service cdp-admin-service-api {
+	@doc(
+		summary: "权限菜单"
+	)
+	@handler GetUserPermMenu
+	get /permmenu returns (UserPermMenuResp)
+
+	@doc(
+		summary: "用户资料"
+	)
+	@handler GetUserInfo
+	get /info returns (UserInfoResp)
+
+	@doc(
+		summary: "获取用户节点信息"
+	)
+	@handler GetUserAreaTypes
+	get /area_infos (AreaInfosReq) returns (AreaInfosResp)
+	
+	@doc(
+		summary: "获取用户域信息"
+	)
+	@handler GetUserRegions
+	get /regions returns (RegionsResp)
+	
+}
+
+@server(
+	group : user
+	prefix : /v1/cdp/admin/user
+	middleware: LogwayHandleMiddleware,AuthInterceptorMiddleware,MenuInterceptorMiddleware
+)
+service cdp-admin-service-api {
+
+	
+	@doc(
+		summary: "用户列表"
+	)
+	@handler GetUserList
+	post /list (CommonPageRequest) returns (UserInfoListResp)
+	
+	@doc(
+		summary: "创建用户"
+	)
+	@handler CreateUser
+	post /create (CreateUserReq) returns (CreateUserResp)
+	
+	@doc(
+		summary: "更新用户资料"
+	)
+	@handler UpdateUserInfo
+	post /update (UpdateUserInfoReq) returns(CommonNilJson)
+	
+	@doc(
+		summary: "删除用户"
+	)
+	@handler DeleteUser
+	post /delete (DeleteUserReq) returns(CommonNilJson)
+	
+	@doc(
+		summary: "更新密码"
+	)
+	@handler UpdateUserPassword
+	post /password/update (UpdatePasswordReq) returns(CommonNilJson)	
+
+
+	@doc(
+		summary: "重置密码"
+	)
+	@handler ResetPassword
+	post /password/reset (ResetPasswordReq) returns(ResetPasswordResp)
+}

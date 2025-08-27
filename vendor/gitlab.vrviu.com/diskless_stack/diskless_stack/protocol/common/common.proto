@@ -1,0 +1,20 @@
+syntax = "proto3";
+option go_package = "gitlab.vrviu.com/diskless_stack/diskless_stack/protocol/common";
+package common;
+
+enum ErrorCode {
+    SUCCESS             = 0;    // 成功
+    INVALID_PARAMS     = 1;    // 无效参数
+    DB_ERROR          = 2;    // 数据库错误
+    HOST_ERROR        = 3;    // 主机错误
+    INTERNAL_ERROR    = 4;    // 内部错误
+    INVALID_STATUS    = 5;    // 无效状态
+    LOCK_ERROR        = 6;    // 锁错误
+    // ... 其他错误码 ...
+}
+
+message RspInfo {
+  int32 code = 1;
+  string msg = 2;
+}
+// protoc  -I../ -I . --go_out=. --go_opt=paths=source_relative common.proto

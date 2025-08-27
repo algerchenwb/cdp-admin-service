@@ -1,0 +1,116 @@
+Name: cdp-admin-server
+Host: 0.0.0.0
+Port: 38783
+Mode: dev
+Salt: K8i8mTfc5sTXO7OG
+Timeout: 300000
+
+
+Middlewares:
+  Metrics: true
+Log:
+  ServiceName: cdp-admin-server #服务名称
+  Mode: console  #日志模式,console-输出到console,file-输出到当前服务器(容器)文件,volume-输出docker挂在文件内
+  Encoding: plain  #日志展示方式，开发选择plain，生产json default=json,options=[json,plain]
+  TimeFormat: 2006-01-02T15:04:05.000Z07     #时间格式
+  Path: logs/   #日志存储路径，默认logs
+  Level: debug     #日志写入级别 info|error|severe
+  Compress: true  #是否开启gzip压缩
+  KeepDays: 15     #日志保留天数
+  StackCooldownMillis: 100 #日志write间隔，默认100  #多少毫秒后再次写入堆栈跟踪。用来避免堆栈跟踪日志过多
+  MaxBackups: 0 #default=0
+  MaxSize: 0 #default=0
+  Rotation: daily #`json:",default=daily,options=[daily,size]"`
+  Stat: true   #是否开启stat服务，1.4.4版本新增参数`json:",default=true"`
+
+JwtAuth:
+  AccessSecret: JaDhHVXvqpu6klbmYgEc
+  AccessExpire: 86400
+
+OutSide:
+  #SaasHost: "http://10.86.54.114:28246"
+  SaasHost: "http://10.68.3.105:28236"
+  DisklessHost: "http://10.68.3.187:39112"
+  DisklessCloudImageHost: "http://10.86.0.101:28246"
+  VmMgrHost: "http://10.86.0.101:28246"
+  DisklessEdge1: "http://10.68.3.81:29113"
+  Timeout: 120000
+
+Mysql:
+  DataSource: viu_root:myviu_4359@tcp(10.86.54.122:23306)/d_perm_admin?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+
+Cache:
+  - Host: 10.86.54.124:26379
+    Pass: "viuRDS2793"
+    Type: node
+
+Redis:
+  Host: 10.86.54.124:26379
+  Pass: "viuRDS2793"
+  Type: node
+
+AdminAccount:
+  Enable: true
+  Account: "admin"
+  Password: "123456"
+  RoleId: 1
+
+UserRpc:
+  EtcdHosts: ["10.68.3.104:2379"]
+  Key: "saasuser.rpc"
+  EndPoints:
+    - 10.68.3.104:58247
+  Timeout: 10000
+
+
+Specification:
+  DefaultTotalInstances: 1000
+  DefaultTimeResourcePoolNum: 3153600
+  DefaultFrequencyResourcePoolNum: 10000
+  DefaultValidityPeriodYears:  10
+
+EsportDal:
+  # EsportDalHost: "http://10.68.3.104:38781"
+  EsportDalHost: "http://10.68.3.105:38781"
+  EsportDalTimeout: 10000
+
+
+AES:
+  Key: "1234567890"
+  Salt: "1234567890"
+
+
+Account:
+  DefaultPassword: "42c224b3c8899047460f5a6d1c041411"
+
+Schema:
+  DefaultOsMntType: 1
+  DefaultStorageType: 5
+  DefaultWrbackType: 1
+  DefaultBootPnpPath: ""
+  DefaultResetSchemaConfig: ""
+  DefaultSchemaConfig: "{\"storage_type\":0,\"wrback_type\":1,\"os_mnt_type\":1}"
+
+
+Saas:
+  ServerHost: "http://10.68.3.105:28236"
+  Timeout: 10000
+  SpecIdList: [49,50,51,52,53,54,55,56]
+  Specification:
+    DefaultTotalInstances: 1000
+    DefaultTimeResourcePoolNum: 31536000
+    DefaultFrequencyResourcePoolNum: 10
+    DefaultValidityPeriodYears:  1
+
+DisklessConfig:
+  AggregatorHost: "http://10.68.3.106:30412"
+  Timeout: 10000
+  
+Instance:
+  InvaildVersion: 7777
+  DefaultPoolId: 1000
+
+Menu:
+  SuanliRootId: 1
+  ShigongRootId: 2
+

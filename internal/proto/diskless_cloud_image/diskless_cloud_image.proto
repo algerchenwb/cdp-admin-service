@@ -1,0 +1,347 @@
+syntax = "proto3";
+option go_package = "gitlab.vrviu.com/diskless_stack/diskless_stack/protocol/diskless_cloud_image";
+package diskless_cloud_image;
+
+// 需要http接口需要引入这个proto
+import "google/api/annotations.proto";
+import "common/common.proto";
+
+service DisklessCloudImage {
+  // 查询镜像列表
+  rpc QueryCloudImageList(QueryCloudImageListRequest)
+      returns (QueryCloudImageListResponse) {
+    option (google.api.http) = {
+      post : "/v1/DisklessCloudImage/QueryCloudImageList"
+      body : "*"
+    };
+  }
+  // 获取镜像下载链接
+  rpc GetImageDownloadUrl(GetImageDownloadUrlRequest)
+      returns (GetImageDownloadUrlResponse) {
+    option (google.api.http) = {
+      post : "/v1/DisklessCloudImage/GetImageDownloadUrl"
+      body : "*"
+    };
+  }
+
+  // 上传机房镜像(获取镜像上传链接，调用机房导出接口)
+  rpc UploadAreaImage(UploadAreaImageRequest)
+      returns (UploadAreaImageResponse) {
+    option (google.api.http) = {
+      post : "/v1/DisklessCloudImage/UploadAreaImage"
+      body : "*"
+    };
+  }
+
+  // 下载镜像到机房(获取镜像下载链接，调用机房导入接口）
+  rpc DownloadImageToArea(DownloadImageToAreaRequest)
+      returns (DownloadImageToAreaResponse) {
+    option (google.api.http) = {
+      post : "/v1/DisklessCloudImage/DownloadImageToArea"
+      body : "*"
+    };
+  }
+
+  rpc CreateImageFromAreaInstance(CreateImageFromAreaInstanceRequest)
+      returns (CreateImageFromAreaInstanceResponse) {
+    option (google.api.http) = {
+      post : "/v1/DisklessCloudImage/CreateImageFromAreaInstance"
+      body : "*"
+    };
+  }
+
+  // 登记一个oss上的镜像
+  rpc RegisterCloudImage(RegisterCloudImageRequest)
+      returns (RegisterCloudImageResponse) {
+    option (google.api.http) = {
+      post : "/v1/DisklessCloudImage/RegisterCloudImage"
+      body : "*"
+    };
+  }
+  // 删除指定镜像
+  rpc DeleteCloudImage(DeleteCloudImageRequest)
+      returns (DeleteCloudImageResponse) {
+    option (google.api.http) = {
+      post : "/v1/DisklessCloudImage/DeleteCloudImage"
+      body : "*"
+    };
+  }
+  // 编辑镜像信息
+  rpc UpdateCloudImageInfo(UpdateCloudImageInfoRequest)
+      returns (UpdateCloudImageInfoResponse) {
+    option (google.api.http) = {
+      post : "/v1/DisklessCloudImage/UpdateCloudImageInfo"
+      body : "*"
+    };
+  }
+
+  // os_version
+  rpc AddOsVersion(AddOsVersionRequest) returns (AddOsVersionResponse) {
+    option (google.api.http) = {
+      post : "/v1/DisklessCloudImage/AddOsVersion"
+      body : "*"
+    };
+  }
+  rpc DeleteOsVersion(DeleteOsVersionRequest)
+      returns (DeleteOsVersionResponse) {
+    option (google.api.http) = {
+      post : "/v1/DisklessCloudImage/DeleteOsVersion"
+      body : "*"
+    };
+  }
+  rpc QueryOsVersionMap(QueryOsVersionMapRequest)
+      returns (QueryOsVersionMapResponse) {
+    option (google.api.http) = {
+      post : "/v1/DisklessCloudImage/QueryOsVersionMap"
+      body : "*"
+    };
+  }
+  rpc UpdateOsVersion(UpdateOsVersionRequest)
+      returns (UpdateOsVersionResponse) {
+    option (google.api.http) = {
+      post : "/v1/DisklessCloudImage/UpdateOsVersion"
+      body : "*"
+    };
+  }
+}
+
+message CloudImageInfo {
+  int64 id = 1 [ json_name = "id" ];              // 自增ID
+  string image_id = 2 [ json_name = "image_id" ]; // 全局唯一ID(31020)
+  string name = 3 [ json_name = "name" ]; // 镜像名：云电竞通用镜像win10
+  string os_version = 4
+      [ json_name = "os_version" ];      // 内置os版本描述：win10LTSC-64
+  int64 size = 5 [ json_name = "size" ]; // 挂载出来的盘的字节数
+  string remark = 6 [ json_name = "remark" ];              // 备注信息
+  int32 manager_state = 7 [ json_name = "manager_state" ]; // 1-启动， 2-停用
+  int32 state = 8 [
+    json_name = "state"
+  ]; // 状态 0-正常，1-异常不可用，2-上传中，3-未上传，4-已移除
+  int64 image_src_area = 9 [ json_name = "image_src_area" ]; // 上传任务所在机房
+  int64 upload_task_id = 10 [ json_name = "upload_task_id" ]; // 上传任务ID
+  string create_time = 11 [ json_name = "create_time" ];      // 创建时间
+  string update_time = 12 [ json_name = "update_time" ]; // 用户最后更新时间
+  string modify_time = 13 [ json_name = "modify_time" ]; // db最后更新时间
+}
+
+message QueryCloudImageListRequest {
+  string flow_id = 1 [ json_name = "flow_id" ];
+  int32 offset = 2 [ json_name = "offset" ];
+  int32 limit = 3 [ json_name = "limit" ];
+  repeated string cond_list = 4 [ json_name = "cond_list" ];
+  string sorts = 5 [ json_name = "sorts" ];
+  string orders = 6 [ json_name = "orders" ];
+}
+
+message QueryCloudImageListBody {
+  string flow_id = 1 [ json_name = "flow_id" ];
+  int32 total = 2 [ json_name = "total" ];
+  repeated CloudImageInfo list = 3 [ json_name = "list" ];
+}
+message QueryCloudImageListResponse {
+  common.RspInfo ret = 1 [ json_name = "ret" ];
+  QueryCloudImageListBody body = 2 [ json_name = "body" ];
+}
+
+message GetImageDownloadUrlRequest {
+  string flow_id = 1 [ json_name = "flow_id" ];
+  string image_id = 2 [ json_name = "image_id" ]; // 全局唯一ID(31020)
+}
+
+message GetImageDownloadUrlBody {
+  string flow_id = 1 [ json_name = "flow_id" ];
+  string url = 2 [ json_name = "url" ];
+}
+message GetImageDownloadUrlResponse {
+  common.RspInfo ret = 1 [ json_name = "ret" ];
+  GetImageDownloadUrlBody body = 2 [ json_name = "body" ];
+}
+
+message UploadAreaImageRequest {
+  string flow_id = 1 [ json_name = "flow_id" ];
+  string image_id = 2 [ json_name = "image_id" ]; // 全局唯一ID(31020)
+  string name = 3 [ json_name = "name" ]; // 镜像名：云电竞通用镜像win10
+  string os_version = 4
+      [ json_name = "os_version" ]; // 内置os版本描述：win10LTSC-64
+  string remark = 5 [ json_name = "remark" ];              // 备注信息
+  int32 manager_state = 6 [ json_name = "manager_state" ]; // 1-启动， 2-停用
+  int64 area_id = 7 [ json_name = "area_id" ];             // 镜像所在机房
+}
+
+message UploadAreaImageBody {
+  string flow_id = 1 [ json_name = "flow_id" ];
+  int64 task_id = 2 [ json_name = "task_id" ]; // 上传任务ID
+}
+message UploadAreaImageResponse {
+  common.RspInfo ret = 1 [ json_name = "ret" ];
+  UploadAreaImageBody body = 2 [ json_name = "body" ];
+}
+
+message DownloadImageToAreaRequest {
+  string flow_id = 1 [ json_name = "flow_id" ];
+  string image_id = 2 [ json_name = "image_id" ]; // 全局唯一ID(31020)
+  string name = 3 [ json_name = "name" ]; // 镜像名：云电竞通用镜像win10
+  string os_version = 4
+      [ json_name = "os_version" ]; // 内置os版本描述：win10LTSC-64
+  string remark = 6 [ json_name = "remark" ];              // 备注信息
+  int32 manager_state = 7 [ json_name = "manager_state" ]; // 1-启动， 2-停用
+  int64 area_id = 8 [ json_name = "area_id" ]; // 下载镜像的机房
+}
+
+message DownloadImageToAreaBody {
+  string flow_id = 1 [ json_name = "flow_id" ];
+  int64 task_id = 2 [ json_name = "task_id" ]; // 下载任务ID
+}
+message DownloadImageToAreaResponse {
+  common.RspInfo ret = 1 [ json_name = "ret" ];
+  DownloadImageToAreaBody body = 2 [ json_name = "body" ];
+}
+
+message CreateImageFromAreaInstanceRequest {
+  string flow_id = 1 [ json_name = "flow_id" ];
+  string image_id = 2 [ json_name = "image_id" ]; // 全局唯一ID(31020)
+  string name = 3 [ json_name = "name" ]; // 镜像名：云电竞通用镜像win10
+  string os_version = 4
+      [ json_name = "os_version" ]; // 内置os版本描述：win10LTSC-64
+  string remark = 6 [ json_name = "remark" ];              // 备注信息
+  int32 manager_state = 7 [ json_name = "manager_state" ]; // 1-启动， 2-停用
+  int64 area_id = 8 [ json_name = "area_id" ]; // 生成镜像的机房
+  int64 vm_id = 9 [ json_name = "vm_id" ];     // 生成镜像的实例
+  double os_volume_id = 10 [ json_name = "os_volume_id" ]; // 生成镜像的卷
+}
+message CreateImageFromAreaInstanceBody {
+  string flow_id = 1 [ json_name = "flow_id" ];
+  int64 task_id = 2 [ json_name = "task_id" ]; // 创建任务ID
+  string image_id = 3 [ json_name = "image_id" ]; // 全局唯一ID(31020)
+}
+message CreateImageFromAreaInstanceResponse {
+  common.RspInfo ret = 1 [ json_name = "ret" ];
+  CreateImageFromAreaInstanceBody body = 2 [ json_name = "body" ];
+}
+
+message RegisterCloudImageRequest {
+  string flow_id = 1 [ json_name = "flow_id" ];
+  string image_id = 2 [ json_name = "image_id" ]; // 全局唯一ID(31020)
+  string name = 3 [ json_name = "name" ]; // 镜像名：云电竞通用镜像win10
+  string os_version = 4
+      [ json_name = "os_version" ]; // 内置os版本描述：win10LTSC-64
+  string remark = 5 [ json_name = "remark" ];              // 备注信息
+  int32 manager_state = 6 [ json_name = "manager_state" ]; // 1-启动， 2-停用
+  int64 image_src_area = 7 [ json_name = "image_src_area" ]; // 上传机房
+}
+message RegisterCloudImageBody {
+  string flow_id = 1 [ json_name = "flow_id" ];
+  int64 id = 2 [ json_name = "id" ]; // 自增ID
+  string upload_url = 3 [ json_name = "upload_url" ]; // http put上传链接
+  string desc = 4 [ json_name = "desc" ]; // 上传说明
+}
+message RegisterCloudImageResponse {
+  common.RspInfo ret = 1 [ json_name = "ret" ];
+  RegisterCloudImageBody body = 2 [ json_name = "body" ];
+}
+
+message DeleteCloudImageRequest {
+  string flow_id = 1 [ json_name = "flow_id" ];
+  int64 id = 2 [ json_name = "id" ]; // 自增ID
+}
+message DeleteCloudImageBody {
+  string flow_id = 1 [ json_name = "flow_id" ];
+}
+message DeleteCloudImageResponse {
+  common.RspInfo ret = 1 [ json_name = "ret" ];
+  DeleteCloudImageBody body = 2 [ json_name = "body" ];
+}
+
+message UpdateCloudImageInfoRequest {
+  string flow_id = 1 [ json_name = "flow_id" ];
+  int64 id = 2 [ json_name = "id" ];              // 自增ID
+  string image_id = 3 [ json_name = "image_id" ]; // 全局唯一ID(31020)
+  string name = 4 [ json_name = "name" ]; // 镜像名：云电竞通用镜像win10
+  string os_version = 5
+      [ json_name = "os_version" ];      // 内置os版本描述：win10LTSC-64
+  int64 size = 6 [ json_name = "size" ]; // 挂载出来的盘的字节数
+  string remark = 7 [ json_name = "remark" ];              // 备注信息
+  int32 manager_state = 8 [ json_name = "manager_state" ]; // 1-启动， 2-停用
+  int32 state = 9 [
+    json_name = "state"
+  ]; // 状态 0-正常，1-异常不可用，2-上传中，3-未上传，4-已移除
+  int64 image_src_area = 10
+      [ json_name = "image_src_area" ]; // 上传任务所在机房
+  int64 upload_task_id = 11 [ json_name = "upload_task_id" ]; // 上传任务ID
+}
+message UpdateCloudImageInfoBody {
+  string flow_id = 1 [ json_name = "flow_id" ];
+}
+message UpdateCloudImageInfoResponse {
+  common.RspInfo ret = 1 [ json_name = "ret" ];
+  UpdateCloudImageInfoBody body = 2 [ json_name = "body" ];
+}
+
+message AddOsVersionRequest {
+  string flow_id = 1 [ json_name = "flow_id" ];
+  string os_version = 2
+      [ json_name = "os_version" ]; // 内置os版本描述：win10LTSC-64
+}
+message AddOsVersionBody { string flow_id = 1 [ json_name = "flow_id" ]; }
+message AddOsVersionResponse {
+  common.RspInfo ret = 1 [ json_name = "ret" ];
+  AddOsVersionBody body = 2 [ json_name = "body" ];
+}
+
+message DeleteOsVersionRequest {
+  string flow_id = 1 [ json_name = "flow_id" ];
+  int64 id = 2 [ json_name = "id" ];
+}
+message DeleteOsVersionBody {
+  string flow_id = 1 [ json_name = "flow_id" ];
+}
+message DeleteOsVersionResponse {
+  common.RspInfo ret = 1 [ json_name = "ret" ];
+  DeleteOsVersionBody body = 2 [ json_name = "body" ];
+}
+
+message QueryOsVersionMapRequest {
+  string flow_id = 1 [ json_name = "flow_id" ];
+  int32 offset = 2 [ json_name = "offset" ];
+  int32 limit = 3 [ json_name = "limit" ];
+  repeated string cond_list = 4 [ json_name = "cond_list" ];
+  string sorts = 5 [ json_name = "sorts" ];
+  string orders = 6 [ json_name = "orders" ];
+}
+
+message OsVersion {
+  int64 id = 1 [ json_name = "id" ];
+  string os_version = 2
+      [ json_name = "os_version" ]; // 内置os版本描述：win10LTSC-64
+  string create_time = 3 [ json_name = "create_time" ]; // 创建时间
+  string update_time = 4 [ json_name = "update_time" ]; // 用户最后更新时间
+  string modify_time = 5 [ json_name = "modify_time" ]; // db最后更新时间
+}
+
+message QueryOsVersionMapBody {
+  string flow_id = 1 [ json_name = "flow_id" ];
+  int32 total = 2 [ json_name = "total" ];
+  repeated OsVersion list = 3 [ json_name = "list" ];
+}
+message QueryOsVersionMapResponse {
+  common.RspInfo ret = 1 [ json_name = "ret" ];
+  QueryOsVersionMapBody body = 2 [ json_name = "body" ];
+}
+
+message UpdateOsVersionRequest {
+  string flow_id = 1 [ json_name = "flow_id" ];
+  int64 id = 2 [ json_name = "id" ];
+  string new_os_version = 4
+      [ json_name = "new_os_version" ]; // 内置os版本描述：win10LTSC-64
+}
+message UpdateOsVersionBody { string flow_id = 1 [ json_name = "flow_id" ]; }
+message UpdateOsVersionResponse {
+  common.RspInfo ret = 1 [ json_name = "ret" ];
+  UpdateOsVersionBody body = 2 [ json_name = "body" ];
+}
+// protoc  -I../ -I . --go_out=. --go_opt=paths=source_relative
+// --go-grpc_out=.
+// --go-grpc_opt=paths=source_relative --grpc-gateway_out=. --grpc-gateway_opt
+// logtostderr=true --grpc-gateway_opt paths=source_relative
+// --grpc-gateway_opt=generate_unbound_methods=true
+// --openapiv2_out . --openapiv2_opt logtostderr=true diskless_cloud_image.proto

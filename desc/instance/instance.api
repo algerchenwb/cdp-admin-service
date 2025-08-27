@@ -1,0 +1,423 @@
+syntax = "v1"
+import "../common.api"
+info(
+	title: "算力策略管理"
+	desc: "算力策略管理"
+	author: "jeff.chen"
+	email: "jeff.chen@icloudsky.com"
+)
+type (
+
+	// 查询实例列表
+	InstanceListResp {
+		Total int            `json:"total"`
+		List  []InstanceInfo `json:"list"` // 实例列表
+	}
+	// 实例信息
+	InstanceInfo {
+	}
+
+	// 添加实例
+	InstanceAddReq {
+	}
+
+	InstanceAddResp {
+	}
+
+	// 编辑实例
+	InstanceUpdateReq {
+	}
+	InstanceUpdateResp {
+	}
+
+	// 查询算力策略列表
+	StrategyListResp {
+		Total int            `json:"total"`
+		List  []StrategyInfo `json:"list"`
+	}
+	StrategyInfo {
+		Id                  uint64   `json:"id"`
+		Name                string   `json:"name"`
+		ApplicableLever     uint64   `json:"applicable_lever"`
+		SpecId              uint64   `json:"spec_id"`
+		SpecName            string   `json:"spec_name"`
+		OuterSpecId         uint64   `json:"outer_spec_id"` // 外部规格ID
+		InstPoolId          uint64   `json:"inst_pool_id"`  // 算力池ID
+		TotalInstances      uint64   `json:"total_instances"`
+		VlanId              uint64   `json:"vlan_id"`
+		BootType            int      `json:"boot_type"`               // 启动模式 1=预开机模式；2=实时开机模式
+		PreBootSchemaIdInfo string   `json:"pre_boot_schema_id_info"` // 预开编排方案列表 json 结构体
+		PreBootCount        uint64   `json:"pre_boot_count"`          //预开路数
+		Remark              string   `json:"remark"`
+		Status              int      `json:"status"`
+		CreateBy            string   `json:"create_by"`
+		UpdateBy            string   `json:"update_by"`
+		CreateTime          string   `json:"create_time"`
+		UpdateTime          string   `json:"update_time"`
+		ModifyTime          string   `json:"modify_time"`
+		BizNameList         []string `json:"biz_name_list"`
+	}
+
+	// 添加算力策略
+	StrategyAddReq {
+		AreaId              uint64 `json:"area_id"`                                    // 区域ID
+		Name                string `json:"name"`                                       // 算力策略名称
+		TotalInstances      uint64 `json:"total_instances,omitempty,optional"`         // 算力路数上限
+		VlanId              uint64 `json:"vlan_id,omitempty,optional"`                 // VLAN ID
+		InstPoolId          uint64 `json:"inst_pool_id"`                               // 算力池ID
+		BootType            int    `json:"boot_type"`                                  // 启动模式  0-预开机 1-实时开机
+		PreBootSchemaIdInfo string `json:"pre_boot_schema_id_info,omitempty,optional"` // 预开编排方案列表 json 结构体
+		PreBootCount        uint64 `json:"pre_boot_count,omitempty,optional"`          // 预开路数
+		Remark              string `json:"remark,omitempty,optional"`                  // 备注
+	}
+
+	StrategyAddResp {
+		Id                  uint64 `json:"id"`
+		Name                string `json:"name"`
+		InstPoolId          uint64 `json:"inst_pool_id"` // 算力池ID
+		TotalInstances      uint64 `json:"total_instances"`
+		VlanId              uint64 `json:"vlan_id"`
+		BootType            int    `json:"boot_type"`               // 启动模式 0-预开机 1-实时开机
+		PreBootSchemaIdInfo string `json:"pre_boot_schema_id_info"` // 预开编排方案列表 json 结构体
+		PreBootCount        uint64 `json:"pre_boot_count"`          //预开路数
+		Remark              string `json:"remark"`
+		Status              int    `json:"status"`
+		CreateBy            string `json:"create_by"`
+		UpdateBy            string `json:"update_by"`
+		CreateTime          string `json:"create_time"`
+		UpdateTime          string `json:"update_time"`
+		ModifyTime          string `json:"modify_time"`
+	}
+
+	// 编辑算力策略
+	StrategyUpdateReq {
+		Id                  uint64 `json:"id"`                                         // 算力策略ID
+		AreaId              uint64 `json:"area_id"`                                    // 区域ID
+		Name                string `json:"name"`                                       // 算力策略名称
+		TotalInstances      uint64 `json:"total_instances"`                            // 实例数
+		InstPoolId          uint64 `json:"inst_pool_id"`                               // 算力池ID
+		VlanId              uint64 `json:"vlan_id,omitempty,optional"`                 //
+		PreBootSchemaIdInfo string `json:"pre_boot_schema_id_info,omitempty,optional"` // 预开编排方案列表 json 结构体
+		PreBootCount        uint64 `json:"pre_boot_count,omitempty,optional"`          // 预开路数
+		Remark              string `json:"remark,omitempty,optional"`                  // 备注
+	}
+
+	StrategyUpdateResp {
+	}
+	StrategyDeleteReq {
+		AreaId uint64 `json:"area_id"` // 区域ID
+		Id     uint64 `json:"id"`      // 算力策略ID
+	}
+
+	StrategyDeleteResp {
+	}
+
+	InstancePoolAddReq {
+		AreaId   uint64 `json:"area_id"`   // 区域ID
+		PoolName string `json:"pool_name"` // 算力池名称
+		InstIds  string `json:"inst_ids"`  // 实例ID列表 vmid1,vmid2,vmid3
+		Remark   string `json:"remark"`    // 备注
+	}
+
+	InstancePoolAddResp {
+		PoolId uint64 `json:"pool_id"` // 算力池ID
+	}
+
+	// 算力池列表
+	InstancePoolInfo {
+		Id               uint64   `json:"id"`                 // 自增长ID
+		PoolId           uint64   `json:"pool_id"`            // 算力池ID
+		PoolName         string   `json:"pool_name"`          // 算力池名称
+		InstCount        uint64   `json:"inst_count"`         // 实例数
+		OccupyCount      uint64   `json:"occupy_count"`       // 占用实例数
+		IdleCount        uint64   `json:"idle_count"`         // 空闲实例数
+		SpecName         string   `json:"spec_name"`          // 规格名称
+		Remark           string   `json:"remark"`             // 备注
+		Status           int      `json:"status"`             // 状态
+		CreateBy         string   `json:"create_by"`          // 创建人
+		UpdateBy         string   `json:"update_by"`          // 更新人
+		CreateTime       string   `json:"create_time"`        // 创建时间
+		UpdateTime       string   `json:"update_time"`        // 更行时间
+		StrategyNameList []string `json:"strategy_name_list"` // 关联的策略名称列表
+	}
+
+	InstancePoolListResp {
+		Total int                `json:"total"`
+		List  []InstancePoolInfo `json:"list"` // 实例列表
+	}
+
+	// 更新算力池信息
+	InstancePoolUpdateReq {
+		AreaId   uint64 `json:"area_id"`   // 区域ID
+		Id       uint64 `json:"id"`        // 自增长ID
+		PoolName string `json:"pool_name"` // 算力池名称
+		InstIds  string `json:"inst_ids"`  // 实例ID列表 vmid1,vmid2,vmid3 最新
+		Remark   string `json:"remark"`    // 备注
+	}
+
+	InstancePoolUpdateResp {
+	}
+
+	//  解散算力池
+	InstancePoolReleaseReq {
+		AreaId uint64 `json:"area_id"` // 区域ID
+		Id     uint64 `json:"id"`      // 自增长ID
+	}
+
+	InstancePoolReleaseResp {
+	}
+
+	// 查询策略实例
+	StrategyQueryInstancesReq {
+		AreaType   int32    `json:"area_type,omitempty"`
+		ResourceId *int64   `json:"resource_id,omitempty"`
+		Conditions []string `json:"conditions,omitempty"`
+		Offset     int32    `json:"offset,omitempty"`
+		Limit      int32    `json:"limit,omitempty"`
+		Order      string   `json:"order,omitempty"` // asc/desc
+		Sortby     string   `json:"sortby,omitempty"`
+	}
+
+	PoolItem {
+		AreaType     int32  `json:"area_type"`     // 区域ID
+		ResourceId   int64  `json:"resource_id"`   // 资源ID
+		InstanceId   int64  `json:"instance_id"`   // 实例ID
+		Mac          string `json:"mac"`           // MAC地址
+		Address      string `json:"address"`       // IP地址
+		Flags        int64  `json:"flags"`         //
+		PoolSource   string `json:"pool_source"`   //  资源池来源
+		PoolOrder    string `json:"pool_order"`    // 资源池订单号
+		PoolStatus   int32  `json:"pool_status"`   // 资源池状态 1-待启动 10-分配中 50-启动中 60-健康可用 100-占用中 750-资源池可分配 760-资源池已分配 800-释放中 900-已释放
+		AssignSource string `json:"assign_source"` // 分配来源
+		AssignOrder  string `json:"assign_order"`  // 分配流水
+		AssignParam  string `json:"assign_param"`  // 分配额外参数 uid/gid/device_id json格式
+		AssignResult string `json:"assign_result"` // 分配结果
+		AssignStatus int32  `json:"assign_status"` // 分配状态 同pool_status
+		CreateTime   string `json:"create_time"`   // 创建时间
+		UpdateTime   string `json:"update_time"`   // 更新时间
+		ModifyTime   string `json:"modify_time"`   // 更新时间
+	}
+
+	StrategyQueryInstancesResp {
+		Total int        `json:"total"`
+		List  []PoolItem `json:"list"` // 实例列表
+	}
+
+	StrategyReleaseInstanceItem {
+		AreaId     uint64 `json:"area_id"`     // 区域ID
+		Mode       int    `json:"mode"`        // 模式 1-重建 ,回到自己池 2-释放，回到默认池
+		FlowId     string `json:"flow_id"`     //  流水ID ==> pool_order
+		Source     string `json:"source"`      // 来源 ==> pool_source
+		InstanceId uint64 `json:"instance_id"` // 实例id
+	}
+
+	StrategyReleaseInstancesReq {
+		Item []StrategyReleaseInstanceItem `json:"item"`
+	}
+
+	StrategyReleaseInstancesResp {
+	}
+
+	StrategyReBuildPoolReq {
+		AreaType   uint64 `json:"area_type"`   // 区域类型
+		ResourceId uint64 `json:"resource_id"` // 资源ID
+	}
+
+	StrategyReBuildPoolResp {
+	}
+)
+
+type (
+	// 实例统计
+	InstanceStatisticReq {
+		AreaId uint64 `json:"area_id"`
+	}
+	InstanceStatisticResp {
+		TotalInstances   uint64 `json:"total_instances"`
+		UsedInstances    uint64 `json:"used_instances"`
+		FreeInstances    uint64 `json:"free_instances"`
+		InValidInstances uint64 `json:"in_valid_instances"`
+	}
+)
+
+type (
+	InstanceBindPoolReq {
+		InstanceIds []uint64 `json:"instance_ids"` // 实例ID列表
+		PoolId      uint64   `json:"pool_id"`      // 算力池ID
+		AreaId      uint64   `json:"area_id"`      // 区域ID
+	}
+
+	InstanceBindPoolResp {
+		SuccessInstanceIds []uint64 `json:"success_instance_ids"` // 成功绑定实例ID列表
+		FailedInstanceIds  []uint64 `json:"failed_instance_ids"`  // 失败绑定实例ID列表
+	}
+
+	StrategyInstNoScheduingItem {
+		AreaId     uint64 `json:"area_id"`     // 区域ID
+		FlowId     string `json:"flow_id"`     //  流水ID ==> pool_order
+		Source     string `json:"source"`      // 来源 ==> pool_source
+		InstanceId uint64 `json:"instance_id"` // 实例id
+	}
+	StrategyInstNoScheduingReq {
+		Items []StrategyInstNoScheduingItem `json:"items"` // 实例ID列表
+	}
+
+	StrategyInstNoScheduingResp {
+		SuccessInstanceIds []uint64 `json:"success_instance_ids"` // 成功禁止调度实例ID列表
+		FailedInstanceIds  []uint64 `json:"failed_instance_ids"`  // 失败禁止调度实例ID列表
+	}
+)
+
+@server(
+	group : instance
+	prefix : /v1/cdp/admin/instance
+	middleware: LogwayHandleMiddleware,AuthInterceptorMiddleware,MenuInterceptorMiddleware
+)
+
+// 算力管理
+// 1  实例管理
+// 2  算力策略
+
+service cdp-admin-service-api {
+
+	@doc(
+		summary: "查询实例列表，预留"
+	)
+	@handler InstanceList
+	post /instancelist(CommonPageRequest) returns (InstanceListResp)
+
+	@doc(
+		summary: "添加实例，预留"
+	)
+	@handler InstanceAdd
+	post /addinstance(InstanceAddReq) returns (InstanceAddResp)
+
+	@doc(
+		summary: "编辑实例，预留"
+	)
+	@handler InstanceUpdate
+	post /instanceupdate(InstanceUpdateReq) returns (InstanceUpdateResp)
+
+	@doc(
+		summary: "查询算力策略列表"
+	)
+	@handler StrategyList
+	post /strategylist(CommonPageRequest) returns (StrategyListResp)
+
+	@doc(
+		summary: "添加算力策略"
+	)
+	@handler StrategyAdd
+	post /strategyadd(StrategyAddReq) returns (StrategyAddResp)
+
+	@doc(
+		summary: "编辑算力策略"
+	)
+	@handler StrategyUpdate
+	post /strategyupdate(StrategyUpdateReq) returns (StrategyUpdateResp)
+
+	@doc(
+		summary: "删除力策略"
+	)
+	@handler StrategyDelete
+	post /strategydelete(StrategyDeleteReq) returns (StrategyDeleteResp)
+
+	@doc(
+		summary: "查询实例统计"
+	)
+	@handler InstanceStatistic
+	post /instancestatistic(InstanceStatisticReq) returns (InstanceStatisticResp)
+
+	@doc(
+		summary: "算力池新增"
+	)
+	@handler InstancePoolAdd
+	post /instancepooladd(InstancePoolAddReq) returns (InstancePoolAddResp)
+	@doc(
+		summary: "查询算力池列表"
+	)
+	@handler InstancePoolList
+	post /instancepoollist(CommonPageRequest) returns (InstancePoolListResp)
+
+	@doc(
+		summary: "更新算力池信息"
+	)
+	@handler InstancePoolUpdate
+	post /instancepoolupdate(InstancePoolUpdateReq) returns (InstancePoolUpdateResp)
+
+	@doc(
+		summary: "解散算力池"
+	)
+	@handler InstancePoolRelease
+	post /instancepoolrelease(InstancePoolReleaseReq) returns (InstancePoolReleaseResp)
+
+	@doc(
+		summary: "查询策略资源实例"
+	)
+	@handler StrategyQueryInstances
+	post /querystrategyinstance(StrategyQueryInstancesReq) returns (StrategyQueryInstancesResp)
+
+	@doc(
+		summary: "释放策略资源实例"
+	)
+	@handler StrategyReleaseInstances
+	post /strategyreleaseinstance(StrategyReleaseInstancesReq) returns (StrategyReleaseInstancesResp)
+
+	@doc(
+		summary: "重建策略资源池"
+	)
+	@handler StrategyReBuildPool
+	post /strategyreebuildpool(StrategyReBuildPoolReq) returns (StrategyReBuildPoolResp)
+
+	@doc(
+		summary: "实例绑定资源池"
+	)
+	@handler InstanceBindPool
+	post /instancebindpool(InstanceBindPoolReq) returns (InstanceBindPoolResp)
+
+	@doc(
+		summary: "禁止策略中实例被调度"
+	)
+	@handler StrategyInstNoScheduing
+	post /strategyinstnoscheduing(StrategyInstNoScheduingReq) returns (StrategyInstNoScheduingResp)
+}
+
+type (
+	QueryInstStragyInfoReq {
+		FlowId string `json:"flow_id"` // 流程ID
+		AreaId uint64 `json:"area_id"` // 区域ID
+		BizId  uint64 `json:"biz_id"`  // 业务ID
+		PoolId uint64 `json:"pool_id"` // 算力池ID
+		Mac    string `json:"mac"`     // 云盒MAC地址
+	}
+
+	StrategyData {
+		BootType     int64  `json:"boot_type"`      // 启动模式 0-预开机 1-实时开机
+		StrategyId   int64  `json:"strategy_id"`    // 策略ID
+		StrategyName string `json:"strategy_name"`  // 策略名称
+		InstPoolId   int64  `json:"inst_pool_id"`   // 算力池ID
+		BootSchemaId int64  `json:"boot_schema_id"` // 启动方案ID
+	}
+
+	QueryInstStragyInfoResp {
+		FlowId       string         `json:"flow_id"`       // 流程ID
+		StrategyList []StrategyData `json:"strategy_info"` // 云盒MAC地址
+
+	}
+)
+
+@server (
+	group:  instance
+	prefix: /v1/cdp/admin/instance
+	middleware: LogwayHandleMiddleware
+)
+
+service cdp-admin-service-api {
+
+	@doc (
+		summary: "查询算力池信息paas 调用"
+	)
+	@handler QueryInstStragyInfo
+	post /queryinststragyinfo (QueryInstStragyInfoReq) returns (QueryInstStragyInfoResp)
+
+}

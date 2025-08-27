@@ -1,0 +1,779 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "diskless_cloud_web/diskless_cloud_web.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "DisklessCloudWeb"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/DisklessCloudWeb/ChangeAreaInfo": {
+      "post": {
+        "summary": "修改机房信息",
+        "operationId": "DisklessCloudWeb_ChangeAreaInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/diskless_cloud_webChangeAreaInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/diskless_cloud_webChangeAreaInfoRequest"
+            }
+          }
+        ],
+        "tags": [
+          "DisklessCloudWeb"
+        ]
+      }
+    },
+    "/v1/DisklessCloudWeb/DirectGetAreaApi": {
+      "get": {
+        "summary": "调用机房的post接口",
+        "operationId": "DisklessCloudWeb_DirectGetAreaApi",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/diskless_cloud_webDirectGetAreaApiResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "DisklessCloudWeb"
+        ]
+      }
+    },
+    "/v1/DisklessCloudWeb/DirectPostAreaApi": {
+      "post": {
+        "summary": "调用机房的post接口",
+        "operationId": "DisklessCloudWeb_DirectPostAreaApi",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/diskless_cloud_webDirectPostAreaApiResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/diskless_cloud_webDirectPostAreaApiRequest"
+            }
+          }
+        ],
+        "tags": [
+          "DisklessCloudWeb"
+        ]
+      }
+    },
+    "/v1/DisklessCloudWeb/GetAreaApi": {
+      "get": {
+        "summary": "调用机房的post接口",
+        "operationId": "DisklessCloudWeb_GetAreaApi",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/diskless_cloud_webCallAreaApiResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "flow_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "area_id",
+            "description": "例: 6020",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "subsystem",
+            "description": "例: iaas",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "api",
+            "description": "例: create_instance",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "request",
+            "description": "get时是url后缀[k1=v1\u0026k2=v2],post时是json",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "DisklessCloudWeb"
+        ]
+      }
+    },
+    "/v1/DisklessCloudWeb/GetRegionMap": {
+      "post": {
+        "summary": "获取大区枚举",
+        "operationId": "DisklessCloudWeb_GetRegionMap",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/diskless_cloud_webGetRegionMapResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/diskless_cloud_webGetRegionMapRequest"
+            }
+          }
+        ],
+        "tags": [
+          "DisklessCloudWeb"
+        ]
+      }
+    },
+    "/v1/DisklessCloudWeb/PostAreaApi": {
+      "post": {
+        "summary": "调用机房的post接口",
+        "operationId": "DisklessCloudWeb_PostAreaApi",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/diskless_cloud_webCallAreaApiResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/diskless_cloud_webCallAreaApiRequest"
+            }
+          }
+        ],
+        "tags": [
+          "DisklessCloudWeb"
+        ]
+      }
+    },
+    "/v1/DisklessCloudWeb/QueryAreaList": {
+      "post": {
+        "summary": "查询机房列表",
+        "operationId": "DisklessCloudWeb_QueryAreaList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/diskless_cloud_webQueryAreaListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/diskless_cloud_webQueryAreaListRequest"
+            }
+          }
+        ],
+        "tags": [
+          "DisklessCloudWeb"
+        ]
+      }
+    },
+    "/v1/DisklessCloudWeb/RegisterArea": {
+      "post": {
+        "summary": "新增机房",
+        "operationId": "DisklessCloudWeb_RegisterArea",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/diskless_cloud_webRegisterAreaResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/diskless_cloud_webRegisterAreaRequest"
+            }
+          }
+        ],
+        "tags": [
+          "DisklessCloudWeb"
+        ]
+      }
+    },
+    "/v1/DisklessCloudWeb/UnregisterArea": {
+      "post": {
+        "summary": "删除机房",
+        "operationId": "DisklessCloudWeb_UnregisterArea",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/diskless_cloud_webUnregisterAreaResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/diskless_cloud_webUnregisterAreaRequest"
+            }
+          }
+        ],
+        "tags": [
+          "DisklessCloudWeb"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "commonRspInfo": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        }
+      }
+    },
+    "diskless_cloud_webAreaBaseInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "area_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "region_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "deployment_type": {
+          "type": "integer",
+          "format": "int32",
+          "title": "1.poc；2.正式；"
+        },
+        "remark": {
+          "type": "string"
+        },
+        "manager_state": {
+          "type": "integer",
+          "format": "int32",
+          "title": "1.启用；2.禁用"
+        },
+        "online_vm": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total_vm": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "version": {
+          "type": "integer",
+          "format": "int32",
+          "title": "边缘部署的iaas服务版本"
+        },
+        "proxy_addr": {
+          "type": "string"
+        },
+        "proxy_online": {
+          "type": "integer",
+          "format": "int32",
+          "title": "1.在线；0.离线"
+        },
+        "create_time": {
+          "type": "string"
+        },
+        "update_time": {
+          "type": "string",
+          "title": "用户最后修改时间"
+        },
+        "modify_time": {
+          "type": "string",
+          "title": "db记录最后更新时间"
+        }
+      }
+    },
+    "diskless_cloud_webCallAreaApiBody": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string"
+        },
+        "response": {
+          "type": "string",
+          "title": "http响应体，内嵌json"
+        }
+      }
+    },
+    "diskless_cloud_webCallAreaApiRequest": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string"
+        },
+        "area_id": {
+          "type": "string",
+          "format": "int64",
+          "title": "例: 6020"
+        },
+        "subsystem": {
+          "type": "string",
+          "title": "例: iaas"
+        },
+        "api": {
+          "type": "string",
+          "title": "例: create_instance"
+        },
+        "request": {
+          "type": "string",
+          "title": "get时是url后缀[k1=v1\u0026k2=v2],post时是json"
+        }
+      }
+    },
+    "diskless_cloud_webCallAreaApiResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/commonRspInfo"
+        },
+        "body": {
+          "$ref": "#/definitions/diskless_cloud_webCallAreaApiBody"
+        }
+      }
+    },
+    "diskless_cloud_webChangeAreaInfoBody": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string"
+        }
+      }
+    },
+    "diskless_cloud_webChangeAreaInfoRequest": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "title": "主键"
+        },
+        "area_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "region_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "deployment_type": {
+          "type": "integer",
+          "format": "int32",
+          "title": "1.poc；2.正式；"
+        },
+        "remark": {
+          "type": "string"
+        },
+        "manager_state": {
+          "type": "integer",
+          "format": "int32",
+          "title": "1.启用；2.禁用"
+        }
+      }
+    },
+    "diskless_cloud_webChangeAreaInfoResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/commonRspInfo"
+        },
+        "body": {
+          "$ref": "#/definitions/diskless_cloud_webChangeAreaInfoBody"
+        }
+      }
+    },
+    "diskless_cloud_webDirectGetAreaApiResponse": {
+      "type": "object",
+      "properties": {
+        "body": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "diskless_cloud_webDirectPostAreaApiRequest": {
+      "type": "object",
+      "properties": {
+        "body": {
+          "type": "string",
+          "format": "byte"
+        }
+      },
+      "title": "直接转发body和url"
+    },
+    "diskless_cloud_webDirectPostAreaApiResponse": {
+      "type": "object",
+      "properties": {
+        "body": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "diskless_cloud_webGetRegionMapBody": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32",
+          "title": "地区数"
+        },
+        "region_map": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/diskless_cloud_webRegion"
+          }
+        }
+      }
+    },
+    "diskless_cloud_webGetRegionMapRequest": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string"
+        }
+      }
+    },
+    "diskless_cloud_webGetRegionMapResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/commonRspInfo"
+        },
+        "body": {
+          "$ref": "#/definitions/diskless_cloud_webGetRegionMapBody"
+        }
+      }
+    },
+    "diskless_cloud_webQueryAreaListBody": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "list": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/diskless_cloud_webAreaBaseInfo"
+          }
+        }
+      }
+    },
+    "diskless_cloud_webQueryAreaListRequest": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "cond_list": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sorts": {
+          "type": "string"
+        },
+        "orders": {
+          "type": "string"
+        }
+      }
+    },
+    "diskless_cloud_webQueryAreaListResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/commonRspInfo"
+        },
+        "body": {
+          "$ref": "#/definitions/diskless_cloud_webQueryAreaListBody"
+        }
+      }
+    },
+    "diskless_cloud_webRegion": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "title": "地区编号：1"
+        },
+        "name": {
+          "type": "string",
+          "title": "地区名：华南地区"
+        },
+        "area_num": {
+          "type": "integer",
+          "format": "int32",
+          "title": "该地区机房数"
+        }
+      }
+    },
+    "diskless_cloud_webRegisterAreaBody": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string"
+        }
+      }
+    },
+    "diskless_cloud_webRegisterAreaRequest": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string"
+        },
+        "area_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "region_id": {
+          "type": "integer",
+          "format": "int32",
+          "title": "例：华南地区ID"
+        },
+        "deployment_type": {
+          "type": "integer",
+          "format": "int32",
+          "title": "1.poc；2.正式；"
+        },
+        "remark": {
+          "type": "string"
+        },
+        "manager_state": {
+          "type": "integer",
+          "format": "int32",
+          "title": "1.启用；2.禁用"
+        }
+      }
+    },
+    "diskless_cloud_webRegisterAreaResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/commonRspInfo"
+        },
+        "body": {
+          "$ref": "#/definitions/diskless_cloud_webRegisterAreaBody"
+        }
+      }
+    },
+    "diskless_cloud_webUnregisterAreaBody": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string"
+        },
+        "rets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/commonRspInfo"
+          }
+        }
+      }
+    },
+    "diskless_cloud_webUnregisterAreaRequest": {
+      "type": "object",
+      "properties": {
+        "flow_id": {
+          "type": "string"
+        },
+        "ids": {
+          "type": "string",
+          "title": "主键"
+        }
+      }
+    },
+    "diskless_cloud_webUnregisterAreaResponse": {
+      "type": "object",
+      "properties": {
+        "ret": {
+          "$ref": "#/definitions/commonRspInfo"
+        },
+        "body": {
+          "$ref": "#/definitions/diskless_cloud_webUnregisterAreaBody"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

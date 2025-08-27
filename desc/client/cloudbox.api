@@ -1,0 +1,244 @@
+syntax = "v1"
+import "../common.api"
+info(
+	title: "云盒管理"
+	desc: "云盒管理"
+	author: "kane.fang"
+	email: "jkane.fang@icloudsky.com"
+)
+
+type (
+	GetCloudBoxListReq {
+		Offset             int64    `json:"offset" label:"页数"`
+		Limit              int64    `json:"limit" label:"条数"`
+		CondList           []string `json:"cond_list" label:"查询条件"`
+		Sorts              string   `json:"sorts" label:"排序方式"`
+		Orders             string   `json:"orders" label:"排序字段"`
+		BizId              int64    `json:"biz_id" label:"租户ID"`                  // 租户ID
+		AreaId             int64    `json:"area_id" label:"节点区域ID"`               // 节点区域ID
+		CloudClientName    string   `json:"cloud_client_name,optional" label:"客户机名称"`     // 客户机名称
+		FirstStrategyName  string   `json:"first_strategy_name,optional" label:"主算力策略名称"`  // 主算力策略名称
+		SecondStrategyName string   `json:"second_strategy_name,optional" label:"从算力策略名称"` // 从算力策略名称
+	}
+	CloudBoxInfo {
+		Name                string `json:"name" label:"云盒名称"`
+		CloudBoxId          int64  `json:"cloud_box_id" label:"设备ID"`
+		DeviceNumber        string `json:"device_number" label:"设备编号"`
+		PowerStatusDesc     string `json:"power_status_desc" label:"电源状态"`
+		ManageStatusDesc    string `json:"manage_status_desc" label:"管理状态"`
+		RunningStatusDesc   string `json:"running_status_desc" label:"系统状态"`
+		ImagePublishProcess int32  `json:"image_publish_process" label:"镜像发布进度"`
+		ImagePublishState   int32  `json:"image_publish_state" label:"镜像发布状态"` // 0=未启动,1=进行中,2=已完成:成功,3=已完成:失败
+		MAC                 string `json:"mac" label:"Mac地址"`
+		Ip                  string `json:"ip" label:"IP地址"`
+		ConfigId            string `json:"config_id" label:"配置方案Id"`
+		ImageUse            string `json:"image_use" label:"使用镜像"`
+		NetCardSpeed        string `json:"net_card_speed" label:"网卡速率"`
+		BootTime            string `json:"boot_time" label:"开机时间"`
+		InstanceId          int64  `json:"instance_id" label:"实例Id"`
+		UserMode            int    `json:"user_mode" label:"超管模式"`      // 0=超管模式 1=普通模式
+		HostId              int64  `json:"host_id" label:"硬件id"`        //
+		KeepType            int    `json:"keep_type" label:"KeepType"` // 0-normal 1-ready 2-done
+
+		StartMode           int    `json:"start_mode" label:"启动方式"`           // 2=本地盘启动， 1=无盘启动 0也为无盘
+		BootSchemaId        int64  `json:"boot_schema_id" label:"启动方案ID"`
+		CloudClientId      int64  `json:"cloud_client_id" label:"客户机Id"`
+		CloudClientName    string `json:"cloud_client_name" label:"客户机名称"`
+		FirstStrategyId    int64  `json:"first_strategy_id" label:"启动策略Id"`
+		SecondStrategyId   int64  `json:"second_strategy_id" label:"启动策略Id"`
+		FirstStrategyName  string `json:"first_strategy_name" label:"启动策略名称"`
+		SecondStrategyName string `json:"second_strategy_name" label:"启动策略名称"`
+	}
+	CloudBoxListResp {
+		Total int64          `json:"total"`
+		List  []CloudBoxInfo `json:"list"`
+	}
+)
+
+type (
+	CloudBoxAddItem {
+		Name         string `json:"name,optional"                                                    label:"云盒名称"`
+		StartMode    int    `json:"start_mode"               validate:"omitempty,number,gte=0"        label:"启动方式"` // 2=本地盘启动， 1=无盘启动 0也为无盘
+		MAC          string `json:"mac"                     validate:"omitempty,mac"                 label:"Mac地址"`
+		Ip           string `json:"ip"                      validate:"omitempty,ipv4"                label:"云盒的IP地址"`
+		ConfigId     string `json:"config_id"                validate:"omitempty,min=1,max=99999"     label:"配置方案Id"`
+		ImageVersion string `json:"image_version,optional"   validate:"omitempty,min=0,max=99999"     label:"镜像版本"`
+		Resolution   string `json:"resolution,optional"     validate:"omitempty,min=0,max=99999"     label:"分辨率"`
+		RefreshRate  string `json:"refresh_rate,optional"    validate:"omitempty,min=0,max=99999"     label:"刷新率"`
+	}
+	CloudBoxAddReq {
+		BizId  int64             `json:"biz_id" validate:"required,number,gte=1" label:"租户ID"`      // 租户ID
+		AreaId int64             `json:"area_id" validate:"required,number,gte=1" label:"节点区域ID"`   // 节点区域ID
+		VlanId int64             `json:"vlan_id" validate:"required,number,gte=1" label:"网络vlanId"` // 网络vlanId
+		List   []CloudBoxAddItem `json:"list" validate:"omitempty,dive" label:"云盒信息列表"`            // 云盒信息列表
+	}
+	CloudBoxAddResp struct{}
+)
+
+type (
+	CloudBoxUpdateReq {
+		BizId  int64                `json:"biz_id" validate:"required,number,gte=1" label:"租户ID"`
+		AreaId int64                `json:"area_id" validate:"required,number,gte=1" label:"节点区域ID"`
+		CloudBoxId       int64  `json:"cloud_box_id"  validate:"required,number,gte=0" label:"设备Id"`
+		Ip               string `json:"ip" validate:"required,ipv4" label:"IP地址"`
+		StartMode        int    `json:"start_mode" validate:"required,number,gte=0" label:"启动方式"`
+		BootSchemaId     int64  `json:"boot_schema_id,optional" validate:"required,number,gte=1" label:"启动方案ID"` // 启动方案ID
+		FirstStrategyId  int64  `json:"first_strategy_id" validate:"required,number,gte=1" label:"启动策略Id"` // 启动方案Id
+		SecondStrategyId int64  `json:"second_strategy_id,optional" validate:"required,number,gte=1" label:"启动策略Id"`
+		InstanceId       int64  `json:"instance_id,optional" validate:"required,number,gte=1" label:"实例Id"`
+	}
+	CloudBoxUpdateResp struct{}
+)
+
+type (
+	CloudBoxDeleteItem {
+		CloudBoxId int64  `json:"cloud_box_id" validate:"required,number,gte=1" label:"设备Id"`
+		InstanceId int64  `json:"instance_id" validate:"required,number,gte=1" label:"实例Id"`
+		MAC        string `json:"mac" validate:"required,mac" label:"Mac地址"`
+	}
+	CloudBoxDeleteReq {
+		BizId  int64                `json:"biz_id" validate:"required,number,gte=1" label:"租户ID"`
+		AreaId int64                `json:"area_id" validate:"required,number,gte=1" label:"节点区域ID"`
+		List   []CloudBoxDeleteItem `json:"list" validate:"required,dive" label:"云盒信息列表"`
+	}
+
+	CloudBoxDeleteResp struct{}
+)
+
+type (
+	// form-data : myFile=文件流；shopInfo={"agentId": 591,"primaryId": 407,"bizId": 1017382, "accountName":"二级代理商6020测试","areaId" : 6020,"vlanId":1,"gateway":"10.86.0.0", "subNetmask": "255.255.255.255", "preDNS":"8.8.8.8","backupDNS":"16.16.16.16"}
+	CloudBoxImportResp struct{}
+)
+
+type (
+	CloudBoxSetAdminReq {
+		BizId      int64  `json:"biz_id"  validate:"required,number,gte=1" label:"租户ID"`
+		AreaId     int64  `json:"area_id" validate:"required,number,gte=1" label:"节点区域ID"`
+		CloudBoxId int64  `json:"cloud_box_id"  validate:"required,number,gte=0" label:"云盒Id"`
+		InstanceId int64  `json:"instance_id" validate:"required,number,gte=1" label:"实例Id"`
+		HostId     int64  `json:"host_id" validate:"required,number,gte=1" label:"硬件id"`
+		MAC        string `json:"mac" validate:"omitempty,mac" label:"Mac地址"`
+	}
+	CloudBoxSetAdminResp struct{}
+
+	CloudBoxCancelAdminReq {
+		BizId        int64  `json:"biz_id" validate:"required,number,gte=1" label:"租户ID"`
+		AreaId       int64  `json:"area_id" validate:"required,number,gte=1" label:"节点区域ID"`
+		InstanceId   int64  `json:"instance_id" validate:"required,number,gte=1" label:"实例Id"`
+		MAC          string `json:"mac" validate:"omitempty,mac" label:"Mac地址"`
+		HostId       int64  `json:"host_id" validate:"required,number,gte=1" label:"硬件id"`
+		ImageId      string `json:"image_id,optional" validate:"required,number,gte=128" label:"镜像ID"`
+		ManagerState int    `json:"manager_state,optional" validate:"required,number,gte=1" label:"镜像状态"`
+		Name         string `json:"name,optional" validate:"required,number,gte=256" lable:"镜像名称"`
+		OsVersion    string `json:"os_version,optional" validate:"required,min=0,max=128" lable:"系统类型"`
+		Remark       string `json:"remark,optional" validate:"required,min=0,max=1024" lable:"备注"`
+		FlattenFlag  int    `json:"flatten_flag,optional" validate:"required,min=0,max=10" lable:"是否拍平"`
+	}
+	CloudBoxCancelAdminResp struct{}
+)
+
+type (
+	CloudBoxBatchAddReq {
+		BizId            int64  `json:"biz_id" validate:"required,number,gte=1" label:"租户ID"`
+		AreaId           int64  `json:"area_id" validate:"required,number,gte=1" label:"节点区域ID"`
+		StartIp          string `json:"start_ip" validate:"required,ipv4" label:"开始IP"`                     // 起始IP
+		FirstStrategyId  int64  `json:"first_strategy_id" validate:"required,number,gte=1" label:"启动策略ID"`  // 启动策略ID主
+		SecondStrategyId int64  `json:"second_strategy_id,optional" validate:"required,number,gte=1" label:"启动策略ID"` // 启动策略ID从
+		StartMode        int    `json:"start_mode" validate:"required,number,gte=0" label:"启动方式"`            //启动方式
+		BootSchemaId     int64  `json:"boot_schema_id" validate:"required,number,gte=1" label:"启动方案ID"`     // 配置方案ID
+		MacList          []CloudBoxMacItem `json:"mac_list" validate:"required,dive" label:"Mac地址列表"`
+	}
+	CloudBoxMacItem {
+		Mac string `json:"mac" validate:"required,mac" label:"Mac地址"`
+		CloudClientId int64 `json:"cloud_client_id,optional" validate:"required,number,gte=1" label:"客户机ID"`
+	}
+	CloudBoxBatchAddItem {
+		CloudBoxId int64  `json:"cloud_box_id" validate:"required,number,gte=1" label:"云盒ID"` // 云盒ID
+		Ip         string `json:"ip" validate:"required,ipv4" label:"IP地址"`                   // IP地址
+		Mac        string `json:"mac" validate:"required,mac" label:"Mac地址"`                  // Mac地址
+		ErrorMsg   string `json:"error_msg"`                                                  // 错误信息
+	}
+	CloudBoxBatchAddResp {
+		SuccessItem []CloudBoxBatchAddItem `json:"success_item"` // 成功添加的云盒
+		FailedItem  []CloudBoxBatchAddItem `json:"failed_item"`  // 失败添加的云盒
+	}
+)
+
+type (
+	CloudBoxBatchUpdateReq {
+		BizId            int64  `json:"biz_id" validate:"required,number,gte=1" label:"租户ID"`
+		AreaId           int64  `json:"area_id" validate:"required,number,gte=1" label:"节点区域ID"`
+		CloudBoxIds      []int64 `json:"cloud_box_ids" validate:"required,dive,number,gte=1" label:"云盒ID"`   // 云盒ID列表
+		FirstStrategyId  int64   `json:"first_strategy_id,optional" validate:"required,number,gte=1" label:"启动策略ID"`  // 启动策略ID主
+		SecondStrategyId int64   `json:"second_strategy_id,optional" validate:"required,number,gte=1" label:"启动策略ID"` // 启动策略ID从
+	}
+	CloudBoxBatchUpdateItem {
+		CloudBoxId int64  `json:"cloud_box_id" validate:"required,number,gte=1" label:"云盒ID"` // 云盒ID
+		ErrorMsg   string `json:"error_msg"`                                                  // 错误信息
+	}
+	CloudBoxBatchUpdateResp {
+		SuccessItem []CloudBoxBatchUpdateItem `json:"success_item"` // 成功更新的云盒
+		FailedItem  []CloudBoxBatchUpdateItem `json:"failed_item"`  // 失败更新的云盒
+	}
+)
+
+@server (
+	group:  cloudbox
+	prefix: /v1/cdp/admin/cloudbox
+	middleware: LogwayHandleMiddleware,AuthInterceptorMiddleware
+)
+service cdp-admin-service-api {
+	@doc (
+		summary: " 查询云盒列表"
+	)
+	@handler CloudBoxList
+	post /cloudboxlist (GetCloudBoxListReq) returns (CloudBoxListResp)
+
+	@doc (
+		summary: "添加云盒"
+	)
+	@handler CloudBoxAdd
+	post /cloudboxadd (CloudBoxAddReq) returns (CloudBoxAddResp)
+
+	@doc (
+		summary: "更新云盒"
+	)
+	@handler CloudBoxUpdate
+	post /cloudboxupdate (CloudBoxUpdateReq) returns (CloudBoxUpdateResp)
+
+	@doc (
+		summary: "删除云盒"
+	)
+	@handler CloudBoxDelete
+	post /cloudboxdelete (CloudBoxDeleteReq) returns (CloudBoxDeleteResp)
+
+	@doc (
+		summary: "云盒信息导入"
+	)
+	@handler CloudBoxImport
+	post /cloudboximport returns (CloudBoxImportResp)
+
+	@doc (
+		summary: "云盒设置超管"
+	)
+	@handler CloudBoxSetAdmin
+	post /cloudboxsetadmin (CloudBoxSetAdminReq) returns (CloudBoxSetAdminResp)
+
+	@doc (
+		summary: "云盒取消超管"
+	)
+	@handler CloudBoxCancelAdmin
+	post /cloudboxcanceladmin (CloudBoxCancelAdminReq) returns (CloudBoxCancelAdminResp)
+
+	@doc (
+		summary: "云盒批量添加"
+	)
+	@handler CloudBoxBatchAdd
+	post /cloudboxbatchadd (CloudBoxBatchAddReq) returns (CloudBoxBatchAddResp)
+
+	@doc (
+		summary: "云盒批量更新"
+	)
+	@handler CloudBoxBatchUpdate
+	post /cloudboxbatchupdate (CloudBoxBatchUpdateReq) returns (CloudBoxBatchUpdateResp)
+}

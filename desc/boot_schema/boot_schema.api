@@ -1,0 +1,98 @@
+syntax = "v1"
+import "../common.api"
+info(
+	title: "启动方案"
+	desc: "启动方案"
+	author: "jeff.chen"
+	email: "jeff.chen@icloudsky.com"
+)
+
+type (
+	CreateBootSchemaReq {
+		BizId       int64        `json:"biz_id" validate:"required" label:"业务ID"`
+		Name        string       `json:"name" validate:"required" label:"名称"`
+		SchemaInfo  SchemaInfo   `json:"schema_info" validate:"required" label:"方案信息"`
+		ScriptInfos []ScriptInfo `json:"script_infos" validate:"required" label:"脚本信息"`
+	}
+	SchemaInfo {
+		Id           int64  `json:"id,optional" label:"ID"`
+		Name         string `json:"name" label:"名称"`
+		OsImageId    string `json:"os_image_id" label:"操作系统镜像ID"`
+		OsSnapshotId string `json:"os_snapshot_id" label:"操作系统快照ID"`
+	}
+	ScriptInfo {
+		Id         string `json:"id,optional" label:"ID"`
+		Name       string `json:"name" label:"名称"`
+		Script     string `json:"script" label:"脚本"`
+		ScriptType int32  `json:"script_type" label:"脚本类型"`
+	}
+	//{\"flow_id\":\"diskless_471a5bf26cfa\",\"name\":\"jeff-test\",\"os_image_id\":\"32352\",\"os_snapshot_id\":32352,\"storage_type\":0,\"data_image_ids\":\"\",\"wrback_type\":1,\"bootpnp_path\":\"111\"}
+	CreateBootSchemaResp {
+		Id int64 `json:"id" label:"ID"`
+	}
+)
+type (
+	UpdateBootSchemaReq {
+		Id          int64        `json:"id,optional" label:"ID"`
+		Name        string       `json:"name,optional" label:"名称"`
+		SchemaInfo  SchemaInfo   `json:"schema_info,optional" label:"方案信息"`
+		ScriptInfos []ScriptInfo `json:"script_infos,optional" label:"脚本信息"`
+	}
+)
+type (
+	DeleteBootSchemaReq {
+		Id int64 `json:"id,optional" label:"ID"`
+	}
+)
+type (
+	BootSchemaInfo {
+		Id          int64        `json:"id" label:"ID"`
+		Name        string       `json:"name" label:"名称"`
+		SchemaInfo  SchemaInfo   `json:"schema_info" label:"方案信息"`
+		ScriptInfos []ScriptInfo `json:"script_infos" label:"脚本信息"`
+		CreateTime  string       `json:"create_time" label:"创建时间"`
+		UpdateTime  string       `json:"update_time" label:"更新时间"`
+		BizId       int64        `json:"biz_id" label:"业务ID"`
+		CreateBy    string       `json:"create_by" label:"创建者"`
+		UpdateBy    string       `json:"update_by" label:"更新者"`
+		ModifyTime  string       `json:"modify_time" label:"修改时间"`
+		Status      int32        `json:"status" label:"状态"`
+		AreaId      int32        `json:"area_id" label:"区域ID"`
+		Remark      string       `json:"remark" label:"备注"`
+	}
+	ListBootSchemaResp {
+		List  []BootSchemaInfo `json:"list" label:"列表"`
+		Total int64            `json:"total" label:"总数"`
+	}
+)
+
+@server(
+	group : boot_schema
+	prefix : /v1/cdp/admin/boot_schema
+	middleware: LogwayHandleMiddleware,AuthInterceptorMiddleware,MenuInterceptorMiddleware
+)
+service cdp-admin-service-api {
+	@doc(
+		summary: "创建启动方案"
+	)
+	@handler CreateBootSchema
+	post /create(CreateBootSchemaReq) returns(CreateBootSchemaResp)
+
+	@doc(
+		summary: "更新启动方案"
+	)
+	@handler UpdateBootSchema
+	post /update(UpdateBootSchemaReq) returns(CommonNilJson)
+
+	@doc(
+		summary: "删除启动方案"
+	)
+	@handler DeleteBootSchema
+	post /delete(DeleteBootSchemaReq) returns(CommonNilJson)
+
+	@doc(
+		summary: "获取启动方案列表"
+	)
+	@handler ListBootSchema
+	post /list(CommonPageRequest) returns(ListBootSchemaResp)
+}
